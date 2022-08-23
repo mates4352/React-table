@@ -1,0 +1,23 @@
+@import "./src/assets/style";
+
+.auth {
+  display: flex;
+  min-height: 100vh;
+}
+
+.body {
+  max-width: 415px;
+  width: 100%;
+  margin: auto;
+  padding: 25px 33px 30px 33px;
+
+  text-align: center;
+
+  background: var(--white);
+  border-radius: 8px;
+}
+
+.title {
+  font: var(--h1);
+  color: var(--dark);
+}
