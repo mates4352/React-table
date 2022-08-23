@@ -9,7 +9,7 @@ export const Auth: FC<AuthProps> = Props => {
 
     return (
         <div>
-
+            Auth
         </div>
     );
 };
