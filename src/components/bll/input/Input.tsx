@@ -2,8 +2,10 @@ import React, {ChangeEvent, FC, memo, useState} from 'react';
 import s from './Input.module.scss';
 import classNames from "classnames/bind";
 import {IconEye} from "../../icons/eye/Eye";
+import {FieldMetaProps} from "formik";
 
 type InputType = {
+    formikError: FieldMetaProps<string>
     value: string
     label: string
     error?: string
@@ -15,6 +17,8 @@ type InputType = {
 };
 
 export const Input: FC<InputType> = memo(({
+        formikError,
+        value,
         label,
         error,
         type,
@@ -24,21 +28,22 @@ export const Input: FC<InputType> = memo(({
     }) => {
     const [typeInput, setTypeInput] = useState<string>(type);
     const isType = typeInput === 'password' ? 'text' : 'password';
-    const editTypeInput = (type: string) => () => {
-        setTypeInput(type)
-    }
+    const isError = formikError.touched && formikError.error;
+    const isValid = formikError.touched && !formikError.error;
+    const onEditTypeInput = (type: string) => () => setTypeInput(type)
 
     return (
         <div className={classNames(s.input, stylesRules)}>
             <input
                 className={s.field}
+                value={value}
                 type={typeInput}
                 id={id}
                 {...props}
             />
 
             <label
-                className={s.label}
+                className={classNames(s.label, value && s.label_value, isError && s.label_error, isValid && s.label_valid)}
                 htmlFor={id}>
                 {label}
             </label>
@@ -47,14 +52,14 @@ export const Input: FC<InputType> = memo(({
                 <button
                     className={s.button}
                     type={'button'}
-                    onClick={editTypeInput(isType)}>
+                    onClick={onEditTypeInput(isType)}>
                     <IconEye></IconEye>
                 </button>
             }
 
-            <div className={classNames(s.line, error && s.line_error)}></div>
+            <div className={classNames(s.line, isError && s.line_error, isValid && s.line_valid)}></div>
 
-            {error && <small className={s.error}>{error}</small>}
+            {isError && <small className={s.error}>{formikError.error}</small>}
         </div>
     );
 })
