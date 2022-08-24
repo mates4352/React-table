@@ -1,0 +1,89 @@
+.input {
+  position: relative;
+}
+
+.field {
+  width: var(--field-width, 100%);
+  height: var(--field-heigth, 48px);
+
+  font: var(--field-font, var(--p2));
+  color: var(--field-color, var(--dark));
+
+  background-color: transparent;
+  border: none;
+}
+
+.label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+
+  font: var(--label-font, var(--p4-1));
+  color: var(--label-color, var(--dark-opacity-50));
+  cursor: text;
+  user-select: none;
+
+  transition: top 300ms ease;
+}
+
+.field:focus + .label {
+  top: 0;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+.line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: var(--line-width, 100%);
+  height: var(--line-height, 1px);
+
+  background-color: var(--line-background-color, var(--dark-opacity-20));
+  overflow: hidden;
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+
+    width: 100%;
+    height: 100%;
+
+    transition: transform 300ms ease;
+  }
+
+  &:before {
+    background-color: var(--red);
+  }
+
+  &:after {
+    background-color: var(--blue-dark);
+  }
+}
+
+.line_error {
+  &:before {
+    transform: translateX(0);
+  }
+}
+
+.line_valid {
+  &:after {
+    transform: translateX(0);
+  }
+}
+
+.error {
+  font: var(--error-font, var(--p4-1));
+  color: var(--error-color, var(--red));
+}
