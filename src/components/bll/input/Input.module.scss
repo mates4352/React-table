@@ -1,5 +1,10 @@
 .input {
   position: relative;
+  transition: margin-bottom 500ms cubic-bezier(1,1.74,.05,1.9);
+
+  &__error {
+    margin: var(--input-margin, 0 0 18px);
+  }
 }
 
 .field {
@@ -25,18 +30,18 @@
   user-select: none;
 
   transition: top 300ms ease;
-}
 
-.label_value {
-  top: 0;
-}
+  &__value {
+    top: 0;
+  }
 
-.label_error {
-  color: var(--red);
-}
+  &__error {
+    color: var(--red);
+  }
 
-.label_valid {
-  color: var(--blue-dark);
+  &__valid {
+    color: var(--blue-dark);
+  }
 }
 
 .field:focus + .label {
@@ -81,17 +86,17 @@
   &:after {
     background-color: var(--blue-dark);
   }
-}
 
-.line_error {
-  &:before {
-    transform: translateX(0);
+  &__error {
+    &:before {
+      transform: translateX(0);
+    }
   }
-}
 
-.line_valid {
-  &:after {
-    transform: translateX(0);
+  &__valid {
+    &:after {
+      transform: translateX(0);
+    }
   }
 }
 
@@ -101,4 +106,19 @@
   left: 0;
   font: var(--error-font, var(--p4-1));
   color: var(--error-color, var(--red));
+}
+
+.errorEnter {
+  opacity: 0;
+}
+.errorEnterActive {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.errorExit {
+  opacity: 1;
+}
+.errorExitActive {
+  opacity: 0;
+  transition: opacity 300ms;
 }

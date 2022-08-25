@@ -6,3 +6,9 @@
 .title {
   margin-bottom: 38px;
 }
+
+.form {
+  display: grid;
+  grid-auto-rows: var(--minmax);
+  row-gap: 24px;
+}

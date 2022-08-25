@@ -3,6 +3,7 @@ import s from './Input.module.scss';
 import classNames from "classnames/bind";
 import {IconEye} from "../../icons/eye/Eye";
 import {FieldMetaProps} from "formik";
+import {CSSTransition} from "react-transition-group";
 
 type InputType = {
     formikError: FieldMetaProps<string>
@@ -33,7 +34,7 @@ export const Input: FC<InputType> = memo(({
     const onEditTypeInput = (type: string) => () => setTypeInput(type)
 
     return (
-        <div className={classNames(s.input, stylesRules)}>
+        <div className={classNames(s.input, isError && s.input__error, stylesRules)}>
             <input
                 className={s.field}
                 value={value}
@@ -43,12 +44,12 @@ export const Input: FC<InputType> = memo(({
             />
 
             <label
-                className={classNames(s.label, value && s.label_value, isError && s.label_error, isValid && s.label_valid)}
+                className={classNames(s.label, value && s.label__value, isError && s.label__error, isValid && s.label__valid)}
                 htmlFor={id}>
                 {label}
             </label>
 
-            {type === 'password' &&
+            {type === 'password' && value &&
                 <button
                     className={s.button}
                     type={'button'}
@@ -57,9 +58,21 @@ export const Input: FC<InputType> = memo(({
                 </button>
             }
 
-            <div className={classNames(s.line, isError && s.line_error, isValid && s.line_valid)}></div>
+            <div className={classNames(s.line, isError && s.line__error, isValid && s.line__valid)}></div>
 
-            {isError && <small className={s.error}>{formikError.error}</small>}
+            <CSSTransition
+                classNames={{
+                    enter: s.errorEnter,
+                    enterActive: s.errorEnterActive,
+                    exit: s.errorExit,
+                    exitActive:s.errorExitActive,
+                }}
+                in={!!isError}
+                timeout={500}
+                mountOnEnter
+                unmountOnExit>
+                <small className={s.error}>{formikError.error}</small>
+            </CSSTransition>
         </div>
     );
 })

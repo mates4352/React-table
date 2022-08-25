@@ -8,12 +8,11 @@ type LoginType = {
 
 };
 
-export type FormikType = ReturnType<typeof useFormik>;
-
 export const Login: FC<LoginType> = Props => {
     const formik = useFormik({
         initialValues: {
             email: '',
+            password: '',
         },
         validate,
         onSubmit: values => {
@@ -21,20 +20,24 @@ export const Login: FC<LoginType> = Props => {
         },
     });
 
-    const {} = Props;
-
     return (
         <section className={s.login}>
             <h2 className={s.title}>Sign In</h2>
 
-            <form onSubmit={formik.handleSubmit}>
+            <form className={s.form} onSubmit={formik.handleSubmit}>
                 <Input
-                    label={'email'}
+                    label={'Email'}
                     type={'email'}
                     id={'email'}
                     formikError={formik.getFieldMeta('email')}
                     {...formik.getFieldProps('email')}/>
-                <button type="submit">Submit</button>
+
+                <Input
+                    label={'Password'}
+                    type={'password'}
+                    id={'password'}
+                    formikError={formik.getFieldMeta('password')}
+                    {...formik.getFieldProps('password')}/>
             </form>
         </section>
     );
