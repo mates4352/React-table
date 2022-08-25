@@ -8,7 +8,33 @@
 }
 
 .form {
+  display: flex;
+  flex-direction: column;
+}
+
+.group {
   display: grid;
   grid-auto-rows: var(--minmax);
   row-gap: 24px;
+  margin-bottom: 48px;
+}
+
+.link_Forgot {
+  align-self: end;
+  margin-bottom: 92px;
+
+  font: var(--p3-1);
+  color: var(--dark);
+}
+
+.text {
+  margin-bottom: 12px;
+
+  font: var(--p3);
+  color: var(--dark-opacity-50);
+}
+
+.link_Sign {
+  font: var(--h4);
+  color: var(--blue-dark);
 }
