@@ -4,6 +4,7 @@ import {Input} from "../../../../components/bll/input/Input";
 import {useFormik} from "formik";
 import {validate} from "../../../../utils/helpers/login-validate/login-validate";
 import {Link} from "react-router-dom";
+import {Button} from "../../../../components/bll/button/Button";
 
 type LoginType = {
 
@@ -43,6 +44,12 @@ export const Login: FC<LoginType> = Props => {
                 </div>
 
                 <Link className={s.link_Forgot} to={'/'}>Forgot Password</Link>
+
+                <Button
+                    type={'submit'}
+                    styleRules={s.button}>
+                    Login
+                </Button>
 
                 <p className={s.text}>Don’t have an account?</p>
 

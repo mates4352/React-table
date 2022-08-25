@@ -10,9 +10,11 @@
 .form {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .group {
+  align-self: stretch;
   display: grid;
   grid-auto-rows: var(--minmax);
   row-gap: 24px;
@@ -25,6 +27,11 @@
 
   font: var(--p3-1);
   color: var(--dark);
+}
+
+.button {
+  --button-width: 266px;
+  --button-margin: 0 0 31px;
 }
 
 .text {
