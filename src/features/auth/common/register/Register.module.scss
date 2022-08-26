@@ -1,0 +1,34 @@
+@import './src/assets/style';
+
+.login {
+}
+
+.title {
+  margin-bottom: 38px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.group {
+  align-self: stretch;
+  display: grid;
+  grid-auto-rows: var(--minmax);
+  row-gap: 24px;
+  margin-bottom: 48px;
+}
+
+.wrap {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--minmax);
+  column-gap: 36px;
+  margin-bottom: 20px;
+}
+
+.button_register {
+  --button-width: 187px;
+}

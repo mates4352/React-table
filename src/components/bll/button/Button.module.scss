@@ -8,9 +8,9 @@
   font: var(--button-font, var(--p2));
   color: var(--button-color, var(--white));
 
-  background-color: var(--background-color, var(--blue-dark));
+  background-color: var(--button-background-color, var(--blue-dark));
   border-radius: var(--button-border-radius, 30px);
-  box-shadow: var(--button-box-shadow, 0 4px 18px var(--blue), inset 0 1px 0 var(--dark-opacity-20));
+  box-shadow: var(--button-box-shadow, 0 4px 18px var(--blue-dark), 0 3px 0 var(--blue));
   transition:
           transform 300ms ease,
           color 300ms ease,
@@ -20,11 +20,21 @@
   &:hover {
     background-color: var(--button-hover-background-color, var(--blue-light));
     color: var(--button-hover-color, var(--blue-dark));
-    box-shadow: var(--button-hover-box-shadow, 0 4px 18px var(--dark-opacity-20), 0 3px 0 var(--blue));;
+    box-shadow: var(--button-hover-box-shadow, 0 4px 18px var(--dark-opacity-20), 0 3px 0 var(--blue));
   }
 
   &:active {
     transform: var(--button-active-transform, translateY(3px));
-    box-shadow: var(--button-active-box-shadow, 0 4px 18px var(--dark-opacity-20), 0 0px 0 var(--blue));;
+    box-shadow: var(--button-active-box-shadow, 0 4px 18px var(--dark-opacity-20), 0 0px 0 var(--blue));
   }
+}
+
+.button_cansel {
+  --button-width: 124px;
+  --button-background-color: var(--blue-light);
+  --button-color: var(--blue-dark);
+  --button-box-shadow: 0 4px 18px var(--blue-light), 0 3px 0 var(--blue);
+  --button-hover-box-shadow: 0 4px 18px var(--blue-dark), 0 3px 0 var(--blue);
+  --button-hover-background-color: var(--blue-dark);
+  --button-hover-color: var(--white);
 }

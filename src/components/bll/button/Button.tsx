@@ -4,6 +4,7 @@ import classNames from "classnames/bind";
 
 type ButtonType = {
     type: "button" | "submit" | "reset"
+    buttonType?: 'cansel'
     children: string
     styleRules?: string
     onClickButton?: () => void
@@ -12,6 +13,7 @@ type ButtonType = {
 export const Button: FC<ButtonType> = props => {
     const {
         type,
+        buttonType,
         styleRules,
         children,
         onClickButton,
@@ -19,7 +21,11 @@ export const Button: FC<ButtonType> = props => {
 
     return (
         <button
-            className={classNames(s.button, styleRules)}
+            className={classNames(
+                s.button,
+                buttonType === 'cansel' && s.button_cansel,
+                styleRules
+            )}
             type={type}
             onClick={onClickButton}>
             {children}

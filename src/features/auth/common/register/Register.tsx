@@ -1,21 +1,20 @@
 import React, {FC} from 'react';
-import s from './Login.module.scss';
+import s from './Register.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
-import {useFormik} from "formik";
-import {validate} from "../../../../utils/helpers/validate/login-validate";
-import {Link} from "react-router-dom";
 import {Button} from "../../../../components/bll/button/Button";
-import {Routing} from "../../../../utils/enum/routing";
+import {useFormik} from "formik";
+import {validate} from "../../../../utils/helpers/validate/register-validate";
 
-type LoginType = {
+type RegisterType = {
 
 };
 
-export const Login: FC<LoginType> = Props => {
+export const Register: FC<RegisterType> = props => {
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
+            confirmPassword: '',
         },
         validate,
         onSubmit: values => {
@@ -24,7 +23,7 @@ export const Login: FC<LoginType> = Props => {
     });
 
     return (
-        <section className={s.login}>
+        <section className={s.register}>
             <h2 className={s.title}>Sign In</h2>
 
             <form className={s.form} onSubmit={formik.handleSubmit}>
@@ -42,19 +41,28 @@ export const Login: FC<LoginType> = Props => {
                         id={'password'}
                         formikError={formik.getFieldMeta('password')}
                         {...formik.getFieldProps('password')}/>
+
+                    <Input
+                        label={'Confirm password'}
+                        type={'password'}
+                        id={'Confirm password'}
+                        formikError={formik.getFieldMeta('confirmPassword')}
+                        {...formik.getFieldProps('confirmPassword')}/>
                 </div>
 
-                <Link className={s.link_Forgot} to={'/'}>Forgot Password</Link>
+                <div className={s.wrap}>
+                    <Button
+                        type={'reset'}
+                        buttonType={'cansel'}>
+                        Cansel
+                    </Button>
 
-                <Button
-                    type={'submit'}
-                    styleRules={s.button}>
-                    Login
-                </Button>
-
-                <p className={s.text}>Don’t have an account?</p>
-
-                <Link className={s.link_Sign} to={Routing.REGISTER}>Sign Up</Link>
+                    <Button
+                        type={'submit'}
+                        styleRules={s.button_register}>
+                        Login
+                    </Button>
+                </div>
             </form>
         </section>
     );

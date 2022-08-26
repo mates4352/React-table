@@ -1,3 +1,4 @@
 export enum Routing {
-    AUTH = '/Auth'
+    AUTH = '/Auth',
+    REGISTER = '/Auth/Register',
 }
