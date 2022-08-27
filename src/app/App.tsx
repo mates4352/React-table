@@ -7,6 +7,7 @@ import {Login} from "../features/auth/common/login/Login";
 import {Register} from "../features/auth/common/register/Register";
 import {ForgotPassword} from "../features/auth/common/forgot-password/Forgot-password";
 import {NewPassword} from "../features/auth/common/new-password/New-password";
+import {CheckEmail} from "../features/auth/common/check-email/Check-email";
 
 export const App: FC = () => {
   return (
@@ -19,6 +20,7 @@ export const App: FC = () => {
             <Route path={Routing.REGISTER} element={<Register/>}/>
             <Route path={Routing.FORGOT_PASSWORD} element={<ForgotPassword/>}/>
             <Route path={Routing.NEW_PASSWORD} element={<NewPassword/>}/>
+            <Route path={Routing.CHECK_EMAIL} element={<CheckEmail/>}/>
         </Route>
       </Routes>
     </div>
