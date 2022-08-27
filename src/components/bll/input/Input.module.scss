@@ -1,9 +1,10 @@
 .input {
   position: relative;
   transition: margin-bottom 500ms cubic-bezier(1,1.74,.05,1.9);
+  margin: var(--input-margin);
 
   &__error {
-    margin: var(--input-margin, 0 0 18px);
+    margin: var(--input-margin-error, 0 0 18px);
   }
 }
 

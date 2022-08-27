@@ -44,7 +44,7 @@ export const Login: FC<LoginType> = Props => {
                         {...formik.getFieldProps('password')}/>
                 </div>
 
-                <Link className={s.link_Forgot} to={'/'}>Forgot Password</Link>
+                <Link className={s.link_Forgot} to={Routing.FORGOT_PASSWORD}>Forgot Password</Link>
 
                 <Button
                     type={'submit'}
