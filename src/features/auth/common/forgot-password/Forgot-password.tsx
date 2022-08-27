@@ -3,15 +3,16 @@ import s from './Forgot-password.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {useFormik} from "formik";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Routing} from "../../../../utils/enum/routing";
-import {validate} from "../../../../utils/helpers/validate/forgo-pssword-validate";
+import {validate} from "../../../../utils/helpers/validate/forgot-password-validate";
 
 type ForgotPasswordType = {
 
 };
 
 export const ForgotPassword: FC<ForgotPasswordType> = props => {
+    let navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -19,6 +20,7 @@ export const ForgotPassword: FC<ForgotPasswordType> = props => {
         validate,
         onSubmit: values => {
             console.log(values)
+            navigate(Routing.NEW_PASSWORD)
         },
     });
 

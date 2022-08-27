@@ -6,6 +6,7 @@ import {Routing} from "../utils/enum/routing";
 import {Login} from "../features/auth/common/login/Login";
 import {Register} from "../features/auth/common/register/Register";
 import {ForgotPassword} from "../features/auth/common/forgot-password/Forgot-password";
+import {NewPassword} from "../features/auth/common/new-password/New-password";
 
 export const App: FC = () => {
   return (
@@ -14,11 +15,11 @@ export const App: FC = () => {
         <Route path={'/'} element={<Navigate to={Routing.AUTH}/>}/>
         <Route path={'/*'} element={<Navigate to={Routing.AUTH}/>}/>
         <Route path={Routing.AUTH} element={<Auth/>}>
-            <Route path={'/Auth'} element={<Login/>}/>
+            <Route path={Routing.AUTH} element={<Login/>}/>
             <Route path={Routing.REGISTER} element={<Register/>}/>
             <Route path={Routing.FORGOT_PASSWORD} element={<ForgotPassword/>}/>
+            <Route path={Routing.NEW_PASSWORD} element={<NewPassword/>}/>
         </Route>
-
       </Routes>
     </div>
   );
