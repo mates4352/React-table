@@ -41,6 +41,7 @@ export const NewPassword: FC<NewPasswordType> = props => {
 
                 <Button
                     type={'submit'}
+                    disabled={!(formik.isValid && formik.dirty)}
                     styleRules={s.button}>
                     Create new password
                 </Button>

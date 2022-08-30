@@ -4,12 +4,15 @@ import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {useFormik} from "formik";
 import {validate} from "../../../../utils/helpers/validate/register-validate";
+import {useNavigate} from "react-router-dom";
+import {Routing} from "../../../../utils/enum/routing";
 
 type RegisterType = {
 
 };
 
 export const Register: FC<RegisterType> = props => {
+    const navigate = useNavigate();
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -19,6 +22,7 @@ export const Register: FC<RegisterType> = props => {
         validate,
         onSubmit: values => {
             console.log(values)
+            navigate(Routing.CHECK_EMAIL)
         },
     });
 
@@ -53,12 +57,14 @@ export const Register: FC<RegisterType> = props => {
                 <div className={s.wrap}>
                     <Button
                         type={'reset'}
+                        onClickButton={() => formik.resetForm()}
                         buttonType={'cansel'}>
                         Cansel
                     </Button>
 
                     <Button
                         type={'submit'}
+                        disabled={!(formik.isValid && formik.dirty)}
                         styleRules={s.button_register}>
                         Login
                     </Button>

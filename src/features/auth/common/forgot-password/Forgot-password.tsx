@@ -41,6 +41,7 @@ export const ForgotPassword: FC<ForgotPasswordType> = props => {
 
                 <Button
                     type={'submit'}
+                    disabled={!(formik.isValid && formik.dirty)}
                     styleRules={s.button}>
                     Send Instructions
                 </Button>

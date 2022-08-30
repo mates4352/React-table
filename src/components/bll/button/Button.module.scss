@@ -28,6 +28,11 @@
     box-shadow: var(--button-active-box-shadow, 0 4px 18px var(--dark-opacity-20), 0 0px 0 var(--blue));
   }
 }
+.button[disabled]{
+  background-color: grey;
+  box-shadow: var(--button-disabled-box-shadow, 0 4px 18px grey, 0 3px 0 grey);
+  pointer-events: none;
+}
 
 .button_cansel {
   --button-width: 124px;

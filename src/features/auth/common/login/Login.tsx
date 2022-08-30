@@ -48,6 +48,7 @@ export const Login: FC<LoginType> = Props => {
 
                 <Button
                     type={'submit'}
+                    disabled={!(formik.isValid && formik.dirty)}
                     styleRules={s.button}>
                     Login
                 </Button>
