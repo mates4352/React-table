@@ -29,8 +29,8 @@
   }
 }
 .button[disabled]{
-  background-color: grey;
-  box-shadow: var(--button-disabled-box-shadow, 0 4px 18px grey, 0 3px 0 grey);
+  background-color: var(--button-disabled-background-color, var(--disabled));
+  box-shadow: var(--button-disabled-box-shadow, 0 4px 18px var(--disabled), 0 3px 0 var(--disabled));
   pointer-events: none;
 }
 

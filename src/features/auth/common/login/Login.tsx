@@ -53,7 +53,7 @@ export const Login: FC<LoginType> = Props => {
                     Login
                 </Button>
 
-                <p className={s.text}>Don’t have an account?</p>
+                <p className={s.text}>Already have an account?</p>
 
                 <Link className={s.link_Sign} to={Routing.REGISTER}>Sign Up</Link>
             </form>
