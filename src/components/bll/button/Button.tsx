@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import s from './Button.module.scss';
 import classNames from "classnames/bind";
 
@@ -11,7 +11,7 @@ type ButtonType = {
     onClickButton?: () => void
 };
 
-export const Button: FC<ButtonType> = props => {
+export const Button: FC<ButtonType> = memo(props => {
     const {
         type,
         buttonType,
@@ -34,4 +34,4 @@ export const Button: FC<ButtonType> = props => {
             {children}
         </button>
     );
-};
+})

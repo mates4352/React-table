@@ -4,7 +4,7 @@ import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {useFormik} from "formik";
 import {validate} from "../../../../utils/helpers/validate/register-validate";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Routing} from "../../../../utils/enum/routing";
 
 type RegisterType = {
@@ -22,7 +22,6 @@ export const Register: FC<RegisterType> = props => {
         validate,
         onSubmit: values => {
             console.log(values)
-            navigate(Routing.CHECK_EMAIL)
         },
     });
 
@@ -30,7 +29,7 @@ export const Register: FC<RegisterType> = props => {
         <section className={s.register}>
             <h2 className={s.title}>Sign In</h2>
 
-            <form className={s.form} onSubmit={formik.handleSubmit}>
+            <form className={s.form} onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
                 <div className={s.group}>
                     <Input
                         label={'Email'}
@@ -57,7 +56,6 @@ export const Register: FC<RegisterType> = props => {
                 <div className={s.wrap}>
                     <Button
                         type={'reset'}
-                        onClickButton={() => formik.resetForm()}
                         buttonType={'cansel'}>
                         Cansel
                     </Button>
@@ -69,6 +67,8 @@ export const Register: FC<RegisterType> = props => {
                         Login
                     </Button>
                 </div>
+
+                <Link className={s.link} to={Routing.AUTH}>Try logging in</Link>
             </form>
         </section>
     );

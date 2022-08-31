@@ -27,9 +27,14 @@
   grid-auto-flow: column;
   grid-auto-columns: var(--minmax);
   column-gap: 36px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
 }
 
 .button_register {
   --button-width: 187px;
+}
+
+.link {
+  font: var(--h4);
+  color: var(--blue-dark);
 }
