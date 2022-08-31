@@ -12,9 +12,9 @@ export const CheckEmail: FC<CheckEmailType> = props => {
 
     return (
         <section className={s.check_email}>
-            <img className={s.image} src={image_check_email}/>
+            <h2 className={s.title}>Check Email</h2>
 
-            <h2 className={s.title}>Forgot your password?</h2>
+            <img className={s.image} src={image_check_email}/>
 
             <p className={s.text}>We’ve sent an Email with instructions to example@mail.com</p>
 

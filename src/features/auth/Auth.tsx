@@ -13,7 +13,6 @@ export const Auth: FC<AuthProps> = Props => {
     return (
         <section className={classNames(s.auth, s.container)}>
             <div className={s.body}>
-                <h1 className={s.title}>It-incubator</h1>
                 <Outlet/>
             </div>
         </section>

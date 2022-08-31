@@ -22,6 +22,7 @@ export const Register: FC<RegisterType> = props => {
         validate,
         onSubmit: values => {
             console.log(values)
+            navigate(Routing.CHECK_EMAIL)
         },
     });
 
