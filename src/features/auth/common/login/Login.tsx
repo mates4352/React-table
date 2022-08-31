@@ -50,12 +50,12 @@ export const Login: FC<LoginType> = Props => {
                     type={'submit'}
                     disabled={!(formik.isValid && formik.dirty)}
                     styleRules={s.button}>
-                    Login
+                    Sign in
                 </Button>
 
                 <p className={s.text}>Already have an account?</p>
 
-                <Link className={s.link_Sign} to={Routing.REGISTER}>Sign Up</Link>
+                <Link className={s.link_Sign} to={Routing.REGISTER}>Registration</Link>
             </form>
         </section>
     );

@@ -8,10 +8,13 @@ import {Register} from "../features/auth/common/register/Register";
 import {ForgotPassword} from "../features/auth/common/forgot-password/Forgot-password";
 import {NewPassword} from "../features/auth/common/new-password/New-password";
 import {CheckEmail} from "../features/auth/common/check-email/Check-email";
+import {Header} from "../components/ui/header/Header";
 
 export const App: FC = () => {
   return (
     <div className={s.app}>
+      <Header></Header>
+
       <Routes>
         <Route path={'/'} element={<Navigate to={Routing.AUTH}/>}/>
         <Route path={'/*'} element={<Navigate to={Routing.AUTH}/>}/>
