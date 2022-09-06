@@ -1,11 +1,14 @@
 .input {
-  position: relative;
-  transition: margin-bottom 500ms cubic-bezier(1,1.74,.05,1.9);
   margin: var(--input-margin);
+}
 
-  &__error {
-    margin: var(--input-margin-error, 0 0 18px);
-  }
+.wrap {
+  position: relative;
+  transition: margin 500ms cubic-bezier(1,1.74,.05,1.9);
+}
+
+.wrap_error {
+  margin: var(--wrap-error-margin, 0 0 8px);
 }
 
 .field {
@@ -102,24 +105,9 @@
 }
 
 .error {
-  position: absolute;
-  bottom: -20px;
-  left: 0;
+  display: block;
+
   font: var(--error-font, var(--p4-1));
   color: var(--error-color, var(--red));
-}
-
-.errorEnter {
-  opacity: 0;
-}
-.errorEnterActive {
-  opacity: 1;
-  transition: opacity 300ms;
-}
-.errorExit {
-  opacity: 1;
-}
-.errorExitActive {
-  opacity: 0;
-  transition: opacity 300ms;
+  text-align: var(--error-text-align, left);
 }

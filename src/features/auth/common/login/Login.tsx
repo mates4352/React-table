@@ -6,6 +6,7 @@ import {validate} from "../../../../utils/helpers/validate/login-validate";
 import {Link} from "react-router-dom";
 import {Button} from "../../../../components/bll/button/Button";
 import {Routing} from "../../../../utils/enum/routing";
+import {motion} from "framer-motion";
 
 type LoginType = {
 
