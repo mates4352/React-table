@@ -6,6 +6,7 @@ import {useFormik} from "formik";
 import {validate} from "../../../../utils/helpers/validate/new-password-validate";
 import {useNavigate} from "react-router-dom";
 import {Routing} from "../../../../utils/enum/routing";
+import {AnimationAuth} from "../../../../utils/animations/animationAuth";
 
 type NewPasswordType = {
 
@@ -25,11 +26,12 @@ export const NewPassword: FC<NewPasswordType> = props => {
     });
 
     return (
-        <section className={s.new_password}>
-            <h2 className={s.title}>Create new password</h2>
+      <AnimationAuth>
+          <section className={s.new_password}>
+              <h2 className={s.title}>Create new password</h2>
 
-            <form className={s.form} onSubmit={formik.handleSubmit}>
-                <Input
+              <form className={s.form} onSubmit={formik.handleSubmit}>
+                  <Input
                     label={'Password'}
                     type={'password'}
                     id={'password'}
@@ -37,15 +39,16 @@ export const NewPassword: FC<NewPasswordType> = props => {
                     formikError={formik.getFieldMeta('password')}
                     {...formik.getFieldProps('password')}/>
 
-                <p className={s.text}>Create new password and we will send you further instructions to email</p>
+                  <p className={s.text}>Create new password and we will send you further instructions to email</p>
 
-                <Button
+                  <Button
                     type={'submit'}
                     disabled={!(formik.isValid && formik.dirty)}
                     styleRules={s.button}>
-                    Create new password
-                </Button>
-            </form>
-        </section>
+                      Create new password
+                  </Button>
+              </form>
+          </section>
+      </AnimationAuth>
     );
 };

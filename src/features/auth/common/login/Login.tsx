@@ -6,7 +6,7 @@ import {validate} from "../../../../utils/helpers/validate/login-validate";
 import {Link} from "react-router-dom";
 import {Button} from "../../../../components/bll/button/Button";
 import {Routing} from "../../../../utils/enum/routing";
-import {motion} from "framer-motion";
+import {AnimationAuth} from "../../../../utils/animations/animationAuth";
 
 type LoginType = {
 
@@ -25,39 +25,41 @@ export const Login: FC<LoginType> = Props => {
     });
 
     return (
-        <section className={s.login}>
-            <h2 className={s.title}>Sign In</h2>
+      <AnimationAuth>
+          <section className={s.login}>
+              <h2 className={s.title}>Sign In</h2>
 
-            <form className={s.form} onSubmit={formik.handleSubmit}>
-                <div className={s.group}>
-                    <Input
+              <form className={s.form} onSubmit={formik.handleSubmit}>
+                  <div className={s.group}>
+                      <Input
                         label={'Email'}
                         type={'email'}
                         id={'email'}
                         formikError={formik.getFieldMeta('email')}
                         {...formik.getFieldProps('email')}/>
 
-                    <Input
+                      <Input
                         label={'Password'}
                         type={'password'}
                         id={'password'}
                         formikError={formik.getFieldMeta('password')}
                         {...formik.getFieldProps('password')}/>
-                </div>
+                  </div>
 
-                <Link className={s.link_Forgot} to={Routing.FORGOT_PASSWORD}>Forgot Password</Link>
+                  <Link className={s.link_Forgot} to={Routing.FORGOT_PASSWORD}>Forgot Password</Link>
 
-                <Button
+                  <Button
                     type={'submit'}
                     disabled={!(formik.isValid && formik.dirty)}
                     styleRules={s.button}>
-                    Sign in
-                </Button>
+                      Sign in
+                  </Button>
 
-                <p className={s.text}>Already have an account?</p>
+                  <p className={s.text}>Already have an account?</p>
 
-                <Link className={s.link_Sign} to={Routing.REGISTER}>Registration</Link>
-            </form>
-        </section>
+                  <Link className={s.link_Sign} to={Routing.REGISTER}>Registration</Link>
+              </form>
+          </section>
+      </AnimationAuth>
     );
 };

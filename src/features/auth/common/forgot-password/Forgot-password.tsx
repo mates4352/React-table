@@ -6,6 +6,7 @@ import {useFormik} from "formik";
 import {Link, useNavigate} from "react-router-dom";
 import {Routing} from "../../../../utils/enum/routing";
 import {validate} from "../../../../utils/helpers/validate/forgot-password-validate";
+import {AnimationAuth} from "../../../../utils/animations/animationAuth";
 
 type ForgotPasswordType = {
 
@@ -25,11 +26,12 @@ export const ForgotPassword: FC<ForgotPasswordType> = props => {
     });
 
     return (
-        <section className={s.forgot_password}>
-            <h2 className={s.title}>Forgot your password?</h2>
+      <AnimationAuth>
+          <section className={s.forgot_password}>
+              <h2 className={s.title}>Forgot your password?</h2>
 
-            <form className={s.form} onSubmit={formik.handleSubmit}>
-                <Input
+              <form className={s.form} onSubmit={formik.handleSubmit}>
+                  <Input
                     label={'Email'}
                     type={'email'}
                     id={'email'}
@@ -37,19 +39,20 @@ export const ForgotPassword: FC<ForgotPasswordType> = props => {
                     formikError={formik.getFieldMeta('email')}
                     {...formik.getFieldProps('email')}/>
 
-                <p className={s.text}>Enter your email address and we will send you further instructions</p>
+                  <p className={s.text}>Enter your email address and we will send you further instructions</p>
 
-                <Button
+                  <Button
                     type={'submit'}
                     disabled={!(formik.isValid && formik.dirty)}
                     styleRules={s.button}>
-                    Send Instructions
-                </Button>
+                      Send Instructions
+                  </Button>
 
-                <p className={s.subtext}>Did you remember your password?</p>
+                  <p className={s.subtext}>Did you remember your password?</p>
 
-                <Link className={s.link} to={Routing.AUTH}>Try logging in</Link>
-            </form>
-        </section>
+                  <Link className={s.link} to={Routing.AUTH}>Try logging in</Link>
+              </form>
+          </section>
+      </AnimationAuth>
     );
 };
