@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import s from './Login.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {useFormik} from "formik";
-import {validate} from "../../../../utils/helpers/validate/login-validate";
+import {loginSchema} from "../../../../utils/helpers/validate/login-validate";
 import {Button} from "../../../../components/bll/button/Button";
 import {Routing} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../utils/animations/animationAuth";
@@ -20,7 +20,7 @@ export const Login: FC<LoginType> = Props => {
             email: '',
             password: '',
         },
-        validate,
+        validationSchema: loginSchema,
         onSubmit: values => {
             console.log(values)
         },

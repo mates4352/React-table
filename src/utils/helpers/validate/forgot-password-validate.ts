@@ -1,17 +1,12 @@
+import * as Yup from "yup";
+
 type ErrorsType = {
     email?: string
 }
 
-export const validate = (values: ErrorsType) => {
-    const errors: ErrorsType = {};
-
-    if (!values.email) {
-        errors.email = 'Required value email';
-    } else if(values.email.length > 30) {
-        errors.email = 'Less characters required';
-    } else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
-    }
-
-    return errors;
-};
+export const forgotPasswordSchema = Yup.object().shape({
+    email: Yup.string()
+      .max(30, 'Less characters required')
+      .email('Invalid email address')
+      .required('Required value email'),
+});

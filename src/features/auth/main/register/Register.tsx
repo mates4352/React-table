@@ -3,7 +3,7 @@ import s from './Register.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {useFormik} from "formik";
-import {validate} from "../../../../utils/helpers/validate/register-validate";
+import {registerSchema} from "../../../../utils/helpers/validate/register-validate";
 import {useNavigate} from "react-router-dom";
 import {Routing} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../utils/animations/animationAuth";
@@ -22,7 +22,7 @@ export const Register: FC<RegisterType> = props => {
             password: '',
             confirmPassword: '',
         },
-        validate,
+        validationSchema: registerSchema,
         onSubmit: values => {
             console.log(values)
             navigate(Routing.CHECK_EMAIL)

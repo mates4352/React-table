@@ -5,7 +5,7 @@ import {Button} from "../../../../components/bll/button/Button";
 import {useFormik} from "formik";
 import {useNavigate} from "react-router-dom";
 import {Routing} from "../../../../utils/enum/routing";
-import {validate} from "../../../../utils/helpers/validate/forgot-password-validate";
+import {forgotPasswordSchema} from "../../../../utils/helpers/validate/forgot-password-validate";
 import {AnimationAuth} from "../../../../utils/animations/animationAuth";
 import {TitleAuth} from "../../common/titleAuth/TitleAuth";
 import {Caption} from "../../../../components/ui/caption/Caption";
@@ -21,7 +21,7 @@ export const ForgotPassword: FC<ForgotPasswordType> = props => {
         initialValues: {
             email: '',
         },
-        validate,
+        validationSchema: forgotPasswordSchema,
         onSubmit: values => {
             console.log(values)
             navigate(Routing.NEW_PASSWORD)
