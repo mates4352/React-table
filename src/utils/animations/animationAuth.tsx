@@ -3,6 +3,7 @@ import {motion} from 'framer-motion';
 
 type AnimationAuthType = {
   children: any
+  className?: string
 };
 
 const animations = {
@@ -11,9 +12,15 @@ const animations = {
   exit: {opacity: 0, scale: 0.7},
 }
 
-export const AnimationAuth: FC<AnimationAuthType> = ({children}) => {
+export const AnimationAuth: FC<AnimationAuthType> = props => {
+  const {
+    children,
+    className
+  } = props;
+
   return (
     <motion.div
+      className={className}
       variants={animations}
       initial='initial'
       animate='animate'

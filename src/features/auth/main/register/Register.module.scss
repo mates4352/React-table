@@ -1,13 +1,10 @@
-@import './src/assets/style';
+@import '../../../../assets/style';
 
 .login {
 }
 
 .title {
   margin-bottom: 38px;
-
-  font: var(--h1);
-  color: var(--dark);
 }
 
 .form {
@@ -34,9 +31,4 @@
 
 .button_register {
   --button-width: 187px;
-}
-
-.link {
-  font: var(--h4);
-  color: var(--blue-dark);
 }

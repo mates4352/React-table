@@ -1,13 +1,10 @@
-@import './src/assets/style';
+@import '../../../../assets/style';
 
 .login {
 }
 
 .title {
   margin-bottom: 38px;
-
-  font: var(--h1);
-  color: var(--dark);
 }
 
 .form {
@@ -24,27 +21,16 @@
   margin-bottom: 48px;
 }
 
-.link_Forgot {
+.link_forgot {
   align-self: end;
   margin-bottom: 55px;
-
-  font: var(--p3-1);
-  color: var(--dark);
 }
 
 .button {
   --button-width: 266px;
-  --button-margin: 0 0 31px;
+  margin-bottom: 31px;
 }
 
-.text {
+.caption {
   margin-bottom: 12px;
-
-  font: var(--p3);
-  color: var(--dark-opacity-50);
-}
-
-.link_Sign {
-  font: var(--h4);
-  color: var(--blue-dark);
 }
