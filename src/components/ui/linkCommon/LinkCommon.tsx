@@ -9,12 +9,11 @@ type LinkCommonType = {
   routing: string
 };
 
-export const LinkCommon: FC<LinkCommonType> = memo(props => {
-  const {
-    stylesRules,
-    children,
-    routing,
-  } = props;
+export const LinkCommon: FC<LinkCommonType> = memo(({
+  stylesRules,
+  children,
+  routing,
+}) => {
 
   return (
     <Link

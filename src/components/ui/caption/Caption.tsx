@@ -7,11 +7,10 @@ type CaptionType = {
   children: string
 };
 
-export const Caption: FC<CaptionType> = memo(props => {
-  const {
-    stylesRules,
-    children,
-  } = props;
+export const Caption: FC<CaptionType> = memo(({
+  stylesRules,
+  children,
+}) => {
 
   return (
     <p className={classNames(s.caption, stylesRules)}>

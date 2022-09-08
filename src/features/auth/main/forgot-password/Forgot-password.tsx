@@ -11,57 +11,55 @@ import {TitleAuth} from "../../common/titleAuth/TitleAuth";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
 
-type ForgotPasswordType = {
+type ForgotPasswordType = {};
 
-};
+export const ForgotPassword: FC<ForgotPasswordType> = () => {
+  let navigate = useNavigate();
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+    },
+    validationSchema: forgotPasswordSchema,
+    onSubmit: values => {
+      console.log(values)
+      navigate(Routing.NEW_PASSWORD)
+    },
+  });
 
-export const ForgotPassword: FC<ForgotPasswordType> = props => {
-    let navigate = useNavigate();
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-        },
-        validationSchema: forgotPasswordSchema,
-        onSubmit: values => {
-            console.log(values)
-            navigate(Routing.NEW_PASSWORD)
-        },
-    });
+  return (
+    <AnimationAuth className={s.forgot_password}>
+      <TitleAuth stylesRules={s.title}>
+        Forgot your password?
+      </TitleAuth>
 
-    return (
-      <AnimationAuth className={s.forgot_password}>
-          <TitleAuth stylesRules={s.title}>
-              Forgot your password?
-          </TitleAuth>
+      <form className={s.form} onSubmit={formik.handleSubmit}>
+        <Input
+          label={'Email'}
+          type={'email'}
+          id={'email'}
+          stylesRules={s.input}
+          formikError={formik.getFieldMeta('email')}
+          {...formik.getFieldProps('email')}/>
 
-          <form className={s.form} onSubmit={formik.handleSubmit}>
-              <Input
-                label={'Email'}
-                type={'email'}
-                id={'email'}
-                stylesRules={s.input}
-                formikError={formik.getFieldMeta('email')}
-                {...formik.getFieldProps('email')}/>
+        <Caption stylesRules={s.text}>
+          Enter your email address and we will send you further instructions
+        </Caption>
 
-              <Caption stylesRules={s.text}>
-                  Enter your email address and we will send you further instructions
-              </Caption>
+        <Button
+          type={'submit'}
+          disabled={!(formik.isValid && formik.dirty)}
+          styleRules={s.button}>
+          Send Instructions
+        </Button>
 
-              <Button
-                type={'submit'}
-                disabled={!(formik.isValid && formik.dirty)}
-                styleRules={s.button}>
-                  Send Instructions
-              </Button>
+        <Caption stylesRules={s.caption}>
+          Did you remember your password?
+        </Caption>
 
-              <Caption stylesRules={s.caption}>
-                  Did you remember your password?
-              </Caption>
-
-              <LinkCommon routing={Routing.AUTH}>
-                  Try logging in
-              </LinkCommon>
-          </form>
-      </AnimationAuth>
-    );
+        <LinkCommon routing={Routing.AUTH}>
+          Try logging in
+        </LinkCommon>
+      </form>
+    </AnimationAuth>
+  );
 };

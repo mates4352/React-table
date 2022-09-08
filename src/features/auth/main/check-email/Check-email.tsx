@@ -7,27 +7,24 @@ import {TitleAuth} from "../../common/titleAuth/TitleAuth";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
 
-type CheckEmailType = {
+type CheckEmailType = {};
 
-};
+export const CheckEmail: FC<CheckEmailType> = () => {
+  return (
+    <AnimationAuth className={s.check_email}>
+      <TitleAuth stylesRules={s.title}>
+        Check Email
+      </TitleAuth>
 
-export const CheckEmail: FC<CheckEmailType> = props => {
+      <img className={s.image} src={image_check_email} alt={'Email'}/>
 
-    return (
-      <AnimationAuth className={s.check_email}>
-        <TitleAuth stylesRules={s.title}>
-          Check Email
-        </TitleAuth>
+      <Caption stylesRules={s.caption}>
+        We’ve sent an Email with instructions to example@mail.com
+      </Caption>
 
-        <img className={s.image} src={image_check_email} alt={'Email'}/>
-
-        <Caption stylesRules={s.caption}>
-          We’ve sent an Email with instructions to example@mail.com
-        </Caption>
-
-        <LinkCommon stylesRules={s.link} routing={Routing.AUTH}>
-          Try logging in
-        </LinkCommon>
-      </AnimationAuth>
-    );
+      <LinkCommon stylesRules={s.link} routing={Routing.AUTH}>
+        Try logging in
+      </LinkCommon>
+    </AnimationAuth>
+  );
 };

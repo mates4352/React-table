@@ -10,65 +10,63 @@ import {TitleAuth} from "../../common/titleAuth/TitleAuth";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
 
-type LoginType = {
+type LoginType = {};
 
-};
+export const Login: FC<LoginType> = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: loginSchema,
+    onSubmit: values => {
+      console.log(values)
+    },
+  });
 
-export const Login: FC<LoginType> = Props => {
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-        },
-        validationSchema: loginSchema,
-        onSubmit: values => {
-            console.log(values)
-        },
-    });
+  return (
+    <AnimationAuth className={s.login}>
+      <TitleAuth stylesRules={s.title}>
+        Sign In
+      </TitleAuth>
 
-    return (
-      <AnimationAuth className={s.login}>
-          <TitleAuth stylesRules={s.title}>
-              Sign In
-          </TitleAuth>
+      <form className={s.form} onSubmit={formik.handleSubmit}>
+        <div className={s.group}>
+          <Input
+            label={'Email'}
+            type={'email'}
+            id={'email'}
+            formikError={formik.getFieldMeta('email')}
+            {...formik.getFieldProps('email')}/>
 
-          <form className={s.form} onSubmit={formik.handleSubmit}>
-              <div className={s.group}>
-                  <Input
-                    label={'Email'}
-                    type={'email'}
-                    id={'email'}
-                    formikError={formik.getFieldMeta('email')}
-                    {...formik.getFieldProps('email')}/>
-
-                  <Input
-                    label={'Password'}
-                    type={'password'}
-                    id={'password'}
-                    formikError={formik.getFieldMeta('password')}
-                    {...formik.getFieldProps('password')}/>
-              </div>
+          <Input
+            label={'Password'}
+            type={'password'}
+            id={'password'}
+            formikError={formik.getFieldMeta('password')}
+            {...formik.getFieldProps('password')}/>
+        </div>
 
 
-              <LinkCommon stylesRules={s.link_forgot} routing={Routing.FORGOT_PASSWORD}>
-                  Forgot Password
-              </LinkCommon>
+        <LinkCommon stylesRules={s.link_forgot} routing={Routing.FORGOT_PASSWORD}>
+          Forgot Password
+        </LinkCommon>
 
-              <Button
-                type={'submit'}
-                disabled={!(formik.isValid && formik.dirty)}
-                styleRules={s.button}>
-                  Sign in
-              </Button>
+        <Button
+          type={'submit'}
+          disabled={!(formik.isValid && formik.dirty)}
+          styleRules={s.button}>
+          Sign in
+        </Button>
 
-              <Caption stylesRules={s.caption}>
-                  Already have an account?
-              </Caption>
+        <Caption stylesRules={s.caption}>
+          Already have an account?
+        </Caption>
 
-              <LinkCommon routing={Routing.REGISTER}>
-                  Registration
-              </LinkCommon>
-          </form>
-      </AnimationAuth>
-    );
+        <LinkCommon routing={Routing.REGISTER}>
+          Registration
+        </LinkCommon>
+      </form>
+    </AnimationAuth>
+  );
 };

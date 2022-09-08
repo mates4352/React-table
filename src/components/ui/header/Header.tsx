@@ -6,27 +6,26 @@ import {Button} from "../../bll/button/Button";
 import {useNavigate} from "react-router-dom";
 import {Routing} from "../../../utils/enum/routing";
 
-type HeaderType = {
+type HeaderType = {};
 
-};
+export const Header: FC<HeaderType> = memo(() => {
+  const navigate = useNavigate();
+  const onClickButtonRedirect = () => {
+    navigate(Routing.AUTH)
+  }
 
-export const Header: FC<HeaderType> = memo(props => {
-    const navigate = useNavigate();
-    const onClickButtonRedirect = () => {
-        navigate(Routing.AUTH)
-    }
-    return (
-        <header className={s.header}>
-            <div className={classNames(s.wrap, s.container)}>
-                <img className={s.logo} src={logo}/>
+  return (
+    <header className={s.header}>
+      <div className={classNames(s.wrap, s.container)}>
+        <img className={s.logo} src={logo} alt={'Logo'}/>
 
-                <Button
-                    styleRules={s.button}
-                    type={'button'}
-                    onClickButton={onClickButtonRedirect}>
-                    Sign in
-                </Button>
-            </div>
-        </header>
-    );
+        <Button
+          styleRules={s.button}
+          type={'button'}
+          onClickButton={onClickButtonRedirect}>
+          Sign in
+        </Button>
+      </div>
+    </header>
+  );
 })

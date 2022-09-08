@@ -7,8 +7,11 @@ type TitleAuthType = {
   children: string
 };
 
-export const TitleAuth: FC<TitleAuthType> = memo(props => {
-  const {children, stylesRules} = props
+export const TitleAuth: FC<TitleAuthType> = memo(({
+  children,
+  stylesRules,
+}) => {
+
   return (
     <h2 className={classNames(s.title, stylesRules)}>
       {children}
