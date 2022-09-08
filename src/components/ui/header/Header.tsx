@@ -20,7 +20,7 @@ export const Header: FC<HeaderType> = memo(() => {
         <img className={s.logo} src={logo} alt={'Logo'}/>
 
         <Button
-          styleRules={s.button}
+          className={s.button}
           type={'button'}
           onClickButton={onClickButtonRedirect}>
           Sign in

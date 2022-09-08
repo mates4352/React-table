@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import s from './New-password.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
-import {useFormik} from "formik";
+import {Field, Form, Formik} from "formik";
 import {newPasswordSchema} from "../../../../utils/helpers/validate/new-password-validate";
 import {useNavigate} from "react-router-dom";
 import {Routing} from "../../../../utils/enum/routing";
@@ -12,45 +12,50 @@ import {Caption} from "../../../../components/ui/caption/Caption";
 
 type NewPasswordType = {};
 
+type NewPasswordValuesType = {
+  password: string
+}
+
 export const NewPassword: FC<NewPasswordType> = () => {
   let navigate = useNavigate();
-  const formik = useFormik({
-    initialValues: {
-      password: '',
-    },
-    validationSchema: newPasswordSchema,
-    onSubmit: values => {
-      console.log(values)
-      navigate(Routing.CHECK_EMAIL)
-    },
-  });
 
   return (
     <AnimationAuth className={s.new_password}>
-      <TitleAuth stylesRules={s.title}>
+      <TitleAuth className={s.title}>
         Create new password
       </TitleAuth>
 
-      <form className={s.form} onSubmit={formik.handleSubmit}>
-        <Input
-          label={'Password'}
-          type={'password'}
-          id={'password'}
-          stylesRules={s.input}
-          formikError={formik.getFieldMeta('password')}
-          {...formik.getFieldProps('password')}/>
+      <Formik
+        initialValues={{
+          password: '',
+        }}
+        validationSchema={newPasswordSchema}
+        onSubmit={(values: NewPasswordValuesType) => {
+          console.log(values)
+          navigate(Routing.CHECK_EMAIL)
+        }}>
+        {formik => (
+          <Form>
+            <Field
+              className={s.input}
+              name={'password'}
+              type={'password'}
+              label={'Password'}
+              component={Input}/>
 
-        <Caption stylesRules={s.caption}>
-          Create new password and we will send you further instructions to email
-        </Caption>
+            <Caption className={s.caption}>
+              Create new password and we will send you further instructions to email
+            </Caption>
 
-        <Button
-          type={'submit'}
-          disabled={!(formik.isValid && formik.dirty)}
-          styleRules={s.button}>
-          Create new password
-        </Button>
-      </form>
+            <Button
+              type={'submit'}
+              disabled={!(formik.isValid && formik.dirty)}
+              className={s.button}>
+              Create new password
+            </Button>
+          </Form>
+        )}
+      </Formik>
     </AnimationAuth>
   );
 };

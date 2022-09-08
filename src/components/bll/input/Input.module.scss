@@ -1,5 +1,4 @@
 .input {
-  margin: var(--input-margin);
 }
 
 .wrap {
@@ -102,12 +101,4 @@
       transform: translateX(0);
     }
   }
-}
-
-.error {
-  display: block;
-
-  font: var(--error-font, var(--p4-1));
-  color: var(--error-color, var(--red));
-  text-align: var(--error-text-align, left);
 }

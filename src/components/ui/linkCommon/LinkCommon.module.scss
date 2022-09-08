@@ -1,4 +1,24 @@
 .link {
+  position: relative;
   font: var(--link-font, var(--h4));
   color: var(--link-color, var(--blue-dark));
+  overflow: var(--link-color-overflow, hidden);
+
+  &::before {
+    content: var(--link-before-content, '');
+    position: var(--link-before-position, absolute);
+    bottom: var(--link-before-bottom, 0);
+    left: var(--link-before-left, 50%);
+    transform: var(--link-before-transform, translateX(-50%));
+
+    width: var(--link-before-width, 0);
+    height: var(--link-before-height, 1px);
+
+    background-color: var(--link-before-background-color, currentColor);
+    transition: width 500ms ease;
+  }
+
+  &:hover::before {
+    width: var(--link-before-hover-width, 100%);
+  }
 }

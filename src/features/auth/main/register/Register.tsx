@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import s from './Register.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
-import {useFormik} from "formik";
+import {Field, Form, Formik, useFormik} from "formik";
 import {registerSchema} from "../../../../utils/helpers/validate/register-validate";
 import {useNavigate} from "react-router-dom";
 import {Routing} from "../../../../utils/enum/routing";
@@ -12,70 +12,75 @@ import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
 
 type RegisterType = {};
 
+type RegisterValuesType = {
+  email: '',
+  password: '',
+  confirmPassword: '',
+}
+
 export const Register: FC<RegisterType> = () => {
   const navigate = useNavigate();
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-      confirmPassword: '',
-    },
-    validationSchema: registerSchema,
-    onSubmit: values => {
-      console.log(values)
-      navigate(Routing.CHECK_EMAIL)
-    },
-  });
-
   return (
     <AnimationAuth className={s.register}>
-      <TitleAuth stylesRules={s.title}>
+      <TitleAuth className={s.title}>
         Sign In
       </TitleAuth>
 
-      <form className={s.form} onSubmit={formik.handleSubmit} onReset={formik.handleReset}>
-        <div className={s.group}>
-          <Input
-            label={'Email'}
-            type={'email'}
-            id={'email'}
-            formikError={formik.getFieldMeta('email')}
-            {...formik.getFieldProps('email')}/>
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+          confirmPassword: '',
+        }}
+        validationSchema={registerSchema}
+        onSubmit={(values: RegisterValuesType) => {
+          console.log(values)
+          navigate(Routing.CHECK_EMAIL)
+        }}
+      >
+        {formik => (
+          <Form>
+            <div className={s.group}>
+              <Field
+                name={'email'}
+                type={'email'}
+                label={'Email'}
+                component={Input}/>
 
-          <Input
-            label={'Password'}
-            type={'password'}
-            id={'password'}
-            formikError={formik.getFieldMeta('password')}
-            {...formik.getFieldProps('password')}/>
+              <Field
+                name={'password'}
+                type={'password'}
+                label={'Password'}
+                component={Input}/>
 
-          <Input
-            label={'Confirm password'}
-            type={'password'}
-            id={'Confirm password'}
-            formikError={formik.getFieldMeta('confirmPassword')}
-            {...formik.getFieldProps('confirmPassword')}/>
-        </div>
+              <Field
+                name={'confirmPassword'}
+                type={'password'}
+                label={'Confirm password'}
+                component={Input}/>
+            </div>
 
-        <div className={s.wrap}>
-          <Button
-            type={'reset'}
-            buttonType={'cansel'}>
-            Cansel
-          </Button>
+            <div className={s.wrap}>
+              <Button
+                type={'reset'}
+                buttonType={'cansel'}>
+                Cansel
+              </Button>
 
-          <Button
-            type={'submit'}
-            disabled={!(formik.isValid && formik.dirty)}
-            styleRules={s.button_register}>
-            Login
-          </Button>
-        </div>
+              <Button
+                type={'submit'}
+                disabled={!(formik.isValid && formik.dirty)}
+                className={s.button_register}>
+                Login
+              </Button>
+            </div>
 
-        <LinkCommon routing={Routing.AUTH}>
-          Try logging in
-        </LinkCommon>
-      </form>
+            <LinkCommon routing={Routing.AUTH}>
+              Try logging in
+            </LinkCommon>
+          </Form>
+        )}
+      </Formik>
     </AnimationAuth>
   );
 };

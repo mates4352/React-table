@@ -1,52 +1,53 @@
-import React, {ChangeEvent, FC, memo, useState} from 'react';
+import React, { FC, memo, useState} from 'react';
 import s from './Input.module.scss';
 import classNames from "classnames/bind";
 import {IconEye} from "../../icons/eye/Eye";
-import {FieldMetaProps} from "formik";
-import {motion, AnimatePresence} from "framer-motion";
+import {FieldInputProps, FormikState} from "formik";
+import {Error} from "../../ui/error/Error";
 
 type InputType = {
-  formikError: FieldMetaProps<string>
-  value: string
+  field: FieldInputProps<any>,
+  form: FormikState<any>
   label: string
-  error?: string
-  name: string
   type: string
-  id: string
-  stylesRules?: string // кастомные стили для компоненты через css var().
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void
+  className?: string // кастомные стили для компоненты через css var().
 };
 
 export const Input: FC<InputType> = memo(({
-  formikError,
-  value,
   label,
-  error,
   type,
-  id,
-  stylesRules,
+  className,
+  field,
+  form: {touched, errors, values},
   ...props
 }) => {
   const [typeInput, setTypeInput] = useState<string>(type);
   const isType = typeInput === 'password' ? 'text' : 'password';
-  const isError = formikError.touched && formikError.error;
-  const isValid = formikError.touched && !formikError.error;
+  const touch = touched[field.name];
+  const error = errors[field.name];
+  const value = values[field.name];
+  const isError = touch && error;
+  const isValid = touch && !error;
   const onEditTypeInput = (type: string) => () => setTypeInput(type)
-
   return (
-    <div className={classNames(s.input, stylesRules)}>
+    <div className={classNames(s.input, className)}>
       <div className={classNames(s.wrap, isError && s.wrap_error)}>
         <input
           className={s.field}
-          value={value}
           type={typeInput}
-          id={id}
+          id={label}
+          {...field}
           {...props}
         />
 
         <label
-          className={classNames(s.label, value && s.label__value, isError && s.label__error, isValid && s.label__valid)}
-          htmlFor={id}>
+          className={classNames(
+            s.label,
+            value && s.label__value,
+            isError && s.label__error,
+            isValid && s.label__valid
+          )}
+          htmlFor={label}>
           {label}
         </label>
 
@@ -62,17 +63,9 @@ export const Input: FC<InputType> = memo(({
         <div className={classNames(s.line, isError && s.line__error, isValid && s.line__valid)}></div>
       </div>
 
-      <AnimatePresence>
-        {!!isError && (
-          <motion.small
-            className={s.error}
-            initial={{height: 0, opacity: 0}}
-            animate={{height: 'auto', opacity: 1}}
-            exit={{height: 0, opacity: 0}}>
-            {formikError.error}
-          </motion.small>
-        )}
-      </AnimatePresence>
+      <Error
+        isError={!!isError}
+        error={String(errors[field.name])}/>
     </div>
   );
 })

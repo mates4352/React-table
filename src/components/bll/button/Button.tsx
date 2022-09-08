@@ -7,7 +7,7 @@ type ButtonType = {
   buttonType?: 'cansel'
   disabled?: boolean
   children: string
-  styleRules?: string
+  className?: string
   onClickButton?: () => void
 };
 
@@ -15,17 +15,16 @@ export const Button: FC<ButtonType> = memo(({
   type,
   buttonType,
   disabled,
-  styleRules,
+  className,
   children,
   onClickButton,
 }) => {
-
   return (
     <button
       className={classNames(
         s.button,
         buttonType === 'cansel' && s.button_cansel,
-        styleRules
+        className
       )}
       disabled={disabled}
       type={type}

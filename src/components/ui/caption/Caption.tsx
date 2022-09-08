@@ -3,17 +3,17 @@ import s from './Caption.module.scss';
 import classNames from "classnames/bind";
 
 type CaptionType = {
-  stylesRules?: string
+  className?: string
   children: string
 };
 
 export const Caption: FC<CaptionType> = memo(({
-  stylesRules,
+  className,
   children,
 }) => {
 
   return (
-    <p className={classNames(s.caption, stylesRules)}>
+    <p className={classNames(s.caption, className)}>
       {children}
     </p>
   );

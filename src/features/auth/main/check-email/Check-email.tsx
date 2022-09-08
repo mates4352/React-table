@@ -12,17 +12,17 @@ type CheckEmailType = {};
 export const CheckEmail: FC<CheckEmailType> = () => {
   return (
     <AnimationAuth className={s.check_email}>
-      <TitleAuth stylesRules={s.title}>
+      <TitleAuth className={s.title}>
         Check Email
       </TitleAuth>
 
       <img className={s.image} src={image_check_email} alt={'Email'}/>
 
-      <Caption stylesRules={s.caption}>
+      <Caption className={s.caption}>
         We’ve sent an Email with instructions to example@mail.com
       </Caption>
 
-      <LinkCommon stylesRules={s.link} routing={Routing.AUTH}>
+      <LinkCommon className={s.link} routing={Routing.AUTH}>
         Try logging in
       </LinkCommon>
     </AnimationAuth>

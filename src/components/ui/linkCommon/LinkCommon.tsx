@@ -4,20 +4,20 @@ import {Link} from "react-router-dom";
 import classNames from "classnames/bind";
 
 type LinkCommonType = {
-  stylesRules?: string
+  className?: string
   children: string
   routing: string
 };
 
 export const LinkCommon: FC<LinkCommonType> = memo(({
-  stylesRules,
+  className,
   children,
   routing,
 }) => {
 
   return (
     <Link
-      className={classNames(s.link, stylesRules)}
+      className={classNames(s.link, className)}
       to={routing}>
       {children}
     </Link>
