@@ -1,7 +1,7 @@
 import React, { FC, memo, useState} from 'react';
 import s from './Input.module.scss';
 import classNames from "classnames/bind";
-import {IconEye} from "../../icons/eye/Eye";
+import {IconEye} from "../../icons/icon-eye/Icon-eye";
 import {FieldInputProps, FormikState} from "formik";
 import {Error} from "../../ui/error/Error";
 
@@ -23,9 +23,10 @@ export const Input: FC<InputType> = memo(({
 }) => {
   const [typeInput, setTypeInput] = useState<string>(type);
   const isType = typeInput === 'password' ? 'text' : 'password';
-  const touch = touched[field.name];
-  const error = errors[field.name];
-  const value = values[field.name];
+  const name = field.name;
+  const touch = touched[name];
+  const error = errors[name];
+  const value = values[name];
   const isError = touch && error;
   const isValid = touch && !error;
   const onEditTypeInput = (type: string) => () => setTypeInput(type)
@@ -43,9 +44,9 @@ export const Input: FC<InputType> = memo(({
         <label
           className={classNames(
             s.label,
-            value && s.label__value,
-            isError && s.label__error,
-            isValid && s.label__valid
+            value && s.label_value,
+            isError && s.label_error,
+            isValid && s.label_valid
           )}
           htmlFor={label}>
           {label}
@@ -60,12 +61,12 @@ export const Input: FC<InputType> = memo(({
             </button>
         }
 
-        <div className={classNames(s.line, isError && s.line__error, isValid && s.line__valid)}></div>
+        <div className={classNames(s.line, isError && s.line_error, isValid && s.line_valid)}></div>
       </div>
 
       <Error
         isError={!!isError}
-        error={String(errors[field.name])}/>
+        error={String(error)}/>
     </div>
   );
 })

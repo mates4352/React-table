@@ -33,18 +33,18 @@
   user-select: none;
 
   transition: top 300ms ease;
+}
 
-  &__value {
-    top: 0;
-  }
+.label_value {
+  top: 0;
+}
 
-  &__error {
-    color: var(--red);
-  }
+.label_error {
+  color: var(--red);
+}
 
-  &__valid {
-    color: var(--blue-dark);
-  }
+.label_valid {
+  color: var(--blue-dark);
 }
 
 .field:focus + .label {
@@ -89,16 +89,16 @@
   &:after {
     background-color: var(--blue-dark);
   }
+}
 
-  &__error {
-    &:before {
-      transform: translateX(0);
-    }
+.line_error {
+  &:before {
+    transform: translateX(0);
   }
+}
 
-  &__valid {
-    &:after {
-      transform: translateX(0);
-    }
+.line_valid {
+  &:after {
+    transform: translateX(0);
   }
 }

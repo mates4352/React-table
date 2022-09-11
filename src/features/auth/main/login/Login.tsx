@@ -9,12 +9,14 @@ import {AnimationAuth} from "../../../../utils/animations/animationAuth";
 import {TitleAuth} from "../../common/titleAuth/TitleAuth";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
+import {Checkbox} from "../../../../components/bll/checkbox/Checkbox";
 
 type LoginType = {};
 
 type LoginValuesType = {
   email: string
   password: string
+  remember_me: boolean
 }
 
 export const Login: FC<LoginType> = () => {
@@ -28,6 +30,7 @@ export const Login: FC<LoginType> = () => {
         initialValues={{
           email: '',
           password: '',
+          remember_me: false,
         }}
         validationSchema={loginSchema}
         onSubmit={(values: LoginValuesType) => {
@@ -49,6 +52,13 @@ export const Login: FC<LoginType> = () => {
                 label={'Password'}
                 component={Input}/>
             </div>
+
+            <Field
+              className={s.checkbox}
+              name={'remember_me'}
+              type={'checkbox'}
+              label={'Remember me'}
+              component={Checkbox}/>
 
             <LinkCommon
               className={s.link_forgot}

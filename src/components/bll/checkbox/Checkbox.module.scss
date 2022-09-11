@@ -1,0 +1,41 @@
+@import './src/assets/style';
+
+.checkbox {
+
+}
+
+.input {
+
+}
+
+.label {
+  --size: var(--label_before_size, 18px);
+  --padding_left: var(--label_padding_left, calc(var(--size) + 12px));
+
+  position: var(--label_position, relative);
+  padding: var(--label_padding, 0 0 0 var(--padding_left));
+
+  font: var(--label_font, var(--p3));
+  color: var(--label_color, var(--black));
+
+  cursor: var(--label_cursor, pointer);
+
+  &::before {
+    content: var(--label_before_content, '');
+    position: var(--label_before_position, absolute);
+    top: var(--label_before_top, 50%);
+    left: var(--label_before_left, 0);
+    transform: var(--label_before_transform, translateY(-50%));
+
+    width: var(--label_before_size, var(--size));
+    height: var(--label_before_size, var(--size));
+
+    border: var(--label_before_border, 1px solid var(--dark));
+    border-radius: var(--label_before_border-radius, 4px);
+  }
+}
+
+.input:checked + .label::before {
+  background: var(--input_checked_label_before_background, var(---input_checked_label_before_image, url('../../../assets/images/arrow.svg') no-repeat center center/100%));
+  border: var(--input_checked_label_before_checked_border, unset);
+}

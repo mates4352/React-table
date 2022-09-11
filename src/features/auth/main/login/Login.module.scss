@@ -18,7 +18,12 @@
   display: grid;
   grid-auto-rows: var(--minmax);
   row-gap: 24px;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
+}
+
+.checkbox {
+  align-self: flex-start;
+  margin-bottom: 29px;
 }
 
 .link_forgot {
