@@ -7,15 +7,15 @@
 }
 
 .wrap_error {
-  margin: var(--wrap-error-margin, 0 0 8px);
+  margin: var(--c-wrap-error-margin, 0 0 8px);
 }
 
 .field {
-  width: var(--field-width, 100%);
-  height: var(--field-heigth, 48px);
+  width: var(--c-field-width, 100%);
+  height: var(--c-field-heigth, 48px);
 
-  font: var(--field-font, var(--p2));
-  color: var(--field-color, var(--dark));
+  font: var(--c-field-font, var(--g-p2));
+  color: var(--c-field-color, var(--g-dark));
 
   background-color: transparent;
   border: none;
@@ -27,8 +27,8 @@
   left: 0;
   transform: translateY(-50%);
 
-  font: var(--label-font, var(--p4-1));
-  color: var(--label-color, var(--dark-opacity-50));
+  font: var(--c-label-font, var(--g-p4-1));
+  color: var(--c-label-color, var(--g-dark-opacity-50));
   cursor: text;
   user-select: none;
 
@@ -40,11 +40,11 @@
 }
 
 .label_error {
-  color: var(--red);
+  color: var(--g-red);
 }
 
 .label_valid {
-  color: var(--blue-dark);
+  color: var(--g-blue-dark);
 }
 
 .field:focus + .label {
@@ -63,10 +63,10 @@
   bottom: 0;
   left: 0;
 
-  width: var(--line-width, 100%);
-  height: var(--line-height, 1px);
+  width: var(--c-line-width, 100%);
+  height: var(--c-line-height, 1px);
 
-  background-color: var(--line-background-color, var(--dark-opacity-20));
+  background-color: var(--c-line-background-color, var(--g-dark-opacity-20));
   overflow: hidden;
 
   &:before, &:after {
@@ -83,11 +83,11 @@
   }
 
   &:before {
-    background-color: var(--red);
+    background-color: var(--g-red);
   }
 
   &:after {
-    background-color: var(--blue-dark);
+    background-color: var(--g-blue-dark);
   }
 }
 

@@ -1,20 +1,20 @@
 $grid_breakpoints: (
-    xl: 1279px,
-    lg: 1023px,
-    md: 767px,
+        xl: 1279px,
+        lg: 1023px,
+        md: 767px,
 );
 
 :root {
-   --minmax: minmax(min-content, max-content);
-   --header-height: 60px;
-   --container-width: 1008px;
-   --container-padding: 60px;
+  --g-minmax: minmax(min-content, max-content);
+  --g-header-height: 60px;
+  --g-container-width: 1008px;
+  --g-container-padding: 60px;
 
-   @include media(max, lg) {
-      --container-padding: 40px;
-   }
+  @include media(max, lg) {
+    --g-container-padding: 40px;
+  }
 
-   @include media(max, md) {
-      --container-padding: 20px;
-   }
+  @include media(max, md) {
+    --g-container-padding: 20px;
+  }
 }

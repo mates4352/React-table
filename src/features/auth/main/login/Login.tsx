@@ -5,7 +5,7 @@ import {Field, Form, Formik} from "formik";
 import {loginSchema} from "../../../../utils/helpers/validate/login-validate";
 import {Button} from "../../../../components/bll/button/Button";
 import {Routing} from "../../../../utils/enum/routing";
-import {AnimationAuth} from "../../../../utils/animations/animationAuth";
+import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {TitleAuth} from "../../common/titleAuth/TitleAuth";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
@@ -16,7 +16,7 @@ type LoginType = {};
 type LoginValuesType = {
   email: string
   password: string
-  remember_me: boolean
+  rememberMe: boolean
 }
 
 export const Login: FC<LoginType> = () => {
@@ -30,7 +30,7 @@ export const Login: FC<LoginType> = () => {
         initialValues={{
           email: '',
           password: '',
-          remember_me: false,
+          rememberMe: false,
         }}
         validationSchema={loginSchema}
         onSubmit={(values: LoginValuesType) => {
@@ -55,7 +55,7 @@ export const Login: FC<LoginType> = () => {
 
             <Field
               className={s.checkbox}
-              name={'remember_me'}
+              name={'rememberMe'}
               type={'checkbox'}
               label={'Remember me'}
               component={Checkbox}/>

@@ -1,8 +1,8 @@
 @import './src/assets/style';
 
 .header {
-  height: var(--header-height);
-  background-color: var(--white);
+  height: var(--g-header-height);
+  background-color: var(--g-white);
   box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
@@ -20,9 +20,9 @@
 }
 
 .button {
-  --button-width: 113px;
+  --c-button-width: 113px;
 
   @include media(max, md) {
-    --button-width: 90px;
+    --c-button-width: 90px;
   }
 }

@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import s from './Check-email.module.scss';
 import {Routing} from "../../../../utils/enum/routing";
 import image_check_email from '../../../../assets/images/check-email.svg'
-import {AnimationAuth} from "../../../../utils/animations/animationAuth";
+import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {TitleAuth} from "../../common/titleAuth/TitleAuth";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";

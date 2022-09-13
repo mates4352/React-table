@@ -6,7 +6,7 @@ import {Field, Form, Formik, useFormik} from "formik";
 import {useNavigate} from "react-router-dom";
 import {Routing} from "../../../../utils/enum/routing";
 import {forgotPasswordSchema} from "../../../../utils/helpers/validate/forgot-password-validate";
-import {AnimationAuth} from "../../../../utils/animations/animationAuth";
+import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {TitleAuth} from "../../common/titleAuth/TitleAuth";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";

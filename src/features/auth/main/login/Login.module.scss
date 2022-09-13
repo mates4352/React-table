@@ -16,7 +16,7 @@
 .group {
   align-self: stretch;
   display: grid;
-  grid-auto-rows: var(--minmax);
+  grid-auto-rows: var(--g-minmax);
   row-gap: 24px;
   margin-bottom: 24px;
 }
@@ -32,7 +32,7 @@
 }
 
 .button {
-  --button-width: 266px;
+  --c-button-width: 266px;
   margin-bottom: 31px;
 }
 

@@ -9,33 +9,33 @@
 }
 
 .label {
-  --size: var(--label_before_size, 18px);
-  --padding_left: var(--label_padding_left, calc(var(--size) + 12px));
+  --c-size: var(--c-label_before_size, 18px);
+  --c-padding_left: var(--c-label_padding_left, calc(var(--c-size) + 12px));
 
-  position: var(--label_position, relative);
-  padding: var(--label_padding, 0 0 0 var(--padding_left));
+  position: var(--c-label_position, relative);
+  padding: var(--c-label_padding, 0 0 0 var(--c-padding_left));
 
-  font: var(--label_font, var(--p3));
-  color: var(--label_color, var(--black));
+  font: var(--c-label_font, var(--g-p3));
+  color: var(--c-label_color, var(--g-black));
 
-  cursor: var(--label_cursor, pointer);
+  cursor: var(--c-label_cursor, pointer);
 
   &::before {
-    content: var(--label_before_content, '');
-    position: var(--label_before_position, absolute);
-    top: var(--label_before_top, 50%);
-    left: var(--label_before_left, 0);
-    transform: var(--label_before_transform, translateY(-50%));
+    content: var(--c-label_before_content, '');
+    position: var(--c-label_before_position, absolute);
+    top: var(--c-label_before_top, 50%);
+    left: var(--c-label_before_left, 0);
+    transform: var(--c-label_before_transform, translateY(-50%));
 
-    width: var(--label_before_size, var(--size));
-    height: var(--label_before_size, var(--size));
+    width: var(--c-label_before_size, var(--c-size));
+    height: var(--c-label_before_size, var(--c-size));
 
-    border: var(--label_before_border, 1px solid var(--dark));
-    border-radius: var(--label_before_border-radius, 4px);
+    border: var(--c-label_before_border, 1px solid var(--g-dark));
+    border-radius: var(--c-label_before_border-radius, 4px);
   }
 }
 
 .input:checked + .label::before {
-  background: var(--input_checked_label_before_background, var(---input_checked_label_before_image, url('../../../assets/images/arrow.svg') no-repeat center center/100%));
-  border: var(--input_checked_label_before_checked_border, unset);
+  background: var(--c-input_checked_label_before_background, var(--c-input_checked_label_before_image, url('../../../assets/images/arrow.svg') no-repeat center center/100%));
+  border: var(--c-input_checked_label_before_checked_border, unset);
 }
