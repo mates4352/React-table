@@ -60,7 +60,7 @@ export const ForgotPassword: FC<ForgotPasswordType> = () => {
               Did you remember your password?
             </Caption>
 
-            <LinkCommon routing={Routing.AUTH}>
+            <LinkCommon routing={Link.AUTH}>
               Try logging in
             </LinkCommon>
           </Form>

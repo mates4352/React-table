@@ -1,8 +1,8 @@
 import React, {FC} from "react";
 import s from './Auth.module.scss';
 import classNames from "classnames/bind";
-import {Route, Routes, useLocation} from "react-router-dom";
-import {Routing} from "../../utils/enum/routing";
+import {Navigate, Route, Routes, useLocation} from "react-router-dom";
+import {Link, Routing} from "../../utils/enum/routing";
 import {Login} from "./common/login/Login";
 import {Register} from "./common/register/Register";
 import {ForgotPassword} from "./common/forgot-password/Forgot-password";
@@ -21,6 +21,7 @@ export const Auth: FC<AuthProps> = () => {
         <AnimatePresence initial={false} exitBeforeEnter>
           <Routes key={location.pathname} location={location}>
             <Route index element={<Login/>}/>
+            <Route path={'*'} element={<Navigate to={Link.AUTH}/>}/>
             <Route path={Routing.REGISTER} element={<Register/>}/>
             <Route path={Routing.FORGOT_PASSWORD} element={<ForgotPassword/>}/>
             <Route path={Routing.NEW_PASSWORD} element={<NewPassword/>}/>
