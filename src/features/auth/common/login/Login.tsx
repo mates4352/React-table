@@ -6,7 +6,7 @@ import {loginSchema} from "../../../../utils/helpers/validate/login-validate";
 import {Button} from "../../../../components/bll/button/Button";
 import {Link} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
-import {TitleAuth} from "../../common/titleAuth/TitleAuth";
+import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
 import {Checkbox} from "../../../../components/bll/checkbox/Checkbox";
@@ -22,9 +22,9 @@ type LoginValuesType = {
 export const Login: FC<LoginType> = () => {
   return (
     <AnimationAuth className={s.login}>
-      <TitleAuth className={s.title}>
+      <Title className={s.title} type={'h2'}>
         Sign In
-      </TitleAuth>
+      </Title>
 
       <Formik
         initialValues={{

@@ -3,11 +3,11 @@ import s from './Auth.module.scss';
 import classNames from "classnames/bind";
 import {Route, Routes, useLocation} from "react-router-dom";
 import {Routing} from "../../utils/enum/routing";
-import {Login} from "./main/login/Login";
-import {Register} from "./main/register/Register";
-import {ForgotPassword} from "./main/forgot-password/Forgot-password";
-import {NewPassword} from "./main/new-password/New-password";
-import {CheckEmail} from "./main/check-email/Check-email";
+import {Login} from "./common/login/Login";
+import {Register} from "./common/register/Register";
+import {ForgotPassword} from "./common/forgot-password/Forgot-password";
+import {NewPassword} from "./common/new-password/New-password";
+import {CheckEmail} from "./common/check-email/Check-email";
 import {AnimatePresence} from "framer-motion";
 
 type AuthProps = {};

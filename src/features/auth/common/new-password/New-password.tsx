@@ -7,7 +7,7 @@ import {newPasswordSchema} from "../../../../utils/helpers/validate/new-password
 import {useNavigate} from "react-router-dom";
 import {Link, Routing} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
-import {TitleAuth} from "../../common/titleAuth/TitleAuth";
+import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
 
 type NewPasswordType = {};
@@ -21,9 +21,9 @@ export const NewPassword: FC<NewPasswordType> = () => {
 
   return (
     <AnimationAuth className={s.new_password}>
-      <TitleAuth className={s.title}>
+      <Title className={s.title} type={'h2'}>
         Create new password
-      </TitleAuth>
+      </Title>
 
       <Formik
         initialValues={{

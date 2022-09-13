@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {Link, Routing} from "../../../../utils/enum/routing";
 import {forgotPasswordSchema} from "../../../../utils/helpers/validate/forgot-password-validate";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
-import {TitleAuth} from "../../common/titleAuth/TitleAuth";
+import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
 
@@ -22,9 +22,9 @@ export const ForgotPassword: FC<ForgotPasswordType> = () => {
 
   return (
     <AnimationAuth className={s.forgot_password}>
-      <TitleAuth className={s.title}>
+      <Title className={s.title} type={'h2'}>
         Forgot your password?
-      </TitleAuth>
+      </Title>
 
       <Formik
         initialValues={{

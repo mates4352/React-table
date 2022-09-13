@@ -7,7 +7,7 @@ import {registerSchema} from "../../../../utils/helpers/validate/register-valida
 import {useNavigate} from "react-router-dom";
 import {Link} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
-import {TitleAuth} from "../../common/titleAuth/TitleAuth";
+import {Title} from "../../../../components/ui/title/Title";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
 
 type RegisterType = {};
@@ -22,9 +22,9 @@ export const Register: FC<RegisterType> = () => {
   const navigate = useNavigate();
   return (
     <AnimationAuth className={s.register}>
-      <TitleAuth className={s.title}>
+      <Title className={s.title} type={'h2'}>
         Sign In
-      </TitleAuth>
+      </Title>
 
       <Formik
         initialValues={{
