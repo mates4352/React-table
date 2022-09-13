@@ -22,8 +22,7 @@ export const Button: FC<ButtonType> = memo(({
   return (
     <button
       className={classNames(
-        s.button,
-        buttonType === 'cansel' && s.button_cansel,
+        buttonType === 'cansel' ? s.button_cansel : s.button,
         className
       )}
       disabled={disabled}

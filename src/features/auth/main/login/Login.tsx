@@ -4,7 +4,7 @@ import {Input} from "../../../../components/bll/input/Input";
 import {Field, Form, Formik} from "formik";
 import {loginSchema} from "../../../../utils/helpers/validate/login-validate";
 import {Button} from "../../../../components/bll/button/Button";
-import {Routing} from "../../../../utils/enum/routing";
+import {Link} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {TitleAuth} from "../../common/titleAuth/TitleAuth";
 import {Caption} from "../../../../components/ui/caption/Caption";
@@ -62,7 +62,7 @@ export const Login: FC<LoginType> = () => {
 
             <LinkCommon
               className={s.link_forgot}
-              routing={Routing.FORGOT_PASSWORD}>
+              routing={Link.FORGOT_PASSWORD}>
               Forgot Password
             </LinkCommon>
 
@@ -77,7 +77,7 @@ export const Login: FC<LoginType> = () => {
               Already have an account?
             </Caption>
 
-            <LinkCommon routing={Routing.REGISTER}>
+            <LinkCommon routing={Link.REGISTER}>
               Registration
             </LinkCommon>
           </Form>

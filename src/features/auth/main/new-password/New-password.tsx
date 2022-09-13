@@ -5,7 +5,7 @@ import {Button} from "../../../../components/bll/button/Button";
 import {Field, Form, Formik} from "formik";
 import {newPasswordSchema} from "../../../../utils/helpers/validate/new-password-validate";
 import {useNavigate} from "react-router-dom";
-import {Routing} from "../../../../utils/enum/routing";
+import {Link, Routing} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {TitleAuth} from "../../common/titleAuth/TitleAuth";
 import {Caption} from "../../../../components/ui/caption/Caption";
@@ -32,7 +32,7 @@ export const NewPassword: FC<NewPasswordType> = () => {
         validationSchema={newPasswordSchema}
         onSubmit={(values: NewPasswordValuesType) => {
           console.log(values)
-          navigate(Routing.CHECK_EMAIL)
+          navigate(Link.CHECK_EMAIL)
         }}>
         {formik => (
           <Form>

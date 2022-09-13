@@ -4,7 +4,7 @@ import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {Field, Form, Formik, useFormik} from "formik";
 import {useNavigate} from "react-router-dom";
-import {Routing} from "../../../../utils/enum/routing";
+import {Link, Routing} from "../../../../utils/enum/routing";
 import {forgotPasswordSchema} from "../../../../utils/helpers/validate/forgot-password-validate";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {TitleAuth} from "../../common/titleAuth/TitleAuth";
@@ -19,16 +19,6 @@ type ForgotPasswordValuesType = {
 
 export const ForgotPassword: FC<ForgotPasswordType> = () => {
   let navigate = useNavigate();
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-    },
-    validationSchema: forgotPasswordSchema,
-    onSubmit: (values: ForgotPasswordValuesType) => {
-      console.log(values)
-      navigate(Routing.NEW_PASSWORD)
-    },
-  });
 
   return (
     <AnimationAuth className={s.forgot_password}>
@@ -43,7 +33,7 @@ export const ForgotPassword: FC<ForgotPasswordType> = () => {
         validationSchema={forgotPasswordSchema}
         onSubmit={(values: ForgotPasswordValuesType) => {
           console.log(values)
-          navigate(Routing.NEW_PASSWORD)
+          navigate(Link.NEW_PASSWORD)
         }}
       >
         {(formik => (

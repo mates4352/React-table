@@ -2,10 +2,10 @@ import React, {FC} from 'react';
 import s from './Register.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
-import {Field, Form, Formik, useFormik} from "formik";
+import {Field, Form, Formik} from "formik";
 import {registerSchema} from "../../../../utils/helpers/validate/register-validate";
 import {useNavigate} from "react-router-dom";
-import {Routing} from "../../../../utils/enum/routing";
+import {Link} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {TitleAuth} from "../../common/titleAuth/TitleAuth";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
@@ -13,9 +13,9 @@ import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
 type RegisterType = {};
 
 type RegisterValuesType = {
-  email: '',
-  password: '',
-  confirmPassword: '',
+  email: ''
+  password: ''
+  confirmPassword: ''
 }
 
 export const Register: FC<RegisterType> = () => {
@@ -35,7 +35,7 @@ export const Register: FC<RegisterType> = () => {
         validationSchema={registerSchema}
         onSubmit={(values: RegisterValuesType) => {
           console.log(values)
-          navigate(Routing.CHECK_EMAIL)
+          navigate(Link.CHECK_EMAIL)
         }}
       >
         {formik => (
@@ -75,7 +75,7 @@ export const Register: FC<RegisterType> = () => {
               </Button>
             </div>
 
-            <LinkCommon routing={Routing.AUTH}>
+            <LinkCommon routing={Link.AUTH}>
               Try logging in
             </LinkCommon>
           </Form>

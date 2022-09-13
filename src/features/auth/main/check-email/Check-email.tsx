@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import s from './Check-email.module.scss';
-import {Routing} from "../../../../utils/enum/routing";
+import {Link} from "../../../../utils/enum/routing";
 import image_check_email from '../../../../assets/images/check-email.svg'
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {TitleAuth} from "../../common/titleAuth/TitleAuth";
@@ -22,7 +22,7 @@ export const CheckEmail: FC<CheckEmailType> = () => {
         We’ve sent an Email with instructions to example@mail.com
       </Caption>
 
-      <LinkCommon className={s.link} routing={Routing.AUTH}>
+      <LinkCommon className={s.link} routing={Link.AUTH}>
         Try logging in
       </LinkCommon>
     </AnimationAuth>
