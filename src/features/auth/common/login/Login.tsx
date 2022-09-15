@@ -2,7 +2,6 @@ import React, {FC} from 'react';
 import s from './Login.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Field, Form, Formik} from "formik";
-import {loginSchema} from "../../../../utils/helpers/validate/login-validate";
 import {Button} from "../../../../components/bll/button/Button";
 import {Link} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
@@ -10,16 +9,19 @@ import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
 import {Checkbox} from "../../../../components/bll/checkbox/Checkbox";
+import {LoginSubmitType} from "../../Auth-type";
+import {loginSchema} from "../../../../utils/helpers/validate/Login-validate";
+import {useAppDispatch} from "../../../../hooks/useAppDispatch";
+import {setLogin} from "../../Auth-slice";
+import {useAppSelector} from "../../../../hooks/useAppSelector";
+import {Error} from "../../../../components/ui/error/Error";
 
 type LoginType = {};
 
-type LoginValuesType = {
-  email: string
-  password: string
-  rememberMe: boolean
-}
-
 export const Login: FC<LoginType> = () => {
+  const dispatch = useAppDispatch();
+  const {error, loading} = useAppSelector((data) => data.auth)
+
   return (
     <AnimationAuth className={s.login}>
       <Title className={s.title} type={'h2'}>
@@ -33,8 +35,8 @@ export const Login: FC<LoginType> = () => {
           rememberMe: false,
         }}
         validationSchema={loginSchema}
-        onSubmit={(values: LoginValuesType) => {
-          console.log(values)
+        onSubmit={async(dataLogin: LoginSubmitType) => {
+          dispatch(setLogin(dataLogin))
         }}
       >
         {formik => (
@@ -66,10 +68,12 @@ export const Login: FC<LoginType> = () => {
               Forgot Password
             </LinkCommon>
 
+            <Error className={s.error} isError={!!error} error={error}/>
+
             <Button
               className={s.button}
               type={'submit'}
-              disabled={!(formik.isValid && formik.dirty)}>
+              disabled={!(formik.isValid && formik.dirty) || loading === 'PENDING'}>
               Sign in
             </Button>
 

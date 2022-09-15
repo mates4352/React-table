@@ -4,14 +4,14 @@ import classNames from "classnames/bind";
 import logo from './../../../assets/images/logo.svg'
 import {Button} from "../../bll/button/Button";
 import {useNavigate} from "react-router-dom";
-import {Routing} from "../../../utils/enum/routing";
+import {Link} from "../../../utils/enum/routing";
 
 type HeaderType = {};
 
 export const Header: FC<HeaderType> = memo(() => {
   const navigate = useNavigate();
   const onClickButtonRedirect = () => {
-    navigate(Routing.AUTH)
+    navigate(Link.AUTH)
   }
 
   return (

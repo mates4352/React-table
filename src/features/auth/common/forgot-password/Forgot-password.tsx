@@ -2,20 +2,17 @@ import React, {FC} from 'react';
 import s from './Forgot-password.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
-import {Field, Form, Formik, useFormik} from "formik";
+import {Field, Form, Formik} from "formik";
 import {useNavigate} from "react-router-dom";
-import {Link, Routing} from "../../../../utils/enum/routing";
-import {forgotPasswordSchema} from "../../../../utils/helpers/validate/forgot-password-validate";
+import {Link} from "../../../../utils/enum/routing";
+import {forgotPasswordSchema} from "../../../../utils/helpers/validate/Forgot-password-validate";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
+import {ForgotPasswordSubmitType} from "../../Auth-type";
 
 type ForgotPasswordType = {};
-
-type ForgotPasswordValuesType = {
-  email: string
-}
 
 export const ForgotPassword: FC<ForgotPasswordType> = () => {
   let navigate = useNavigate();
@@ -31,8 +28,7 @@ export const ForgotPassword: FC<ForgotPasswordType> = () => {
           email: '',
         }}
         validationSchema={forgotPasswordSchema}
-        onSubmit={(values: ForgotPasswordValuesType) => {
-          console.log(values)
+        onSubmit={(data: ForgotPasswordSubmitType) => {
           navigate(Link.NEW_PASSWORD)
         }}
       >

@@ -3,20 +3,16 @@ import s from './Register.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {Field, Form, Formik} from "formik";
-import {registerSchema} from "../../../../utils/helpers/validate/register-validate";
+import {registerSchema} from "../../../../utils/helpers/validate/Register-validate";
 import {useNavigate} from "react-router-dom";
 import {Link} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {Title} from "../../../../components/ui/title/Title";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
+import {AuthApi} from "../../Auth-api";
+import {RegisterSubmitType} from "../../Auth-type";
 
 type RegisterType = {};
-
-type RegisterValuesType = {
-  email: ''
-  password: ''
-  confirmPassword: ''
-}
 
 export const Register: FC<RegisterType> = () => {
   const navigate = useNavigate();
@@ -33,8 +29,11 @@ export const Register: FC<RegisterType> = () => {
           confirmPassword: '',
         }}
         validationSchema={registerSchema}
-        onSubmit={(values: RegisterValuesType) => {
-          console.log(values)
+        onSubmit={async(dataRegister: RegisterSubmitType) => {
+          await AuthApi.register({
+            email: dataRegister.email,
+            password: dataRegister.password
+          })
           navigate(Link.CHECK_EMAIL)
         }}
       >

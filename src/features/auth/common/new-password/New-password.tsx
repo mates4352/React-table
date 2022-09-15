@@ -3,7 +3,7 @@ import s from './New-password.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {Field, Form, Formik} from "formik";
-import {newPasswordSchema} from "../../../../utils/helpers/validate/new-password-validate";
+import {newPasswordSchema} from "../../../../utils/helpers/validate/New-password-validate";
 import {useNavigate} from "react-router-dom";
 import {Link, Routing} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
@@ -30,8 +30,7 @@ export const NewPassword: FC<NewPasswordType> = () => {
           password: '',
         }}
         validationSchema={newPasswordSchema}
-        onSubmit={(values: NewPasswordValuesType) => {
-          console.log(values)
+        onSubmit={(data: NewPasswordValuesType) => {
           navigate(Link.CHECK_EMAIL)
         }}>
         {formik => (
