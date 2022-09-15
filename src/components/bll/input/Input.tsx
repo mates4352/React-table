@@ -22,13 +22,13 @@ export const Input: FC<InputType> = memo(({
   ...props
 }) => {
   const [typeInput, setTypeInput] = useState<string>(type);
-  const isType = typeInput === 'password' ? 'text' : 'password';
   const name = field.name;
   const touch = touched[name];
   const error = errors[name];
   const value = values[name];
   const isError = touch && error;
   const isValid = touch && !error;
+  const isType = typeInput === 'password' ? 'text' : 'password';
   const onEditTypeInput = (type: string) => () => setTypeInput(type)
   return (
     <div className={classNames(s.input, className)}>
