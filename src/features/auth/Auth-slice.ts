@@ -6,24 +6,12 @@ import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
 import {AxiosError} from "axios";
 import {setLoading} from "../../app/App-slice";
+import {setLogin} from "./Auth-thunk";
 
 interface AuthStateType {
   login: LoginApiType
   error: string
 }
-
-export const setLogin = createAsyncThunk('auth/getDataLogin', async(dataLogin: LoginSubmitType, {rejectWithValue, dispatch}) => {
-  dispatch(setLoading('PENDING'))
-  try {
-    const response = await AuthApi.login(dataLogin);
-    dispatch(setLoading('SUCCEEDED'))
-    return response.data;
-  } catch(e) {
-    dispatch(setLoading('FAILED'))
-    const error = e as AxiosError<LoginErrorType>;
-    return rejectWithValue(error.response?.data.error);
-  }
-})
 
 const initialState = {} as AuthStateType;
 

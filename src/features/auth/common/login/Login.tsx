@@ -12,11 +12,11 @@ import {Checkbox} from "../../../../components/bll/checkbox/Checkbox";
 import {LoginSubmitType} from "../../Auth-type";
 import {loginSchema} from "../../../../utils/helpers/validate/Login-validate";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
-import {setLogin} from "../../Auth-slice";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {Error} from "../../../../components/ui/error/Error";
 import {authSelect} from "../../Auth-select";
 import {appSelect} from "../../../../app/App-select";
+import {setLogin} from "../../Auth-thunk";
 
 type LoginType = {};
 
