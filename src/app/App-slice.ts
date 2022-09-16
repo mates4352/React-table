@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {loadingType} from "./App-type";
+import {LoadingType} from "./App-type";
 
 interface AppStateType {
-  loading: loadingType
+  loading: LoadingType
 }
 
 const initialState = {} as AppStateType;
@@ -11,7 +11,7 @@ const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setLoading(state: AppStateType, action: PayloadAction<loadingType>) {
+    setLoading(state: AppStateType, action: PayloadAction<LoadingType>) {
       state.loading = action.payload;
     },
   }

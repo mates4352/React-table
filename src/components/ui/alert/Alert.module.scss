@@ -1,0 +1,27 @@
+.alert {
+  position: var(--c-alert-position, fixed);
+  left: var(--c-alert-left, 50%);
+  bottom: var(--c-alert-bottom, 10px);
+  transform: var(--c-alert-transform, translateX(-50%));
+
+  padding: var(--c-alert-padding, 25px);
+
+  font: var(--c-alert-font, var(--g-h3));
+  color: var(--c-alert-color, var(--g-dark));
+
+  border-radius: var(--c-alert-border-radius, 12px);
+  box-shadow: var(--c-alert-box-shadow, 0 3px 4px #706767);
+  transition: transform 500ms ease, background-color 500ms ease;
+}
+
+.pending {
+  background-color: var(--c-succeeded-background-color, #c2a162);
+}
+
+.succeeded {
+  background-color: var(--c-succeeded-background-color, #7cd3a7);
+}
+
+.failed {
+  background-color: var(--c-failed-background-color, #ff6060);
+}

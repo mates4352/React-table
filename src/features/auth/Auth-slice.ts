@@ -53,7 +53,7 @@ const authSlice = createSlice({
       if(state.error) state.error = '';
     })
     builder.addCase(setLogin.rejected, (state: AuthStateType, action: PayloadAction<any>) => {
-      state.error = action.payload;
+     state.error = action.payload;
     })
   }
 });
