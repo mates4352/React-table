@@ -12,7 +12,7 @@ type ErrorType = {
 const animations = {
   initial: {height: 0, opacity: 0},
   animate: {height: 'auto', opacity: 1},
-  exit: {height: 0, opacity: 0},
+  exit: {height: 0, opacity: 0, marginBottom: 0},
 }
 
 export const Error: FC<ErrorType> = ({

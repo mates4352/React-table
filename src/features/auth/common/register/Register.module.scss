@@ -21,6 +21,13 @@
   margin-bottom: 48px;
 }
 
+.error {
+  margin-bottom: 18px;
+  font-size: 18px;
+  text-align: center;
+  --c-error-color: var(--g-error-response);
+}
+
 .wrap {
   display: grid;
   grid-auto-flow: column;

@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import s from './Auth.module.scss';
 import classNames from "classnames/bind";
-import {Navigate, Route, Routes, useLocation} from "react-router-dom";
+import {Navigate, Route, Routes, useLocation, useNavigate} from "react-router-dom";
 import {Link, Routing} from "../../utils/enum/routing";
 import {Login} from "./common/login/Login";
 import {Register} from "./common/register/Register";

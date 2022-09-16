@@ -31,6 +31,12 @@ export type RegisterSubmitType = {
   confirmPassword?: string
 }
 
+export type RegisterErrorType = {
+  email: string
+  error: string
+  in: string
+}
+
 export type RegisterApiType = {
   created: string
   email: string
