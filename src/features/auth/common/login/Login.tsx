@@ -14,9 +14,9 @@ import {loginSchema} from "../../../../utils/helpers/validate/Login-validate";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {Error} from "../../../../components/ui/error/Error";
-import {authSelect} from "../../Auth-select";
-import {appSelect} from "../../../../app/App-select";
+import {appSelect, authSelect} from "../../../../app/App-select";
 import {setLogin} from "../../Auth-thunk";
+import {Statuses} from "../../../../utils/enum/statuses";
 
 type LoginType = {};
 
@@ -49,12 +49,14 @@ export const Login: FC<LoginType> = () => {
                 name={'email'}
                 type={'email'}
                 label={'Email'}
+                errorResponse={error}
                 component={Input}/>
 
               <Field
                 name={'password'}
                 type={'password'}
                 label={'Password'}
+                errorResponse={error}
                 component={Input}/>
             </div>
 
@@ -76,7 +78,7 @@ export const Login: FC<LoginType> = () => {
             <Button
               className={s.button}
               type={'submit'}
-              disabled={!(formik.isValid && formik.dirty) || loading === 'PENDING'}>
+              disabled={!(formik.isValid && formik.dirty) || loading === Statuses.PENDING}>
               Sign in
             </Button>
 

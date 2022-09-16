@@ -1,4 +1,4 @@
-import React, { FC, memo, useState} from 'react';
+import React, {FC, memo, useState} from 'react';
 import s from './Input.module.scss';
 import classNames from "classnames/bind";
 import {IconEye} from "../../icons/icon-eye/Icon-eye";
@@ -10,12 +10,14 @@ type InputType = {
   form: FormikState<any>
   label: string
   type: string
+  errorResponse?: boolean
   className?: string // кастомные стили для компоненты через css var().
 };
 
 export const Input: FC<InputType> = memo(({
   label,
   type,
+  errorResponse,
   className,
   field,
   form: {touched, errors, values},
@@ -46,7 +48,8 @@ export const Input: FC<InputType> = memo(({
             s.label,
             value && s.label_value,
             isError && s.label_error,
-            isValid && s.label_valid
+            isValid && s.label_valid,
+            errorResponse && s.label_error_response
           )}
           htmlFor={label}>
           {label}
@@ -61,7 +64,13 @@ export const Input: FC<InputType> = memo(({
             </button>
         }
 
-        <div className={classNames(s.line, isError && s.line_error, isValid && s.line_valid)}></div>
+        <div className={classNames(
+          s.line,
+          isError && s.line_error,
+          isValid && s.line_valid,
+          errorResponse && s.line_error_response
+        )}>
+        </div>
       </div>
 
       <Error

@@ -3,7 +3,7 @@ import s from './Alert.module.scss';
 import classNames from "classnames/bind";
 import {LoadingType} from "../../../app/App-type";
 import {AnimatePresence, motion} from "framer-motion";
-import {Staatuses} from "../../../utils/enum/staatuses";
+import {Statuses} from "../../../utils/enum/statuses";
 
 type AlertType = {
   className?: string
@@ -20,9 +20,9 @@ export const Alert: FC<AlertType> = memo(({
   className,
   status,
 }) => {
-  const statusPending = status === Staatuses.PENDING;
-  const statusSucceeded = status === Staatuses.SUCCEEDED;
-  const statusFailed = status === Staatuses.FAILED;
+  const statusPending = status === Statuses.PENDING;
+  const statusSucceeded = status === Statuses.SUCCEEDED;
+  const statusFailed = status === Statuses.FAILED;
   const [isAlert, setAlert] = useState<boolean>(false)
 
   useEffect(() => {

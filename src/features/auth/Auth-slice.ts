@@ -1,11 +1,8 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import type {PayloadAction} from "@reduxjs/toolkit";
-import {LoginApiType, LoginErrorType, LoginSubmitType} from "./Auth-type";
-import {AuthApi} from "./Auth-api";
+import {LoginApiType} from "./Auth-type";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
-import {AxiosError} from "axios";
-import {setLoading} from "../../app/App-slice";
 import {setLogin} from "./Auth-thunk";
 
 interface AuthStateType {

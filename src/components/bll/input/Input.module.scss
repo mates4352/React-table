@@ -47,6 +47,10 @@
   color: var(--g-blue-dark);
 }
 
+.label_error_response {
+  color: var(--g-error-response);
+}
+
 .field:focus + .label {
   top: 0;
 }
@@ -100,5 +104,15 @@
 .line_valid {
   &:after {
     transform: translateX(0);
+  }
+}
+
+.line_error_response {
+  &:before {
+    background-color: var(--g-error-response);
+  }
+
+  &:after {
+    background-color: var(--g-error-response);
   }
 }

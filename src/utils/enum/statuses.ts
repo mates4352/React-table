@@ -1,4 +1,4 @@
-export enum Staatuses {
+export enum Statuses {
   PENDING = "PENDING",
   SUCCEEDED = "SUCCEEDED",
   FAILED = "FAILED",
