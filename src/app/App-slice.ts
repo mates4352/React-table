@@ -1,7 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {LoadingType} from "./App-type";
+import {LoadingType, UserApiType} from "./App-type";
+import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
+import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
+import {getDataUser} from "./App-thunk";
 
 interface AppStateType {
+  user: UserApiType
   loading: LoadingType
 }
 
@@ -14,6 +18,11 @@ const appSlice = createSlice({
     setLoading(state: AppStateType, action: PayloadAction<LoadingType>) {
       state.loading = action.payload;
     },
+  },
+  extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
+    builder.addCase(getDataUser.fulfilled, (state: AppStateType, action: PayloadAction<UserApiType>) => {
+      state.user = action.payload;
+    })
   }
 })
 

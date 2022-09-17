@@ -17,6 +17,7 @@ export const setLogin = createAsyncThunk('auth/getDataLogin', async(dataLogin: L
     return rejectWithValue(error.response?.data.error);
   }
 })
+
 export const register = createAsyncThunk('auth/register', async(dataRegister: RegisterSubmitType, {rejectWithValue, dispatch}) => {
   dispatch(setLoading('PENDING'))
   try {

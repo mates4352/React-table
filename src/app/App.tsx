@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import s from "./App.module.scss";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {Auth} from "../features/auth/Auth";
@@ -7,9 +7,17 @@ import {Header} from "../components/ui/header/Header";
 import {Alert} from "../components/ui/alert/Alert";
 import {useAppSelector} from "../hooks/useAppSelector";
 import {appSelect} from "./App-select";
+import {useAppDispatch} from "../hooks/useAppDispatch";
+import {getDataUser} from "./App-thunk";
 
 export const App: FC = () => {
-  const {loading} = useAppSelector(appSelect)
+  const dispatch = useAppDispatch();
+  const {loading} = useAppSelector(appSelect);
+
+  useEffect(() => {
+    dispatch(getDataUser())
+  }, [dispatch])
+
   return (
     <>
       <div className={s.app}>

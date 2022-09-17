@@ -1,12 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import type {PayloadAction} from "@reduxjs/toolkit";
-import {LoginApiType} from "./Auth-type";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
 import {register, setLogin} from "./Auth-thunk";
+import {UserApiType} from "../../app/App-type";
 
 interface AuthStateType {
-  login: LoginApiType
+  login: UserApiType
   error: string
   isRegister: boolean
 }
@@ -17,7 +17,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    getDataLogin(state: AuthStateType, action: PayloadAction<LoginApiType>) {
+    getDataLogin(state: AuthStateType, action: PayloadAction<UserApiType>) {
 
     },
 
@@ -37,7 +37,7 @@ const authSlice = createSlice({
     }
   },
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
-    builder.addCase(setLogin.fulfilled, (state: AuthStateType, action: PayloadAction<LoginApiType>) => {
+    builder.addCase(setLogin.fulfilled, (state: AuthStateType, action: PayloadAction<UserApiType>) => {
       state.login = action.payload;
       if(state.error) state.error = '';
     })
