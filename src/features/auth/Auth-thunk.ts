@@ -3,31 +3,36 @@ import {LoginErrorType, LoginSubmitType, RegisterErrorType, RegisterSubmitType} 
 import {setLoading} from "../../app/App-slice";
 import {AuthApi} from "./Auth-api";
 import {AxiosError} from "axios";
-import {changeIsRegister} from "./Auth-slice";
+import {getDataLogin, performRedirect, registration, setError} from "./Auth-slice";
 
-export const setLogin = createAsyncThunk('auth/getDataLogin', async(dataLogin: LoginSubmitType, {rejectWithValue, dispatch}) => {
-  dispatch(setLoading('PENDING'))
+export const setLogin = createAsyncThunk('auth/getDataLogin', async(dataLogin: LoginSubmitType, {
+  dispatch
+}) => {
+  dispatch(setLoading('PENDING'));
   try {
     const response = await AuthApi.login(dataLogin);
-    dispatch(setLoading('SUCCEEDED'))
-    return response.data;
+    dispatch(getDataLogin(response.data));
+    dispatch(setLoading('SUCCEEDED'));
   } catch(e) {
-    dispatch(setLoading('FAILED'))
+    dispatch(setLoading('FAILED'));
     const error = e as AxiosError<LoginErrorType>;
-    return rejectWithValue(error.response?.data.error);
+    error.response?.data.error && dispatch(setError(error.response?.data.error));
   }
 })
 
-export const register = createAsyncThunk('auth/register', async(dataRegister: RegisterSubmitType, {rejectWithValue, dispatch}) => {
+export const register = createAsyncThunk('auth/register', async(dataRegister: RegisterSubmitType, {
+  dispatch
+}) => {
   dispatch(setLoading('PENDING'))
   try {
     const response = await AuthApi.register(dataRegister);
-    dispatch(setLoading('SUCCEEDED'))
-    dispatch(changeIsRegister(true))
+    dispatch(setLoading('SUCCEEDED'));
+    dispatch(registration());
+    dispatch(performRedirect(true));
     return response.data;
   } catch(e) {
-    dispatch(setLoading('FAILED'))
+    dispatch(setLoading('FAILED'));
     const error = e as AxiosError<RegisterErrorType>;
-    return rejectWithValue(error.response?.data.error);
+    error.response?.data.error && dispatch(setError(error.response?.data.error));
   }
 })

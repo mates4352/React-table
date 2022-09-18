@@ -20,9 +20,9 @@ type RegisterType = {};
 
 export const Register: FC<RegisterType> = () => {
   const dispatch = useAppDispatch();
-  const {error, isRegister} = useAppSelector(authSelect)
+  const {error, isRedirect} = useAppSelector(authSelect)
 
-  if(isRegister) return <Navigate to={Link.CHECK_EMAIL}/>
+  if(isRedirect) return <Navigate to={Link.CHECK_EMAIL}/>
 
   return (
     <AnimationAuth className={s.register}>
