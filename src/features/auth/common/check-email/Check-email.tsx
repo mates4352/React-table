@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC} from 'react';
 import s from './Check-email.module.scss';
 import {Link} from "../../../../utils/enum/routing";
 import image_check_email from '../../../../assets/images/check-email.svg'
@@ -6,13 +6,10 @@ import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
-import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 
 type CheckEmailType = {};
 
 export const CheckEmail: FC<CheckEmailType> = () => {
-  const dispatch = useAppDispatch()
-
   return (
     <AnimationAuth className={s.check_email}>
       <Title className={s.title} type={'h2'}>
@@ -22,7 +19,7 @@ export const CheckEmail: FC<CheckEmailType> = () => {
       <img className={s.image} src={image_check_email} alt={'Email'}/>
 
       <Caption className={s.caption}>
-        We’ve sent an Email with instructions to example@mail.com
+        We’ve sent an Email with instructions to your email
       </Caption>
 
       <LinkCommon className={s.link} routing={Link.AUTH}>

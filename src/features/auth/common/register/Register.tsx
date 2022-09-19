@@ -38,11 +38,11 @@ export const Register: FC<RegisterType> = () => {
         }}
         validationSchema={registerSchema}
         onSubmit={async(dataRegister: RegisterSubmitType) => {
-          await dispatch(register({
+          const response = await dispatch(register({
             email: dataRegister.email,
             password: dataRegister.password
           }));
-          navigate(Link.AUTH);
+          if(response.meta.requestStatus === 'fulfilled') navigate(Link.AUTH);
         }}
       >
         {formik => (

@@ -12,7 +12,24 @@ interface AuthStateType {
   loading: LoadingType
 }
 
-const initialState = {} as AuthStateType;
+const initialState = {
+  login: {
+    created: '',
+    email: '',
+    isAdmin: false,
+    name: '',
+    publicCardPacksCount: null,
+    rememberMe: false,
+    token: '',
+    tokenDeathTime: null,
+    updated: '',
+    verified: false,
+    __v: null,
+    _id: '',
+  },
+  error: '',
+  loading: Statuses.PENDING
+} as AuthStateType;
 
 const authSlice = createSlice({
   name: 'auth',

@@ -8,7 +8,22 @@ interface AppStateType {
   user: UserApiType
 }
 
-const initialState = {} as AppStateType;
+const initialState = {
+  user: {
+    created: '',
+    email: '',
+    isAdmin: false,
+    name: '',
+    publicCardPacksCount: null,
+    rememberMe: false,
+    token: '',
+    tokenDeathTime: null,
+    updated: '',
+    verified: false,
+    __v: null,
+    _id: '',
+  }
+} as AppStateType;
 
 const appSlice = createSlice({
   name: 'app',

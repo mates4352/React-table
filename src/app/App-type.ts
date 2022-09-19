@@ -5,12 +5,12 @@ export type UserApiType = {
   email: string
   isAdmin: boolean
   name: string
-  publicCardPacksCount: number
+  publicCardPacksCount: number | null
   rememberMe: boolean
   token: string
-  tokenDeathTime: number
+  tokenDeathTime: number | null
   updated: string
   verified: boolean
-  __v: number
+  __v: number | null
   _id: string
 }

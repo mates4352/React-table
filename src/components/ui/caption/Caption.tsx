@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 
 type CaptionType = {
   className?: string
-  children: string
+  children: React.ReactNode
 };
 
 export const Caption: FC<CaptionType> = memo(({

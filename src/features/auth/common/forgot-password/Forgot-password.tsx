@@ -36,7 +36,7 @@ export const ForgotPassword: FC<ForgotPasswordType> = () => {
         }}
         validationSchema={forgotPasswordSchema}
         onSubmit={async (dataForgotPassword: ForgotPasswordSubmitType) => {
-          dispatch(restorePassword(
+          const response = await dispatch(restorePassword(
             {
               email: dataForgotPassword.email,
               from: "test-front-admin <sergeysabyrkin@gmail.com>",
@@ -45,8 +45,8 @@ export const ForgotPassword: FC<ForgotPasswordType> = () => {
                   <a href='http://localhost:3000${Link.AUTH}/${Routing.NEW_PASSWORD}/$token$'>link</a>
                 </div>`
             }
-          ));
-          navigate(Link.CHECK_EMAIL);
+          ))
+          if(response.meta.requestStatus === 'fulfilled') navigate(Link.CHECK_EMAIL);
         }}
       >
         {(formik => (

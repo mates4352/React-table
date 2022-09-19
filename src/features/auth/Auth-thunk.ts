@@ -28,7 +28,7 @@ export const register = createAsyncThunk('auth/register', async(dataRegister: Re
     await AuthApi.register(dataRegister);
   } catch(e) {
     const error = e as AxiosError<RegisterErrorType>;
-    return rejectWithValue(error.response?.data.error)
+    return rejectWithValue(error.response?.data.error);
   }
 })
 
@@ -39,7 +39,7 @@ export const restorePassword = createAsyncThunk('auth/restorePassword', async(da
     await AuthApi.restorePassword(dataForgotPassword);
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;
-    return rejectWithValue(error.response?.data.error)
+    return rejectWithValue(error.response?.data.error);
   }
 })
 
@@ -50,6 +50,6 @@ export const setNewPassword = createAsyncThunk('auth/setNewPassword', async(data
     await AuthApi.setNewPassword(dataNewPassword);
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;
-    return rejectWithValue(error.response?.data.error)
+    return rejectWithValue(error.response?.data.error);
   }
 })
