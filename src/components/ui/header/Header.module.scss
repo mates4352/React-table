@@ -26,3 +26,23 @@
     --c-button-width: 90px;
   }
 }
+
+.user {
+  display: grid;
+  grid-auto-columns: var(--g-minmax);
+  grid-auto-flow: column;
+  align-items: center;
+  column-gap: 12px;
+
+  border-bottom: 1px dashed transparent;
+
+  cursor: pointer;
+
+  &:hover .name {
+    border-bottom: 1px dashed var(--g-dark);
+  }
+}
+
+.name {
+  font: var(--g-p2);
+}

@@ -9,7 +9,7 @@ import {Statuses} from "../../utils/enum/statuses";
 interface AuthStateType {
   login: UserApiType
   error: string
-  loading: LoadingType
+  loading: LoadingType | ''
 }
 
 const initialState = {
@@ -28,7 +28,7 @@ const initialState = {
     _id: '',
   },
   error: '',
-  loading: Statuses.PENDING
+  loading: ''
 } as AuthStateType;
 
 const authSlice = createSlice({

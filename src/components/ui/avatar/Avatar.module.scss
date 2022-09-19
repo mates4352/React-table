@@ -1,0 +1,6 @@
+.avatar {
+  --c-size-avatar: 36px;
+  width: var(--c-avatar-width, var(--c-size-avatar));
+  height: var(--c-avatar-width, var(--c-size-avatar));
+  border-radius: var(--c-avatar-border-radius, 50%);
+}

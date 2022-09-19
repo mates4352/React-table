@@ -5,6 +5,7 @@ export type UserApiType = {
   email: string
   isAdmin: boolean
   name: string
+  avatar?: string
   publicCardPacksCount: number | null
   rememberMe: boolean
   token: string
