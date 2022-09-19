@@ -48,3 +48,11 @@ export type ForgotPasswordType = ForgotPasswordSubmitType & {
   from: string
   message: string
 }
+
+export type NewPasswordSubmitType = {
+  password: string
+}
+
+export type NewPasswordType = NewPasswordSubmitType & {
+  resetPasswordToken: string
+}

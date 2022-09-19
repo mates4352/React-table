@@ -21,5 +21,5 @@ const appSlice = createSlice({
   }
 })
 
-const {actions, reducer} = appSlice;
+const {reducer} = appSlice;
 export const appReducer = reducer;

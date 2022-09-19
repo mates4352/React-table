@@ -7,16 +7,11 @@ import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
-import {performRedirect} from "../../Auth-slice";
 
 type CheckEmailType = {};
 
 export const CheckEmail: FC<CheckEmailType> = () => {
   const dispatch = useAppDispatch()
-
-  useEffect(() => {
-    dispatch(performRedirect(false))
-  }, [dispatch])
 
   return (
     <AnimationAuth className={s.check_email}>

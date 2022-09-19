@@ -3,14 +3,13 @@ import type {PayloadAction} from "@reduxjs/toolkit";
 import {LoadingType, UserApiType} from "../../app/App-type";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
-import {register, restorePassword, setLogin} from "./Auth-thunk";
+import {register, restorePassword, setLogin, setNewPassword} from "./Auth-thunk";
 import {Statuses} from "../../utils/enum/statuses";
 
 interface AuthStateType {
   login: UserApiType
   error: string
   loading: LoadingType
-  isRedirect: boolean
 }
 
 const initialState = {} as AuthStateType;
@@ -18,11 +17,7 @@ const initialState = {} as AuthStateType;
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    performRedirect(state: AuthStateType, action: PayloadAction<boolean>) {
-      state.isRedirect = action.payload
-    },
-  },
+  reducers: {},
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
     builder.addCase(setLogin.pending.type, (state: AuthStateType) => {
       state.loading = Statuses.PENDING;
@@ -45,7 +40,6 @@ const authSlice = createSlice({
 
     builder.addCase(register.fulfilled.type, (state: AuthStateType) => {
       if(state.error) state.error = '';
-      state.isRedirect = true;
       state.loading = Statuses.SUCCEEDED;
     })
 
@@ -67,11 +61,22 @@ const authSlice = createSlice({
       state.error = action.payload;
       state.loading = Statuses.FAILED;
     })
+
+    builder.addCase(setNewPassword.pending.type, (state: AuthStateType) => {
+      state.loading = Statuses.PENDING;
+    })
+
+    builder.addCase(setNewPassword.fulfilled.type, (state: AuthStateType) => {
+      if(state.error) state.error = '';
+      state.loading = Statuses.SUCCEEDED;
+    })
+
+    builder.addCase(setNewPassword.rejected.type, (state: AuthStateType, action: PayloadAction<string>) => {
+      state.error = action.payload;
+      state.loading = Statuses.FAILED;
+    })
   }
 });
 
 export const {reducer} = authSlice;
-export const {
-  performRedirect,
-} = authSlice.actions
 export const authReducer = reducer;

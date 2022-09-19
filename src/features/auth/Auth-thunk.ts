@@ -2,7 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
   ForgotPasswordType,
   LoginErrorType,
-  LoginSubmitType,
+  LoginSubmitType, NewPasswordType,
   RegisterErrorType,
   RegisterSubmitType
 } from "./Auth-type";
@@ -37,6 +37,17 @@ export const restorePassword = createAsyncThunk('auth/restorePassword', async(da
 }) => {
   try {
     await AuthApi.restorePassword(dataForgotPassword);
+  } catch(e) {
+    const error = e as AxiosError<LoginErrorType>;
+    return rejectWithValue(error.response?.data.error)
+  }
+})
+
+export const setNewPassword = createAsyncThunk('auth/setNewPassword', async(dataNewPassword: NewPasswordType, {
+  rejectWithValue,
+}) => {
+  try {
+    await AuthApi.setNewPassword(dataNewPassword);
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;
     return rejectWithValue(error.response?.data.error)

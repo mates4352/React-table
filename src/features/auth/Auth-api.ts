@@ -2,7 +2,7 @@ import {instance} from "../../app/App-api";
 import {
   ForgotApiType,
   ForgotPasswordType,
-  LoginSubmitType,
+  LoginSubmitType, NewPasswordType,
   RegisterApiType,
   RegisterSubmitType
 } from "./Auth-type";
@@ -19,5 +19,9 @@ export const AuthApi = {
 
   restorePassword: async(dataForgot: ForgotPasswordType) => {
     return await instance.post<ForgotApiType>('auth/forgot', dataForgot);
+  },
+
+  setNewPassword: async(dataNewPassword: NewPasswordType) => {
+    return await instance.post<ForgotApiType>('auth/set-new-password', dataNewPassword);
   },
 }

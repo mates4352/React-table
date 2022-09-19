@@ -15,12 +15,14 @@ import {restorePassword} from "../../Auth-thunk";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {authSelect} from "../../../../app/App-select";
 import {Error} from "../../../../components/ui/error/Error";
+import {useNavigate} from "react-router-dom";
 
 type ForgotPasswordType = {};
 
 export const ForgotPassword: FC<ForgotPasswordType> = () => {
   const dispatch = useAppDispatch();
   const {error} = useAppSelector(authSelect);
+  const navigate = useNavigate();
 
   return (
     <AnimationAuth className={s.forgot_password}>
@@ -33,7 +35,7 @@ export const ForgotPassword: FC<ForgotPasswordType> = () => {
           email: '',
         }}
         validationSchema={forgotPasswordSchema}
-        onSubmit={(dataForgotPassword: ForgotPasswordSubmitType) => {
+        onSubmit={async (dataForgotPassword: ForgotPasswordSubmitType) => {
           dispatch(restorePassword(
             {
               email: dataForgotPassword.email,
@@ -44,6 +46,7 @@ export const ForgotPassword: FC<ForgotPasswordType> = () => {
                 </div>`
             }
           ));
+          navigate(Link.CHECK_EMAIL);
         }}
       >
         {(formik => (

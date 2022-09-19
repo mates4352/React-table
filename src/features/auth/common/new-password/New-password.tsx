@@ -4,20 +4,21 @@ import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {Field, Form, Formik} from "formik";
 import {newPasswordSchema} from "../../../../utils/helpers/validate/New-password-validate";
-import {useNavigate} from "react-router-dom";
-import {Link, Routing} from "../../../../utils/enum/routing";
+import {Navigate, useNavigate, useParams} from "react-router-dom";
+import {Link} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
+import {NewPasswordSubmitType} from "../../Auth-type";
+import {useAppDispatch} from "../../../../hooks/useAppDispatch";
+import {setNewPassword} from "../../Auth-thunk";
 
 type NewPasswordType = {};
 
-type NewPasswordValuesType = {
-  password: string
-}
-
 export const NewPassword: FC<NewPasswordType> = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const params = useParams();
 
   return (
     <AnimationAuth className={s.new_password}>
@@ -30,8 +31,12 @@ export const NewPassword: FC<NewPasswordType> = () => {
           password: '',
         }}
         validationSchema={newPasswordSchema}
-        onSubmit={(data: NewPasswordValuesType) => {
-          navigate(Link.CHECK_EMAIL)
+        onSubmit={ async (data: NewPasswordSubmitType) => {
+          await dispatch(setNewPassword({
+            password: data.password,
+            resetPasswordToken: String(params.token),
+          }))
+          navigate(Link.AUTH)
         }}>
         {formik => (
           <Form>

@@ -4,7 +4,7 @@ import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {Field, Form, Formik} from "formik";
 import {registerSchema} from "../../../../utils/helpers/validate/Register-validate";
-import {Navigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {Link} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {Title} from "../../../../components/ui/title/Title";
@@ -21,9 +21,8 @@ type RegisterType = {};
 
 export const Register: FC<RegisterType> = () => {
   const dispatch = useAppDispatch();
-  const {error, loading, isRedirect} = useAppSelector(authSelect)
-
-  if(isRedirect) return <Navigate to={Link.CHECK_EMAIL}/>
+  const {error, loading} = useAppSelector(authSelect);
+  const navigate = useNavigate();
 
   return (
     <AnimationAuth className={s.register}>
@@ -38,11 +37,12 @@ export const Register: FC<RegisterType> = () => {
           confirmPassword: '',
         }}
         validationSchema={registerSchema}
-        onSubmit={(dataRegister: RegisterSubmitType) => {
-          dispatch(register({
+        onSubmit={async(dataRegister: RegisterSubmitType) => {
+          await dispatch(register({
             email: dataRegister.email,
             password: dataRegister.password
-          }))
+          }));
+          navigate(Link.AUTH);
         }}
       >
         {formik => (
