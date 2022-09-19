@@ -15,12 +15,13 @@ import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {authSelect} from "../../../../app/App-select";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {register} from "../../Auth-thunk";
+import {Statuses} from "../../../../utils/enum/statuses";
 
 type RegisterType = {};
 
 export const Register: FC<RegisterType> = () => {
   const dispatch = useAppDispatch();
-  const {error, isRedirect} = useAppSelector(authSelect)
+  const {error, loading, isRedirect} = useAppSelector(authSelect)
 
   if(isRedirect) return <Navigate to={Link.CHECK_EMAIL}/>
 
@@ -80,7 +81,7 @@ export const Register: FC<RegisterType> = () => {
 
               <Button
                 type={'submit'}
-                disabled={!(formik.isValid && formik.dirty)}
+                disabled={!(formik.isValid && formik.dirty) || loading === Statuses.PENDING}
                 className={s.button_register}>
                 Login
               </Button>

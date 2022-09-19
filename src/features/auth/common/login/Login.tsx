@@ -14,7 +14,7 @@ import {loginSchema} from "../../../../utils/helpers/validate/Login-validate";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {Error} from "../../../../components/ui/error/Error";
-import {appSelect, authSelect} from "../../../../app/App-select";
+import {authSelect} from "../../../../app/App-select";
 import {setLogin} from "../../Auth-thunk";
 import {Statuses} from "../../../../utils/enum/statuses";
 
@@ -23,7 +23,7 @@ type LoginType = {};
 export const Login: FC<LoginType> = () => {
   const dispatch = useAppDispatch();
   const {error} = useAppSelector(authSelect)
-  const {loading} = useAppSelector(appSelect)
+  const {loading} = useAppSelector(authSelect)
 
   return (
     <AnimationAuth className={s.login}>

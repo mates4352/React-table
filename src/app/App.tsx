@@ -6,13 +6,13 @@ import {Link, Routing} from "../utils/enum/routing";
 import {Header} from "../components/ui/header/Header";
 import {Alert} from "../components/ui/alert/Alert";
 import {useAppSelector} from "../hooks/useAppSelector";
-import {appSelect} from "./App-select";
+import {authSelect} from "./App-select";
 import {useAppDispatch} from "../hooks/useAppDispatch";
 import {getDataUser} from "./App-thunk";
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
-  const {loading} = useAppSelector(appSelect);
+  const {loading} = useAppSelector(authSelect)
 
   useEffect(() => {
     dispatch(getDataUser())

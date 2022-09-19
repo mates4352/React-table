@@ -35,6 +35,16 @@ export type RegisterApiType = {
   _id: string
 }
 
+export type ForgotApiType = {
+  info: string
+  error: string;
+}
+
 export type ForgotPasswordSubmitType = {
   email: string
+}
+
+export type ForgotPasswordType = ForgotPasswordSubmitType & {
+  from: string
+  message: string
 }

@@ -1,38 +1,44 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {LoginErrorType, LoginSubmitType, RegisterErrorType, RegisterSubmitType} from "./Auth-type";
-import {setLoading} from "../../app/App-slice";
+import {
+  ForgotPasswordType,
+  LoginErrorType,
+  LoginSubmitType,
+  RegisterErrorType,
+  RegisterSubmitType
+} from "./Auth-type";
 import {AuthApi} from "./Auth-api";
 import {AxiosError} from "axios";
-import {getDataLogin, performRedirect, registration, setError} from "./Auth-slice";
 
-export const setLogin = createAsyncThunk('auth/getDataLogin', async(dataLogin: LoginSubmitType, {
-  dispatch
+export const setLogin = createAsyncThunk('auth/setDataLogin', async(dataLogin: LoginSubmitType, {
+  rejectWithValue,
 }) => {
-  dispatch(setLoading('PENDING'));
   try {
     const response = await AuthApi.login(dataLogin);
-    dispatch(getDataLogin(response.data));
-    dispatch(setLoading('SUCCEEDED'));
+    return response.data;
   } catch(e) {
-    dispatch(setLoading('FAILED'));
     const error = e as AxiosError<LoginErrorType>;
-    error.response?.data.error && dispatch(setError(error.response?.data.error));
+    return rejectWithValue(error.response?.data.error);
   }
 })
 
 export const register = createAsyncThunk('auth/register', async(dataRegister: RegisterSubmitType, {
-  dispatch
+  rejectWithValue
 }) => {
-  dispatch(setLoading('PENDING'))
   try {
-    const response = await AuthApi.register(dataRegister);
-    dispatch(setLoading('SUCCEEDED'));
-    dispatch(registration());
-    dispatch(performRedirect(true));
-    return response.data;
+    await AuthApi.register(dataRegister);
   } catch(e) {
-    dispatch(setLoading('FAILED'));
     const error = e as AxiosError<RegisterErrorType>;
-    error.response?.data.error && dispatch(setError(error.response?.data.error));
+    return rejectWithValue(error.response?.data.error)
+  }
+})
+
+export const restorePassword = createAsyncThunk('auth/restorePassword', async(dataForgotPassword: ForgotPasswordType, {
+  rejectWithValue,
+}) => {
+  try {
+    await AuthApi.restorePassword(dataForgotPassword);
+  } catch(e) {
+    const error = e as AxiosError<LoginErrorType>;
+    return rejectWithValue(error.response?.data.error)
   }
 })
