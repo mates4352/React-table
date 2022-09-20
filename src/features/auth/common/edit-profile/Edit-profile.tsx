@@ -40,7 +40,11 @@ export const EditProfile: FC<EditProfileType> = ({
       >
         {formik => (
           <Form className={s.form}>
-            <InputFileAvatar className={s.input_avatar} src={''}/>
+            <Field
+              className={s.input_avatar}
+              name={'avatar'}
+              type={'file'}
+              component={InputFileAvatar}/>
 
             <Field
               className={s.input}
