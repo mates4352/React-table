@@ -1,10 +1,10 @@
-import React, {FC, memo} from 'react';
+import React, {FC, memo, ReactNode} from 'react';
 import s from './Wrapper-card.module.scss';
 import classNames from "classnames/bind";
 
 type WrapperCardType = {
   className?: string
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export const WrapperCard: FC<WrapperCardType> = memo(({

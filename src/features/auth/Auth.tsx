@@ -10,6 +10,7 @@ import {NewPassword} from "./common/new-password/New-password";
 import {CheckEmail} from "./common/check-email/Check-email";
 import {AnimatePresence} from "framer-motion";
 import {WrapperCard} from "../../components/ui/wrapper-card/Wrapper-card";
+import {Container} from "../../components/ui/container/Container";
 
 type AuthProps = {};
 
@@ -17,7 +18,7 @@ export const Auth: FC<AuthProps> = () => {
   const location = useLocation()
 
   return (
-    <section className={classNames(s.auth, s.container)}>
+    <Container className={s.auth} type={'section'}>
       <WrapperCard>
         <AnimatePresence initial={false} exitBeforeEnter>
           <Routes key={location.pathname} location={location}>1
@@ -32,6 +33,6 @@ export const Auth: FC<AuthProps> = () => {
           </Routes>
         </AnimatePresence>
       </WrapperCard>
-    </section>
+    </Container>
   );
 };
