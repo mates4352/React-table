@@ -9,6 +9,7 @@ import {ForgotPassword} from "./common/forgot-password/Forgot-password";
 import {NewPassword} from "./common/new-password/New-password";
 import {CheckEmail} from "./common/check-email/Check-email";
 import {AnimatePresence} from "framer-motion";
+import {WrapperCard} from "../../components/ui/wrapper-card/Wrapper-card";
 
 type AuthProps = {};
 
@@ -17,7 +18,7 @@ export const Auth: FC<AuthProps> = () => {
 
   return (
     <section className={classNames(s.auth, s.container)}>
-      <div className={s.body}>
+      <WrapperCard>
         <AnimatePresence initial={false} exitBeforeEnter>
           <Routes key={location.pathname} location={location}>1
             <Route index element={<Login/>}/>
@@ -30,7 +31,7 @@ export const Auth: FC<AuthProps> = () => {
             <Route path={Routing.CHECK_EMAIL} element={<CheckEmail/>}/>
           </Routes>
         </AnimatePresence>
-      </div>
+      </WrapperCard>
     </section>
   );
 };

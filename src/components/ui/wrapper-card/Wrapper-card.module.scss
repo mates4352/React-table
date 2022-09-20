@@ -1,0 +1,11 @@
+.wrapper_card {
+  max-width: var(--c-wrapper-card-max-width, 415px);
+  width: var(--c-wrapper-card-width, 100%);
+  margin: var(--c-wrapper-card-margin, auto);
+  padding: var(--c-wrapper-card-padding, 35px 35px 42px);
+
+  text-align: var(--c-wrapper-card-text-align, center);
+
+  background-color: var(--c-wrapper-card-background-color, var(--g-white));
+  border-radius: var(--c-wrapper-card-border-radius, 8px);
+}
