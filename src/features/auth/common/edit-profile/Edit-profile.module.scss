@@ -1,0 +1,29 @@
+.title {
+  margin-bottom: 30px;
+}
+
+.input {
+  margin-bottom: 14px;
+}
+
+.input_avatar {
+  margin-bottom:36px;
+}
+
+.caption {
+  margin-bottom: 30px;
+}
+
+.wrap {
+  display: grid;
+  grid-auto-columns: var(--g-minmax);
+  grid-auto-flow: column;
+  align-items: center;
+  justify-content: center;
+  column-gap: 7px;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}

@@ -12,7 +12,7 @@ export const WrapperCard: FC<WrapperCardType> = memo(({
   children,
 }) => {
   return (
-    <div className={classNames(s.wrapper_card, className)}>
+    <div className={classNames(s.wrap, className)}>
       {children}
     </div>
   );

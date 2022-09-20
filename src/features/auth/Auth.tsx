@@ -11,14 +11,18 @@ import {CheckEmail} from "./common/check-email/Check-email";
 import {AnimatePresence} from "framer-motion";
 import {WrapperCard} from "../../components/ui/wrapper-card/Wrapper-card";
 import {Container} from "../../components/ui/container/Container";
+import {EditProfile} from "./common/edit-profile/Edit-profile";
+import {ButtonBack} from "../../components/bll/button-back/Button-back";
 
 type AuthProps = {};
 
 export const Auth: FC<AuthProps> = () => {
   const location = useLocation()
-
   return (
     <Container className={s.auth} type={'section'}>
+      {location.pathname === "/Auth/Edit-profile" &&
+          <ButtonBack className={s.button}>Back to Packs List</ButtonBack>
+      }
       <WrapperCard>
         <AnimatePresence initial={false} exitBeforeEnter>
           <Routes key={location.pathname} location={location}>1
@@ -30,6 +34,7 @@ export const Auth: FC<AuthProps> = () => {
               <Route path={':token'} element={<NewPassword/>}/>
             </Route>
             <Route path={Routing.CHECK_EMAIL} element={<CheckEmail/>}/>
+            <Route path={Routing.EDIT_PROFILE} element={<EditProfile/>}/>
           </Routes>
         </AnimatePresence>
       </WrapperCard>

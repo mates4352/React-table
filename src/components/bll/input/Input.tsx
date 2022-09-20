@@ -4,17 +4,20 @@ import classNames from "classnames/bind";
 import {IconEye} from "../../icons/icon-eye/Icon-eye";
 import {FieldInputProps, FormikState} from "formik";
 import {Error} from "../../ui/error/Error";
+import {ButtonSave} from "../button-save/Button-save";
 
 type InputType = {
   field: FieldInputProps<any>,
   form: FormikState<any>
   label: string
   type: string
+  buttonType: 'save'
   errorResponse?: boolean
   className?: string // кастомные стили для компоненты через css var().
 };
 
 export const Input: FC<InputType> = memo(({
+  buttonType,
   label,
   type,
   errorResponse,
@@ -32,6 +35,7 @@ export const Input: FC<InputType> = memo(({
   const isValid = touch && !error;
   const isType = typeInput === 'password' ? 'text' : 'password';
   const onEditTypeInput = (type: string) => () => setTypeInput(type)
+
   return (
     <div className={classNames(s.input, className)}>
       <div className={classNames(s.wrap, isError && s.wrap_error)}>
@@ -62,6 +66,10 @@ export const Input: FC<InputType> = memo(({
                 onClick={onEditTypeInput(isType)}>
                 <IconEye></IconEye>
             </button>
+        }
+
+        {buttonType === 'save' &&
+          <ButtonSave type={'submit'}>SAVE</ButtonSave>
         }
 
         <div className={classNames(

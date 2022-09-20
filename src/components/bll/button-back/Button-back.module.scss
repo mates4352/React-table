@@ -1,0 +1,21 @@
+.button {
+  display: grid;
+  grid-auto-columns: var(--g-minmax);
+  grid-auto-flow: column;
+  align-items: center;
+  column-gap: 12px;
+
+  font: var(--g-p3-1);
+  color: var(--g-black);
+
+  transition: color 200ms ease;
+
+  &:hover {
+    color: var(--g-blue-dark);
+  }
+}
+
+.arrow {
+  width: 16px;
+  height: 11px;
+}

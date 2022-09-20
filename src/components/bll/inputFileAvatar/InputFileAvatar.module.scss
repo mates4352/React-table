@@ -1,0 +1,39 @@
+@import './src/assets/style';
+
+.label {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+
+    .avatar {
+      transform: scale(1.05);
+      border: 2px dashed var(--g-dark);
+      box-shadow: 0 8px 10px var(--g-blue-light);
+    }
+
+    .photo {
+      right: -8px;
+      bottom: -8px;
+    }
+  }
+}
+
+.avatar {
+  --c-avatar-size: 96px;
+  border: 2px dashed transparent;
+  transition: transform 500ms ease, box-shadow 500ms ease, border 800ms ease;
+}
+
+.photo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+
+  transition: right 600ms linear, bottom 300ms linear;
+}

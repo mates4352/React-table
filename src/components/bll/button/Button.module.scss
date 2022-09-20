@@ -61,3 +61,28 @@
     box-shadow: var(--c-button-active-box-shadow, 0 4px 18px var(--g-dark-opacity-20), 0 0px 0 var(--g-blue));
   }
 }
+
+.button_logout {
+  width: var(--c-button-width, 127px);
+  padding: var(--c-button-padding, 8px);
+
+  font: var(--c-button-font, var(--g-p2));
+  color: var(--c-button-color, var(--g-dark));
+
+  background-color: var(--c-button-background-color, var(--g-white));
+  border-radius: var(--c-button-border-radius, 30px);
+  box-shadow: var(--c-button-box-shadow, 0 4px 10px var(--g-blue-light));
+  transition:
+          transform 300ms ease,
+          color 300ms ease,
+          background-color 300ms ease,
+          box-shadow 300ms ease;
+
+  &:hover {
+    color: var(--c-button-hover-color, var(--g-blue-dark));
+  }
+
+  &:active {
+    box-shadow: var(--c-button-active-box-shadow, 0 4px 18px var(--g-dark-opacity-20), 0 0px 0 var(--g-blue));
+  }
+}

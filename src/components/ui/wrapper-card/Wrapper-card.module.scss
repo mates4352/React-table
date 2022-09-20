@@ -1,11 +1,12 @@
-.wrapper_card {
-  max-width: var(--c-wrapper-card-max-width, 415px);
-  width: var(--c-wrapper-card-width, 100%);
-  margin: var(--c-wrapper-card-margin, auto);
-  padding: var(--c-wrapper-card-padding, 35px 35px 42px);
+.wrap {
+  max-width: var(--c-wrap-max-width, 415px);
+  width: var(--c-wrap-width, 100%);
+  margin: var(--c-wrap-margin, auto);
+  padding: var(--c-wrap-padding, 35px 35px 42px);
 
-  text-align: var(--c-wrapper-card-text-align, center);
+  text-align: var(--c-wrap-text-align, center);
 
-  background-color: var(--c-wrapper-card-background-color, var(--g-white));
-  border-radius: var(--c-wrapper-card-border-radius, 8px);
+  background-color: var(--c-wrap-background-color, var(--g-white));
+  border-radius: var(--c-wrap-border-radius, 2px);
+  box-shadow: 1px 1px 10px var(--g-blue-light-super);
 }
