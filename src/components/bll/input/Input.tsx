@@ -13,6 +13,7 @@ type InputType = {
   type: string
   buttonType: 'save'
   errorResponse?: boolean
+  onClickButtonSave?: () => void
   className?: string // кастомные стили для компоненты через css var().
 };
 
@@ -23,6 +24,7 @@ export const Input: FC<InputType> = memo(({
   errorResponse,
   className,
   field,
+  onClickButtonSave,
   form: {touched, errors, values},
   ...props
 }) => {
@@ -69,7 +71,7 @@ export const Input: FC<InputType> = memo(({
         }
 
         {buttonType === 'save' &&
-          <ButtonSave type={'submit'}>SAVE</ButtonSave>
+          <ButtonSave type={'submit'} onClickButton={onClickButtonSave}>SAVE</ButtonSave>
         }
 
         <div className={classNames(

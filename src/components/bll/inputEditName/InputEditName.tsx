@@ -41,6 +41,7 @@ export const InputEditName: FC<InputEditNameType> = ({
               form={form}
               field={field}
               buttonType={'save'}
+              onClickButtonSave={onShowInput}
               {...restProps}/>
           </div> :
 
