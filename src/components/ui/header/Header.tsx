@@ -23,7 +23,6 @@ export const Header: FC<HeaderType> = memo(() => {
       <div className={classNames(s.wrap, s.container)}>
         <img className={s.logo} src={logo} alt={'Logo'}/>
 
-
         {!user.verified ?
           <Button
             className={s.button}

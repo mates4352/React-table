@@ -1,10 +1,35 @@
+.name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .wrap {
+  align-self: stretch;
+
 }
 
 .input {
-
 }
 
 .button {
+  display: grid;
+  grid-auto-columns: var(--g-minmax);
+  grid-auto-flow: column;
+  align-items: center;
+  column-gap: 8px;
 
+  font: var(--g-h3);
+  color: var(--g-dark);
+
+  transition: color 500ms ease;
+
+  &:hover {
+    color: var(--g-blue-dark);
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
 }

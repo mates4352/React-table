@@ -1,5 +1,6 @@
 import {instance} from "../../app/App-api";
 import {
+  dataEditProfileType,
   ForgotApiType,
   ForgotPasswordType,
   LoginSubmitType, NewPasswordType,
@@ -23,5 +24,9 @@ export const AuthApi = {
 
   setNewPassword: async(dataNewPassword: NewPasswordType) => {
     return await instance.post<ForgotApiType>('auth/set-new-password', dataNewPassword);
+  },
+
+  updateProfile: async(dataEditProfile: dataEditProfileType) => {
+    return await instance.put<ForgotApiType>('auth/me', dataEditProfile);
   },
 }

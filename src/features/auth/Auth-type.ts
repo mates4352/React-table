@@ -56,3 +56,8 @@ export type NewPasswordSubmitType = {
 export type NewPasswordType = NewPasswordSubmitType & {
   resetPasswordToken: string
 }
+
+export type dataEditProfileType = {
+  email: string
+  avatar: string
+}

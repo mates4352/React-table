@@ -1,8 +1,7 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import s from './Edit-profile.module.scss';
 import {Title} from "../../../../components/ui/title/Title";
 import {Field, Form, Formik} from "formik";
-import {Input} from "../../../../components/bll/input/Input";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {editProfileSchema} from "../../../../utils/helpers/validate/Edit-profile-validate";
@@ -21,6 +20,11 @@ export const EditProfile: FC<EditProfileType> = ({
 
 }) => {
   const {user} = useAppSelector(appSelect);
+  const [image, setImage] = useState(user.avatar);
+
+  useEffect(() => {
+    return setImage(user.avatar);
+  },[user.avatar])
 
   return (
     <AnimationAuth className={s.login}>
@@ -30,12 +34,11 @@ export const EditProfile: FC<EditProfileType> = ({
 
       <Formik
         initialValues={{
-          name: user.name,
+          name: '',
           avatar: '',
         }}
         validationSchema={editProfileSchema}
-        onSubmit={(dataEditProfile: any) => {
-          console.log(dataEditProfile)
+        onSubmit={() => {
         }}
       >
         {formik => (
@@ -44,6 +47,8 @@ export const EditProfile: FC<EditProfileType> = ({
               className={s.input_avatar}
               name={'avatar'}
               type={'file'}
+              src={image}
+              setImage={setImage}
               component={InputFileAvatar}/>
 
             <Field

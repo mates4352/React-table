@@ -28,9 +28,12 @@ export const Alert: FC<AlertType> = memo(({
   useEffect(() => {
     setAlert(true)
 
-    const timeoutId = setTimeout(() => {
-      setAlert(false)
-    }, 1500)
+    let timeoutId: NodeJS.Timeout;
+    if(statusSucceeded || statusFailed) {
+      timeoutId = setTimeout(() => {
+        setAlert(false)
+      }, 1500)
+    }
 
     return () => clearTimeout(timeoutId)
   }, [status])

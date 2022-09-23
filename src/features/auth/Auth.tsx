@@ -25,7 +25,7 @@ export const Auth: FC<AuthProps> = () => {
       }
       <WrapperCard>
         <AnimatePresence initial={false} exitBeforeEnter>
-          <Routes key={location.pathname} location={location}>1
+          <Routes key={location.pathname} location={location}>
             <Route index element={<Login/>}/>
             <Route path={'*'} element={<Navigate to={Link.AUTH}/>}/>
             <Route path={Routing.REGISTER} element={<Register/>}/>

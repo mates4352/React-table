@@ -1,5 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
+  dataEditProfileType,
   ForgotPasswordType,
   LoginErrorType,
   LoginSubmitType, NewPasswordType,
@@ -8,6 +9,8 @@ import {
 } from "./Auth-type";
 import {AuthApi} from "./Auth-api";
 import {AxiosError} from "axios";
+import {AppApi} from "../../app/App-api";
+import {getDataUser} from "../../app/App-thunk";
 
 export const setLogin = createAsyncThunk('auth/setDataLogin', async(dataLogin: LoginSubmitType, {
   rejectWithValue,
@@ -48,6 +51,19 @@ export const setNewPassword = createAsyncThunk('auth/setNewPassword', async(data
 }) => {
   try {
     await AuthApi.setNewPassword(dataNewPassword);
+  } catch(e) {
+    const error = e as AxiosError<LoginErrorType>;
+    return rejectWithValue(error.response?.data.error);
+  }
+})
+
+export const editProfile = createAsyncThunk('auth/me', async(dataEditProfile: dataEditProfileType, {
+  rejectWithValue,
+  dispatch,
+}) => {
+  try {
+    await AuthApi.updateProfile(dataEditProfile);
+    dispatch(getDataUser())
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;
     return rejectWithValue(error.response?.data.error);

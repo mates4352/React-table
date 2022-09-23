@@ -11,6 +11,7 @@ type InputFileAvatarType = {
   className?: string
   src?: string
   field: FieldInputProps<any>,
+  setImage: (value: string) => void
   form: any
 };
 
@@ -18,9 +19,9 @@ export const InputFileAvatar: FC<InputFileAvatarType> = memo(({
   className,
   src,
   form,
+  setImage,
   ...restProps
 }) => {
-  const [image, setImage] = useState<string>();
 
   const onChangeFileImage = (e: ChangeEvent<any>) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -39,7 +40,7 @@ export const InputFileAvatar: FC<InputFileAvatarType> = memo(({
   return (
     <label className={classNames(s.label, className)}>
       <input className={s.visually_hidden} type="file" onChange={onChangeFileImage} {...restProps}/>
-      <Avatar className={s.avatar} src={src || image} alt={'Пользователь'}/>
+      <Avatar className={s.avatar} src={src} alt={'Пользователь'}/>
       <IconPhoto className={s.photo}/>
     </label>
   );
