@@ -9,15 +9,15 @@ import {
 } from "./Auth-type";
 import {AuthApi} from "./Auth-api";
 import {AxiosError} from "axios";
-import {AppApi} from "../../app/App-api";
 import {getDataUser} from "../../app/App-thunk";
 
 export const setLogin = createAsyncThunk('auth/setDataLogin', async(dataLogin: LoginSubmitType, {
   rejectWithValue,
+  dispatch,
 }) => {
   try {
-    const response = await AuthApi.login(dataLogin);
-    return response.data;
+    await AuthApi.login(dataLogin);
+    dispatch(getDataUser())
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;
     return rejectWithValue(error.response?.data.error);
@@ -57,12 +57,25 @@ export const setNewPassword = createAsyncThunk('auth/setNewPassword', async(data
   }
 })
 
-export const editProfile = createAsyncThunk('auth/me', async(dataEditProfile: dataEditProfileType, {
+export const editProfile = createAsyncThunk('auth/editProfile', async(dataEditProfile: dataEditProfileType, {
   rejectWithValue,
   dispatch,
 }) => {
   try {
     await AuthApi.updateProfile(dataEditProfile);
+    dispatch(getDataUser())
+  } catch(e) {
+    const error = e as AxiosError<LoginErrorType>;
+    return rejectWithValue(error.response?.data.error);
+  }
+})
+
+export const logout = createAsyncThunk('auth/logout', async(_, {
+  rejectWithValue,
+  dispatch,
+}) => {
+  try {
+    await AuthApi.logout();
     dispatch(getDataUser())
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;

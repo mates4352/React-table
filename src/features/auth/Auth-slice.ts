@@ -3,7 +3,7 @@ import type {PayloadAction} from "@reduxjs/toolkit";
 import {LoadingType, UserApiType} from "../../app/App-type";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
-import {editProfile, register, restorePassword, setLogin, setNewPassword} from "./Auth-thunk";
+import {editProfile, logout, register, restorePassword, setLogin, setNewPassword} from "./Auth-thunk";
 import {Statuses} from "../../utils/enum/statuses";
 
 interface AuthStateType {
@@ -13,20 +13,6 @@ interface AuthStateType {
 }
 
 const initialState = {
-  user: {
-    created: '',
-    email: '',
-    isAdmin: false,
-    name: '',
-    publicCardPacksCount: null,
-    rememberMe: false,
-    token: '',
-    tokenDeathTime: null,
-    updated: '',
-    verified: false,
-    __v: null,
-    _id: '',
-  },
   error: '',
   loading: ''
 } as AuthStateType;
@@ -42,8 +28,7 @@ const authSlice = createSlice({
       state.loading = Statuses.PENDING;
     })
 
-    builder.addCase(setLogin.fulfilled.type, (state: AuthStateType, action: PayloadAction<UserApiType>) => {
-      state.user = action.payload;
+    builder.addCase(setLogin.fulfilled.type, (state: AuthStateType) => {
       if(state.error) state.error = '';
       state.loading = Statuses.SUCCEEDED;
     })
@@ -105,6 +90,20 @@ const authSlice = createSlice({
     })
 
     builder.addCase(editProfile.rejected.type, (state: AuthStateType, action: PayloadAction<string>) => {
+      state.error = action.payload;
+      state.loading = Statuses.FAILED;
+    })
+
+    builder.addCase(logout.pending.type, (state: AuthStateType) => {
+      state.loading = Statuses.PENDING;
+    })
+
+    builder.addCase(logout.fulfilled.type, (state: AuthStateType) => {
+      if(state.error) state.error = '';
+      state.loading = Statuses.SUCCEEDED;
+    })
+
+    builder.addCase(logout.rejected.type, (state: AuthStateType, action: PayloadAction<string>) => {
       state.error = action.payload;
       state.loading = Statuses.FAILED;
     })

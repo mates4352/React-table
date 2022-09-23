@@ -30,7 +30,10 @@ const appSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
-    builder.addCase(getDataUser.fulfilled, (state: AppStateType, action: PayloadAction<UserApiType>) => {
+    builder.addCase(getDataUser.fulfilled.type, (state: AppStateType, action: PayloadAction<UserApiType>) => {
+      state.user = action.payload;
+    })
+    builder.addCase(getDataUser.rejected.type, (state: AppStateType, action: PayloadAction<UserApiType>) => {
       state.user = action.payload;
     })
   }

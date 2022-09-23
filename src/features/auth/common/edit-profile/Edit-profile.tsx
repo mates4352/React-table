@@ -11,6 +11,10 @@ import {Button} from "../../../../components/bll/button/Button";
 import {InputFileAvatar} from "../../../../components/bll/inputFileAvatar/InputFileAvatar";
 import {IconLogout} from "../../../../components/icons/icon-logout/Icon-logout";
 import {InputEditName} from "../../../../components/bll/inputEditName/InputEditName";
+import {useAppDispatch} from "../../../../hooks/useAppDispatch";
+import {logout} from "../../Auth-thunk";
+import {useNavigate} from "react-router-dom";
+import {Link} from "../../../../utils/enum/routing";
 
 type EditProfileType = {
 
@@ -20,7 +24,14 @@ export const EditProfile: FC<EditProfileType> = ({
 
 }) => {
   const {user} = useAppSelector(appSelect);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [image, setImage] = useState(user.avatar);
+  const onButtonLogout = () => {
+    dispatch(logout()).then(() => {
+      navigate(Link.AUTH);
+    })
+  }
 
   useEffect(() => {
     return setImage(user.avatar);
@@ -62,7 +73,11 @@ export const EditProfile: FC<EditProfileType> = ({
               {user.email || 'email'}
             </Caption>
 
-            <Button type={'button'} buttonType={'logout'}>
+            <Button
+              type={'button'}
+              buttonType={'logout'}
+              onClickButton={onButtonLogout}
+            >
               <div className={s.wrap}>
                 <IconLogout className={s.icon}/>
                 Log out
