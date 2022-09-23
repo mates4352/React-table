@@ -17,6 +17,8 @@ import {ButtonBack} from "../../components/bll/button-back/Button-back";
 import {Container} from "../../components/ui/container/Container";
 import {WrapperCard} from "../../components/ui/wrapper-card/Wrapper-card";
 import {Link} from "../../utils/enum/routing";
+import {AnimationAuth} from "../../components/animations/animationAuth";
+import {AnimationPage} from "../../components/animations/animationPage";
 
 type EditProfileType = {};
 
@@ -38,56 +40,57 @@ export const EditProfile: FC<EditProfileType> = ({}) => {
       {location.pathname === "/Edit-profile" &&
           <ButtonBack className={s.button} to={Link.TABLE}>Back to Packs List</ButtonBack>
       }
+      <AnimationPage className={s.animation}>
+        <WrapperCard>
+          <Title className={s.title} type={'h2'}>
+            Personal Information
+          </Title>
 
-      <WrapperCard>
-        <Title className={s.title} type={'h2'}>
-          Personal Information
-        </Title>
+          <Formik
+            initialValues={{
+              name: '',
+              avatar: '',
+            }}
+            validationSchema={editProfileSchema}
+            onSubmit={() => {
+            }}
+          >
+            {formik => (
+              <Form className={s.form}>
+                <Field
+                  className={s.input_avatar}
+                  name={'avatar'}
+                  type={'file'}
+                  src={image}
+                  setImage={setImage}
+                  component={InputFileAvatar}/>
 
-        <Formik
-          initialValues={{
-            name: '',
-            avatar: '',
-          }}
-          validationSchema={editProfileSchema}
-          onSubmit={() => {
-          }}
-        >
-          {formik => (
-            <Form className={s.form}>
-              <Field
-                className={s.input_avatar}
-                name={'avatar'}
-                type={'file'}
-                src={image}
-                setImage={setImage}
-                component={InputFileAvatar}/>
+                <Field
+                  className={s.input}
+                  name={'name'}
+                  type={'text'}
+                  label={'Nickname'}
+                  component={InputEditName}/>
 
-              <Field
-                className={s.input}
-                name={'name'}
-                type={'text'}
-                label={'Nickname'}
-                component={InputEditName}/>
+                <Caption className={s.caption}>
+                  {user.email || 'email'}
+                </Caption>
 
-              <Caption className={s.caption}>
-                {user.email || 'email'}
-              </Caption>
-
-              <Button
-                type={'button'}
-                buttonType={'logout'}
-                onClickButton={onButtonLogout}
-              >
-                <div className={s.wrap}>
-                  <IconLogout className={s.icon}/>
-                  Log out
-                </div>
-              </Button>
-            </Form>
-          )}
-        </Formik>
-      </WrapperCard>
+                <Button
+                  type={'button'}
+                  buttonType={'logout'}
+                  onClickButton={onButtonLogout}
+                >
+                  <div className={s.wrap}>
+                    <IconLogout className={s.icon}/>
+                    Log out
+                  </div>
+                </Button>
+              </Form>
+            )}
+          </Formik>
+        </WrapperCard>
+      </AnimationPage>
     </Container>
   );
 };

@@ -10,27 +10,28 @@ import {CheckEmail} from "./common/check-email/Check-email";
 import {AnimatePresence} from "framer-motion";
 import {WrapperCard} from "../../components/ui/wrapper-card/Wrapper-card";
 import {Container} from "../../components/ui/container/Container";
+import {AnimationPage} from "../../components/animations/animationPage";
 
 type AuthProps = {};
 
 export const Auth: FC<AuthProps> = () => {
   const location = useLocation()
   return (
-    <Container className={s.auth} type={'section'}>
-      <WrapperCard>
-        <AnimatePresence initial={false} exitBeforeEnter>
-          <Routes key={location.pathname} location={location}>
-            <Route index element={<Login/>}/>
-            <Route path={'*'} element={<Navigate to={Link.AUTH}/>}/>
-            <Route path={Routing.REGISTER} element={<Register/>}/>
-            <Route path={Routing.FORGOT_PASSWORD} element={<ForgotPassword/>}/>
-            <Route path={Routing.NEW_PASSWORD} element={<NewPassword/>}>
-              <Route path={':token'} element={<NewPassword/>}/>
-            </Route>
-            <Route path={Routing.CHECK_EMAIL} element={<CheckEmail/>}/>
-          </Routes>
-        </AnimatePresence>
-      </WrapperCard>
-    </Container>
+      <Container className={s.auth} type={'section'}>
+        <WrapperCard>
+          <AnimatePresence initial={false} exitBeforeEnter>
+            <Routes key={location.pathname} location={location}>
+              <Route index element={<Login/>}/>
+              <Route path={'*'} element={<Navigate to={Link.AUTH}/>}/>
+              <Route path={Routing.REGISTER} element={<Register/>}/>
+              <Route path={Routing.FORGOT_PASSWORD} element={<ForgotPassword/>}/>
+              <Route path={Routing.NEW_PASSWORD} element={<NewPassword/>}>
+                <Route path={':token'} element={<NewPassword/>}/>
+              </Route>
+              <Route path={Routing.CHECK_EMAIL} element={<CheckEmail/>}/>
+            </Routes>
+          </AnimatePresence>
+        </WrapperCard>
+      </Container>
   );
 };

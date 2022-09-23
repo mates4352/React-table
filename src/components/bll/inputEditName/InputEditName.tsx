@@ -8,6 +8,13 @@ import {appSelect} from "../../../app/App-select";
 import {editProfile} from "../../../features/auth/Auth-thunk";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {IconEdit} from "../../icons/icon-edit/Icon-edit";
+import {AnimatePresence, motion} from "framer-motion";
+
+const animations = {
+  initial: {height: 0, opacity: 0},
+  animate: {height: 'auto', opacity: 1},
+  exit: {height: 0, opacity: 0},
+}
 
 type InputEditNameType = {
   field: FieldInputProps<any>,
@@ -43,9 +50,14 @@ export const InputEditName: FC<InputEditNameType> = ({
 
   return (
     <div className={classNames(s.name, className)}>
-      {
-        isInput ?
-          <div className={s.wrap}>
+      <AnimatePresence>
+        {isInput ?
+          <motion.div
+            className={s.wrap}
+            variants={animations}
+            initial={'initial'}
+            animate={'animate'}
+            exit={'exit'}>
             <Input
               className={s.input}
               form={form}
@@ -53,16 +65,21 @@ export const InputEditName: FC<InputEditNameType> = ({
               buttonType={'save'}
               onClickButtonSave={onShowInput}
               {...restProps}/>
-          </div> :
+          </motion.div> :
 
-          <button
+          <motion.button
             className={s.button}
             type={'button'}
-            onClick={onShowInput}>
+            onClick={onShowInput}
+            variants={animations}
+            initial={'initial'}
+            animate={'animate'}
+            exit={'exit'}>
             {user.name || 'name'}
             <IconEdit className={s.icon}/>
-          </button>
-      }
+          </motion.button>
+        }
+      </AnimatePresence>
     </div>
   );
 };
