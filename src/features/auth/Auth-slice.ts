@@ -7,7 +7,6 @@ import {editProfile, logout, register, restorePassword, setLogin, setNewPassword
 import {Statuses} from "../../utils/enum/statuses";
 
 interface AuthStateType {
-  user: UserApiType
   error: string
   loading: LoadingType | ''
 }

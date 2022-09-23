@@ -4,7 +4,7 @@ import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
 import {getDataUser} from "./App-thunk";
 
-interface AppStateType {
+export interface AppStateType {
   user: UserApiType
 }
 

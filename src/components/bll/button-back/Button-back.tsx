@@ -7,16 +7,18 @@ import {IconArrow} from "../../icons/icon-arrow/Icon-arrow";
 type ButtonBackType = {
   className?: string
   children: ReactNode
+  to: string
 };
 
 export const ButtonBack: FC<ButtonBackType> = memo(({
   children,
   className,
+  to,
   ...restProps
 }) => {
   const navigate = useNavigate();
   const back = () => {
-    navigate(-1)
+    navigate(to)
   }
 
   return (

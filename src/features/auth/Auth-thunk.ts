@@ -17,7 +17,7 @@ export const setLogin = createAsyncThunk('auth/setDataLogin', async(dataLogin: L
 }) => {
   try {
     await AuthApi.login(dataLogin);
-    dispatch(getDataUser())
+    dispatch(getDataUser());
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;
     return rejectWithValue(error.response?.data.error);
