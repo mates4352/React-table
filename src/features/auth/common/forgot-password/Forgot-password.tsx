@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import s from './Forgot-password.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
@@ -16,6 +16,7 @@ import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {authSelect} from "../../../../app/App-select";
 import {Error} from "../../../../components/ui/error/Error";
 import {useNavigate} from "react-router-dom";
+import {sendError} from "../../Auth-slice";
 
 type ForgotPasswordType = {};
 
@@ -23,6 +24,10 @@ export const ForgotPassword: FC<ForgotPasswordType> = () => {
   const dispatch = useAppDispatch();
   const {error} = useAppSelector(authSelect);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(error) dispatch(sendError())
+  }, [dispatch])
 
   return (
     <AnimationAuth className={s.forgot_password}>

@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import s from './Login.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Field, Form, Formik} from "formik";
@@ -17,6 +17,7 @@ import {Error} from "../../../../components/ui/error/Error";
 import {authSelect} from "../../../../app/App-select";
 import {setLogin} from "../../Auth-thunk";
 import {Statuses} from "../../../../utils/enum/statuses";
+import {sendError} from "../../Auth-slice";
 
 type LoginType = {};
 
@@ -24,6 +25,10 @@ export const Login: FC<LoginType> = () => {
   const dispatch = useAppDispatch();
   const {error} = useAppSelector(authSelect)
   const {loading} = useAppSelector(authSelect)
+
+  useEffect(() => {
+    if(error) dispatch(sendError())
+  }, [dispatch])
 
   return (
     <AnimationAuth className={s.login}>

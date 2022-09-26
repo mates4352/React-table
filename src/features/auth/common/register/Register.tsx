@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import s from './Register.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
@@ -16,6 +16,7 @@ import {authSelect} from "../../../../app/App-select";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {register} from "../../Auth-thunk";
 import {Statuses} from "../../../../utils/enum/statuses";
+import {sendError} from "../../Auth-slice";
 
 type RegisterType = {};
 
@@ -23,6 +24,10 @@ export const Register: FC<RegisterType> = () => {
   const dispatch = useAppDispatch();
   const {error, loading} = useAppSelector(authSelect);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if(error) dispatch(sendError())
+  }, [dispatch])
 
   return (
     <AnimationAuth className={s.register}>
