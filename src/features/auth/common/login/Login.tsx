@@ -15,9 +15,9 @@ import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {Error} from "../../../../components/ui/error/Error";
 import {authSelect} from "../../../../app/App-select";
-import {setLogin} from "../../Auth-thunk";
 import {Statuses} from "../../../../utils/enum/statuses";
 import {sendError} from "../../Auth-slice";
+import {setLogin} from "../../Auth-thunk";
 
 type LoginType = {};
 

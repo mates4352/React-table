@@ -2,10 +2,12 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {authReducer} from "../features/auth/Auth-slice";
 import {appReducer} from "./App-slice";
 import {appLoadState, appSaveState} from "../utils/localStorage/appLocalStorage";
+import {mainReducer} from "../features/main/Main-slice";
 
 const rootReducer = combineReducers({
-  auth: authReducer,
   app: appReducer,
+  auth: authReducer,
+  main: mainReducer,
 });
 
 export const store = configureStore({

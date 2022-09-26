@@ -5,10 +5,10 @@ import {FieldInputProps} from "formik";
 import classNames from "classnames/bind";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {appSelect} from "../../../app/App-select";
-import {editProfile} from "../../../features/auth/Auth-thunk";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {IconEdit} from "../../icons/icon-edit/Icon-edit";
 import {AnimatePresence, motion} from "framer-motion";
+import {editProfile} from "../../../features/main/Main-thunk";
 
 const animations = {
   initial: {height: 0, opacity: 0},

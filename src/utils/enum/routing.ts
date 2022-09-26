@@ -5,9 +5,8 @@ export enum Routing {
   NEW_PASSWORD = 'New-password',
   CHECK_EMAIL = 'Check-email',
 
+  MAIN = 'Main/*',
   EDIT_PROFILE = 'Edit-profile',
-
-  TABLE = 'Table',
 }
 
 export enum Link {
@@ -17,7 +16,6 @@ export enum Link {
   NEW_PASSWORD = '/Auth/New-password',
   CHECK_EMAIL = '/Auth/Check-email',
 
-  EDIT_PROFILE = '/Edit-profile',
-
-  TABLE = '/Table'
+  MAIN = '/Main',
+  EDIT_PROFILE = '/Main/Edit-profile',
 }

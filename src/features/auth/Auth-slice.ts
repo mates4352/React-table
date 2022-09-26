@@ -2,9 +2,9 @@ import {AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {LoadingType} from "../../app/App-type";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
-import {authNamesThunks} from "./Auth-thunk";
 import {Statuses} from "../../utils/enum/statuses";
 import {someNamesThunks} from "../../utils/helpers/functions/someNamesThunks";
+import {authNamesThunks} from "../../app/App-thunk";
 
 interface AuthStateType {
   error: string

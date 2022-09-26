@@ -10,7 +10,6 @@ import {appSelect, authSelect} from "./App-select";
 import {useAppDispatch} from "../hooks/useAppDispatch";
 import {getDataUser} from "./App-thunk";
 import {Main} from "../features/main/Main";
-import {EditProfile} from "../features/edit-profile/Edit-profile";
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -29,22 +28,11 @@ export const App: FC = () => {
           <Routes>
             <Route path={'/'} element={<Navigate to={Link.AUTH}/>}/>
             <Route path={'/*'} element={<Navigate to={Link.AUTH}/>}/>
-            <Route path={Routing.AUTH} element={verified ? <Auth/> : <Navigate to={Link.EDIT_PROFILE}/>}/>
-            <Route path={Routing.EDIT_PROFILE} element={verified ? <Navigate to={Link.AUTH}/> : <EditProfile/>}/>
-            <Route path={Routing.EDIT_PROFILE + '/*'} element={<Navigate to={Link.EDIT_PROFILE}/>}/>
-            <Route path={Routing.TABLE} element={verified ? <Navigate to={Link.AUTH}/> : <Main/>}/>
+            <Route path={Routing.AUTH} element={verified ? <Auth/> : <Navigate to={Link.MAIN}/>}/>
+            <Route path={Routing.MAIN} element={verified ? <Navigate to={Link.AUTH}/> : <Main/>}/>
           </Routes>
       </div>
       {loading && <Alert status={loading}/>}
     </>
   );
 };
-
-
-// const ProtectedRoute = ({ user, children }) => {
-//   if (!user) {
-//     return <Navigate to="/landing" replace />;
-//   }
-//
-//   return children;
-// };
