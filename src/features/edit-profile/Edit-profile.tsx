@@ -17,7 +17,6 @@ import {ButtonBack} from "../../components/bll/button-back/Button-back";
 import {Container} from "../../components/ui/container/Container";
 import {WrapperCard} from "../../components/ui/wrapper-card/Wrapper-card";
 import {Link} from "../../utils/enum/routing";
-import {AnimationAuth} from "../../components/animations/animationAuth";
 import {AnimationPage} from "../../components/animations/animationPage";
 
 type EditProfileType = {};

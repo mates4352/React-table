@@ -10,7 +10,6 @@ import {CheckEmail} from "./common/check-email/Check-email";
 import {AnimatePresence} from "framer-motion";
 import {WrapperCard} from "../../components/ui/wrapper-card/Wrapper-card";
 import {Container} from "../../components/ui/container/Container";
-import {AnimationPage} from "../../components/animations/animationPage";
 
 type AuthProps = {};
 

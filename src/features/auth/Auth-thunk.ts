@@ -1,4 +1,4 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
+import {AnyAction, createAsyncThunk} from "@reduxjs/toolkit";
 import {
   dataEditProfileType,
   ForgotPasswordType,
@@ -82,3 +82,12 @@ export const logout = createAsyncThunk('auth/logout', async(_, {
     return rejectWithValue(error.response?.data.error);
   }
 })
+
+export const authNamesThunks = [
+  setLogin.typePrefix,
+  register.typePrefix,
+  restorePassword.typePrefix,
+  setNewPassword.typePrefix,
+  editProfile.typePrefix,
+  logout.typePrefix,
+]

@@ -22,7 +22,7 @@ const initialState = {
     verified: false,
     __v: null,
     _id: '',
-  }
+  },
 } as AppStateType;
 
 const appSlice = createSlice({
@@ -33,7 +33,7 @@ const appSlice = createSlice({
     builder.addCase(getDataUser.fulfilled.type, (state: AppStateType, action: PayloadAction<UserApiType>) => {
       state.user = action.payload;
     })
-    builder.addCase(getDataUser.rejected.type, (state: AppStateType, action: PayloadAction<UserApiType>) => {
+    .addCase(getDataUser.rejected.type, (state: AppStateType, action: PayloadAction<UserApiType>) => {
       state.user = action.payload;
     })
   }
