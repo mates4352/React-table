@@ -1,4 +1,4 @@
-import React, {FC, memo} from 'react';
+import React, {FC, memo, useState} from 'react';
 import s from './Header.module.scss'
 import classNames from "classnames/bind";
 import logo from './../../../assets/images/logo.svg'
@@ -8,14 +8,23 @@ import {Link} from "../../../utils/enum/routing";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {appSelect} from "../../../app/App-select";
 import {Avatar} from "../avatar/Avatar";
+import {Popup} from "../popup/Popup";
 
 type HeaderType = {};
 
 export const Header: FC<HeaderType> = memo(() => {
   const {user} = useAppSelector(appSelect);
+  const [isPopup, showPopup] = useState(false);
   const navigate = useNavigate();
+  const onClickShowPopup = () => {
+    showPopup(true)
+  }
   const onClickButtonRedirect = () => {
     navigate(Link.AUTH)
+  }
+
+  const onClosePopup = () => {
+    showPopup(false)
   }
 
   return (
@@ -31,9 +40,18 @@ export const Header: FC<HeaderType> = memo(() => {
             Sign in
           </Button>
           :
-          <button className={s.user} type={'button'}>
-            <p className={s.name}>{user.name}</p>
+          <button
+            className={s.user}
+            type={'button'}
+            onClick={onClickShowPopup}>
+            <p className={classNames(s.name, isPopup && s.name_active)}>{user.name}</p>
             <Avatar src={user.avatar} alt="Пользователь"/>
+            <Popup
+              className={s.popup}
+              isPopup={isPopup}
+              onClosePopup={onClosePopup}>
+              hello
+            </Popup>
           </button>
         }
       </div>

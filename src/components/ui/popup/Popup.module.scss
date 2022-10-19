@@ -1,0 +1,25 @@
+.popup {
+  position: relative;
+
+  padding: 26px 28px 18px 20px;
+
+  background-color: var(--g-white);
+  border: 1px solid var(--g-border-popup);
+  border-radius: 3px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    right: 12px;
+    transform: rotate(45deg);
+
+    width: 6px;
+    height: 6px;
+
+    background-color: var(--g-white);
+    border-top: 1px solid var(--g-border-popup);
+    border-left: 1px solid var(--g-border-popup);
+  }
+}

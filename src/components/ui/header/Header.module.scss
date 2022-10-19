@@ -28,6 +28,8 @@
 }
 
 .user {
+  position: relative;
+
   display: grid;
   grid-auto-columns: var(--g-minmax);
   grid-auto-flow: column;
@@ -43,6 +45,16 @@
   }
 }
 
+.name_active {
+  border-bottom: 1px dashed var(--g-dark);
+}
+
 .name {
   font: var(--g-p2);
+}
+
+div.popup {
+  position: absolute;
+  top: 48px;
+  right: 0;
 }
