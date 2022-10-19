@@ -9,6 +9,7 @@ import {useAppSelector} from "../../../hooks/useAppSelector";
 import {appSelect} from "../../../app/App-select";
 import {Avatar} from "../avatar/Avatar";
 import {Popup} from "../popup/Popup";
+import {ContentPopupAvatar} from "../popup/children/content-popup-avatar/Content-popup-avatar";
 
 type HeaderType = {};
 
@@ -19,12 +20,11 @@ export const Header: FC<HeaderType> = memo(() => {
   const onClickShowPopup = () => {
     showPopup(true)
   }
-  const onClickButtonRedirect = () => {
-    navigate(Link.AUTH)
-  }
-
   const onClosePopup = () => {
     showPopup(false)
+  }
+  const onClickButtonRedirect = () => {
+    navigate(Link.AUTH)
   }
 
   return (
@@ -50,7 +50,7 @@ export const Header: FC<HeaderType> = memo(() => {
               className={s.popup}
               isPopup={isPopup}
               onClosePopup={onClosePopup}>
-              hello
+              <ContentPopupAvatar/>
             </Popup>
           </button>
         }

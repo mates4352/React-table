@@ -1,0 +1,20 @@
+.button {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--g-minmax);
+  align-items: center;
+  column-gap: 12px;
+
+  font: var(--g-p2-1);
+  color: var(--g-black);
+
+  transition: color 500ms ease;
+
+  &:hover {
+    color: var(--g-blue-dark);
+  }
+}
+
+.button_active {
+  color: var(--g-blue-dark);
+}

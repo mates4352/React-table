@@ -16,7 +16,7 @@ type PopupType = {
 const animations = {
   initial: {translateY: '-10px', opacity: 0},
   animate: {translateY: 0, opacity: 1},
-  exit: {translateY: '5px', opacity: 0},
+  exit: {translateY: '10px', opacity: 0},
 }
 
 export const Popup: FC<PopupType> = memo(({
