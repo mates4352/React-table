@@ -1,16 +1,18 @@
-import React, {memo, ReactNode, useRef} from 'react';
+import React, { memo, useRef} from 'react';
 import {AnimatePresence, motion} from "framer-motion";
 import {FC} from "react";
 import s from './Popup.module.scss';
 import classNames from "classnames/bind";
 import {useOnClickOutside} from "../../../hooks/useOnClickOutside";
+import {ContentPopupAvatar} from "./children/content-popup-avatar/Content-popup-avatar";
 
+type childrenType = ReturnType<typeof ContentPopupAvatar>
 type PopupType = {
-  children: ReactNode
+  children: childrenType
   className?: string
-  isPopup?: boolean
+  isPopup: boolean
   onClickPopup?: () => void
-  onClosePopup?: () => void
+  onClosePopup: () => void
 };
 
 const animations = {
