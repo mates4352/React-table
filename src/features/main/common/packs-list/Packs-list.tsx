@@ -5,13 +5,22 @@ import {Title} from "../../../../components/ui/title/Title";
 import {Button} from "../../../../components/bll/button/Button";
 import {AnimationPage} from "../../../../components/animations/animationPage";
 import {InputSearch} from "../../../../components/bll/inputSearch/InputSearch";
+import {Tabs, valueTabType} from "../../../../components/bll/tabs/Tabs";
 
 type PacksListType = {};
 
 export const PacksList: FC<PacksListType> = memo(({}) => {
   const [inputText, setText] = useState<string>('')
+  const [valueTab, setValueTab] = useState<valueTabType>('All')
+
   const onInputChangeValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setText(e.currentTarget.value)
+  }, [])
+  const onClickButtonMy = useCallback(() => {
+    setValueTab('My')
+  }, [])
+  const onClickButtonAll = useCallback(() => {
+    setValueTab('All')
   }, [])
 
   return (
@@ -30,6 +39,7 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
         <div className={s.settings}>
           <InputSearch
             className={{
+              inputSearch: s.inputSearch,
               input: s.input
             }}
             title={'Search'}
@@ -37,6 +47,12 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
             placeholder={'Provide your text'}
             value={inputText}
             onChange={onInputChangeValue}
+          />
+          <Tabs
+            title={'Show packs cards'}
+            valueTab={valueTab}
+            onClickButtonMy={onClickButtonMy}
+            onClickButtonAll={onClickButtonAll}
           />
         </div>
       </AnimationPage>

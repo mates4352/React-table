@@ -11,6 +11,7 @@ type InputSearchType = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   className?: {
     inputSearch?: string
+    wrap?: string
     input?: string
   }
 };
@@ -21,16 +22,16 @@ export const InputSearch: FC<InputSearchType> = memo(({
   ...restProps
 }) => {
   return (
-    <>
+    <div className={classNames(s.inputSearch, className?.inputSearch)}>
       {title && <h3 className={s.title}>{title}</h3>}
 
-      <div className={classNames(s.inputSearch, className?.inputSearch)}>
+      <div className={classNames(s.wrap, className?.wrap)}>
         <input
           className={classNames(s.input, className?.input)}
           {...restProps}/>
         <IconSearch className={s.icon}/>
       </div>
-    </>
+    </div>
 
   );
 })
