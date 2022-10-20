@@ -11,7 +11,6 @@ import {InputFileAvatar} from "../../../../components/bll/inputFileAvatar/InputF
 import {IconLogout} from "../../../../components/icons/icon-logout/Icon-logout";
 import {InputEditName} from "../../../../components/bll/inputEditName/InputEditName";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
-import {useLocation} from "react-router-dom";
 import {ButtonBack} from "../../../../components/bll/button-back/Button-back";
 import {Container} from "../../../../components/ui/container/Container";
 import {WrapperCard} from "../../../../components/ui/wrapper-card/Wrapper-card";
@@ -23,7 +22,6 @@ type EditProfileType = {};
 
 export const EditProfile: FC<EditProfileType> = ({}) => {
   const {user} = useAppSelector(appSelect);
-  const location = useLocation()
   const dispatch = useAppDispatch();
   const [image, setImage] = useState(user.avatar);
   const onButtonLogout = () => {
@@ -36,9 +34,7 @@ export const EditProfile: FC<EditProfileType> = ({}) => {
 
   return (
     <Container className={s.edit_profile} type={'section'}>
-      {location.pathname === Link.EDIT_PROFILE &&
-          <ButtonBack className={s.button} to={Link.MAIN}>Back to Packs List</ButtonBack>
-      }
+      <ButtonBack className={s.button} to={Link.MAIN}>Back to Packs List</ButtonBack>
       <AnimationPage className={s.animation}>
         <WrapperCard>
           <Title className={s.title} type={'h2'}>

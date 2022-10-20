@@ -1,0 +1,17 @@
+.pasksList {
+  padding-top: 36px;
+}
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  --c-title-font: var(--g-h2);
+}
+
+.button {
+  --c-button-width: 175px;
+}
