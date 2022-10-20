@@ -6,6 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 34px;
 }
 
 .title {
@@ -14,4 +15,8 @@
 
 .button {
   --c-button-width: 175px;
+}
+
+.input {
+  max-width: 413px;
 }
