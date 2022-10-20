@@ -32,6 +32,7 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
             className={{
               input: s.input
             }}
+            title={'Search'}
             type={'text'}
             placeholder={'Provide your text'}
             value={inputText}

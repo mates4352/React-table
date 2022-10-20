@@ -16,6 +16,12 @@
   transition: left 330ms ease 100ms;
 }
 
+.title {
+  margin-bottom: 8px;
+  font: var(--g-p3);
+  color: var(--g-dark);
+}
+
 .input {
   width: 100%;
   height: 36px;
