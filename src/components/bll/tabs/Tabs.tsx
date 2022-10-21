@@ -24,14 +24,14 @@ export const Tabs:FC<TabsType> = memo(({
 
       <div className={classNames(s.wrap, valueTab === 'My' && s.wrap_active)}>
         <button
-          className={classNames(s.button, valueTab === 'My' && s.button_active)}
+          className={classNames(s.button, !(valueTab === 'My') && s.button_unActive, valueTab === 'My' && s.button_active)}
           type={'button'}
           onClick={onClickButtonMy}>
           My
         </button>
 
         <button
-          className={classNames(s.button, valueTab === 'All' && s.button_active)}
+          className={classNames(s.button, !(valueTab === 'All') && s.button_unActive, valueTab === 'All' && s.button_active)}
           type={'button'}
           onClick={onClickButtonAll}>
           All

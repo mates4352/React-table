@@ -48,6 +48,7 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
             value={inputText}
             onChange={onInputChangeValue}
           />
+
           <Tabs
             title={'Show packs cards'}
             valueTab={valueTab}

@@ -4,7 +4,7 @@
   padding: 26px 28px 18px 20px;
 
   background-color: var(--g-white);
-  border: 1px solid var(--g-border-popup);
+  border: 1px solid var(--g-border);
   border-radius: 3px;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
 
@@ -19,7 +19,7 @@
     height: 6px;
 
     background-color: var(--g-white);
-    border-top: 1px solid var(--g-border-popup);
-    border-left: 1px solid var(--g-border-popup);
+    border-top: 1px solid var(--g-border);
+    border-left: 1px solid var(--g-border);
   }
 }
