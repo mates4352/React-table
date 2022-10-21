@@ -9,6 +9,9 @@ type TabsType = {
   valueTab: valueTabType
   onClickButtonMy: () => void
   onClickButtonAll: () => void
+  className?: {
+    tabs?: string
+  }
 };
 
 export const Tabs:FC<TabsType> = memo(({
@@ -16,10 +19,11 @@ export const Tabs:FC<TabsType> = memo(({
   onClickButtonMy,
   onClickButtonAll,
   title,
+  className,
   ...restProps
 }) => {
   return (
-    <div>
+    <div className={classNames(s.tabs, className?.tabs)}>
       {title && <h3 className={s.title}>{title}</h3>}
 
       <div className={classNames(s.wrap, valueTab === 'My' && s.wrap_active)}>

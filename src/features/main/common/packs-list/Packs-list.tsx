@@ -6,6 +6,7 @@ import {Button} from "../../../../components/bll/button/Button";
 import {AnimationPage} from "../../../../components/animations/animationPage";
 import {InputSearch} from "../../../../components/bll/inputSearch/InputSearch";
 import {Tabs, valueTabType} from "../../../../components/bll/tabs/Tabs";
+import {InputRange} from "../../../../components/bll/input-range/Input-range";
 
 type PacksListType = {};
 
@@ -50,10 +51,19 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
           />
 
           <Tabs
+            className={{
+              tabs: s.tabs
+            }}
             title={'Show packs cards'}
             valueTab={valueTab}
             onClickButtonMy={onClickButtonMy}
             onClickButtonAll={onClickButtonAll}
+          />
+
+          <InputRange
+            min={'0'}
+            max={'10'}
+            title={'Number of cards'}
           />
         </div>
       </AnimationPage>
