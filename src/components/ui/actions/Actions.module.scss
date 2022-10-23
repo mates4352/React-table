@@ -1,0 +1,7 @@
+.actions {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--g-minmax);
+  align-items: center;
+  column-gap: 12px;
+}

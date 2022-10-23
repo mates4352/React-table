@@ -1,0 +1,34 @@
+.button {
+
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+
+.iconTeacher {
+  stroke: var(--g-dark);
+}
+
+.iconDelete {
+  fill: var(--g-dark);
+}
+
+.iconEdit {
+  fill: var(--g-dark);
+}
+
+.button:hover {
+  .iconTeacher {
+    stroke: var(--g-blue-dark);
+  }
+
+  .iconDelete {
+    fill: var(--g-blue-dark);
+  }
+
+  .iconEdit {
+    fill: var(--g-blue-dark);
+  }
+}
