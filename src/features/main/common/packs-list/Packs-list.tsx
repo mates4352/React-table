@@ -7,6 +7,7 @@ import {AnimationPage} from "../../../../components/animations/animationPage";
 import {InputSearch} from "../../../../components/bll/inputSearch/InputSearch";
 import {Tabs, valueTabType} from "../../../../components/bll/tabs/Tabs";
 import {InputRange, newValueInputRangeType} from "../../../../components/bll/input-range/Input-range";
+import {FilterRemove} from "../../../../components/bll/filter-remove/Filter-remove";
 
 type PacksListType = {};
 
@@ -69,6 +70,8 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
             title={'Number of cards'}
             onChangeValue={onChangeValueInputRange}
           />
+
+          <FilterRemove/>
         </div>
       </AnimationPage>
     </Container>

@@ -1,0 +1,27 @@
+.filterRemove {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+
+  width: 40px;
+  height: 36px;
+
+  background-color: var(--g-white);
+  border: 1px solid var(--g-border);
+  border-radius: 2px;
+
+  transition: background-color 300ms ease;
+
+  &:hover {
+    background-color: var(--g-blue-light-super);
+  }
+}
+
+.icon {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  fill: var(--g-dark);
+}
