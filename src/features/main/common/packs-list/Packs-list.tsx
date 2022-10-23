@@ -6,7 +6,7 @@ import {Button} from "../../../../components/bll/button/Button";
 import {AnimationPage} from "../../../../components/animations/animationPage";
 import {InputSearch} from "../../../../components/bll/inputSearch/InputSearch";
 import {Tabs, valueTabType} from "../../../../components/bll/tabs/Tabs";
-import {InputRange} from "../../../../components/bll/input-range/Input-range";
+import {InputRange, newValueInputRangeType} from "../../../../components/bll/input-range/Input-range";
 
 type PacksListType = {};
 
@@ -23,6 +23,9 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
   const onClickButtonAll = useCallback(() => {
     setValueTab('All')
   }, [])
+  const onChangeValueInputRange = (newValue: newValueInputRangeType) => {
+    console.log(newValue)
+  }
 
   return (
     <Container className={s.pasksList} type={'section'}>
@@ -61,9 +64,10 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
           />
 
           <InputRange
-            min={'0'}
-            max={'10'}
+            min={0}
+            max={10}
             title={'Number of cards'}
+            onChangeValue={onChangeValueInputRange}
           />
         </div>
       </AnimationPage>
