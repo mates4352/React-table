@@ -50,4 +50,11 @@ export const arrayTable: Array<any> = [
     Created: 'Ivan Ivanov',
     Actions: [TypeButtonAction.EDIT, TypeButtonAction.DELETE, TypeButtonAction.TEACHER],
   },
+  {
+    Name: 'Pack Name',
+    Cards: 4,
+    LastUpdated: '18.03.2021',
+    Created: 'Ivan Ivanov',
+    Actions: [TypeButtonAction.EDIT, TypeButtonAction.DELETE, TypeButtonAction.TEACHER],
+  },
 ]
