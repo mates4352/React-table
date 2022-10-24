@@ -9,26 +9,11 @@ import {Tabs, valueTabType} from "../../../../components/bll/tabs/Tabs";
 import {InputRange, newValueInputRangeType} from "../../../../components/bll/input-range/Input-range";
 import {FilterRemove} from "../../../../components/bll/filter-remove/Filter-remove";
 import {TablePacksList} from "../../../../components/ui/table-packs-list/Table-packs-list";
+import {SettingsPacksList} from "../../../../components/ui/settings-pasks-list/Settings-packs-list";
 
 type PacksListType = {};
 
 export const PacksList: FC<PacksListType> = memo(({}) => {
-  const [inputText, setText] = useState<string>('')
-  const [valueTab, setValueTab] = useState<valueTabType>('All')
-
-  const onInputChangeValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setText(e.currentTarget.value)
-  }, [])
-  const onClickButtonMy = useCallback(() => {
-    setValueTab('My')
-  }, [])
-  const onClickButtonAll = useCallback(() => {
-    setValueTab('All')
-  }, [])
-  const onChangeValueInputRange = useCallback((newValue: newValueInputRangeType) => {
-    console.log(newValue)
-  }, [])
-
   return (
     <Container className={s.pasksList} type={'section'}>
       <div className={s.wrap}>
@@ -41,38 +26,7 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
         </Button>
       </div>
 
-      <div className={s.settings}>
-        <InputSearch
-          className={{
-            inputSearch: s.inputSearch,
-            input: s.input
-          }}
-          title={'Search'}
-          type={'text'}
-          placeholder={'Provide your text'}
-          value={inputText}
-          onChange={onInputChangeValue}
-        />
-
-        <Tabs
-          className={{
-            tabs: s.tabs
-          }}
-          title={'Show packs cards'}
-          valueTab={valueTab}
-          onClickButtonMy={onClickButtonMy}
-          onClickButtonAll={onClickButtonAll}
-        />
-
-        <InputRange
-          min={0}
-          max={10}
-          title={'Number of cards'}
-          onChangeValue={onChangeValueInputRange}
-        />
-
-        <FilterRemove/>
-      </div>
+      <SettingsPacksList/>
 
       <AnimationPage>
         <TablePacksList/>

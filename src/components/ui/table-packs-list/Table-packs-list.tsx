@@ -7,6 +7,8 @@ import {ButtonFilterTableDate} from "../../bll/button-filter-table-date/Button-f
 type TablePacksListType = {};
 
 export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
+  const second = '18.03.2021'.split('.').reverse().join('.');
+  Date.parse(second)
   return (
     <table className={s.table}>
       <thead className={s.thead}>
