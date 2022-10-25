@@ -1,14 +1,22 @@
-import React, {FC, memo} from 'react';
+import React, {FC, memo, useEffect} from 'react';
 import s from './Table-packs-list.module.scss';
-import {arrayTable} from "./test-table-data";
 import {Actions} from "../actions/Actions";
 import {ButtonFilterTableDate} from "../../bll/button-filter-table-date/Button-filter-table-date";
+import {useAppDispatch} from "../../../hooks/useAppDispatch";
+import {useAppSelector} from "../../../hooks/useAppSelector";
+import {CardPacksType} from "../../../features/main/Main-type";
+import {TypeButtonAction} from "../../../utils/enum/type-button-action";
+import {getCardsPack} from "../../../features/main/Main-thunk";
 
 type TablePacksListType = {};
 
 export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
-  const second = '18.03.2021'.split('.').reverse().join('.');
-  Date.parse(second)
+  const dispatch = useAppDispatch();
+  const {cardPacks} = useAppSelector(state => state.main.packsList)
+  const {_id} = useAppSelector(state => state.app.user)
+  useEffect(() => {
+    dispatch(getCardsPack())
+  }, [])
   return (
     <table className={s.table}>
       <thead className={s.thead}>
@@ -36,13 +44,18 @@ export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
       </thead>
 
       <tbody className={s.tbody}>
-      {arrayTable.map((item: any) =>
-        <tr className={s.tr}>
-          <td className={s.td}>{item.Name}</td>
-          <td className={s.td}>{item.Cards}</td>
-          <td className={s.td}>{item.LastUpdated}</td>
-          <td className={s.td}>{item.Created}</td>
-          <td className={s.td}><Actions showActions={item.Actions}/></td>
+      {cardPacks.map((item: CardPacksType) =>
+        <tr className={s.tr} key={item._id}>
+          <td className={s.td}>{item.name}</td>
+          <td className={s.td}>{item.cardsCount}</td>
+          <td className={s.td}>{item.updated}</td>
+          <td className={s.td}>{item.user_name}</td>
+          <td className={s.td}>
+            {item.user_id === _id ?
+              <Actions showActions={[TypeButtonAction.TEACHER, TypeButtonAction.EDIT, TypeButtonAction.DELETE]}/>:
+              <Actions showActions={[TypeButtonAction.TEACHER]}/>
+            }
+          </td>
         </tr>
       )}
       </tbody>
