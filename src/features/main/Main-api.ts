@@ -7,7 +7,7 @@ export const MainApi = {
     return await  instance.get<GetCardsApiType>('cards/pack', {
       params: {
         min: 0,
-        max: 10
+        max: 2
       }
     })
   },

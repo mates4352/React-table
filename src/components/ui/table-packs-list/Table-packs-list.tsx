@@ -17,6 +17,7 @@ export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
   useEffect(() => {
     dispatch(getCardsPack())
   }, [])
+
   return (
     <table className={s.table}>
       <thead className={s.thead}>

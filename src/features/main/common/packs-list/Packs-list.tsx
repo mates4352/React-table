@@ -10,27 +10,46 @@ import {InputRange, newValueInputRangeType} from "../../../../components/bll/inp
 import {FilterRemove} from "../../../../components/bll/filter-remove/Filter-remove";
 import {TablePacksList} from "../../../../components/ui/table-packs-list/Table-packs-list";
 import {SettingsPacksList} from "../../../../components/ui/settings-pasks-list/Settings-packs-list";
+import {PopupAction} from "../../../../components/ui/popup-action/Popup-action";
 
 type PacksListType = {};
 
 export const PacksList: FC<PacksListType> = memo(({}) => {
+  const [isPopup, setPopup] = useState<boolean>(true)
+  const onClickPopupOpen = useCallback(() => {
+    setPopup(true)
+  }, [])
+  const onClickPopupClose = useCallback(() => {
+    setPopup(false)
+  }, [])
   return (
-    <Container className={s.pasksList} type={'section'}>
-      <div className={s.wrap}>
-        <Title className={s.title} type={"h2"}>Packs list</Title>
+    <>
+      <Container className={s.pasksList} type={'section'}>
+        <div className={s.wrap}>
+          <Title className={s.title} type={"h2"}>Packs list</Title>
 
-        <Button
-          className={s.button}
-          type={"button"}>
-          Add new pack
-        </Button>
-      </div>
+          <Button
+            className={s.button}
+            type={"button"}
+            onClickButton={onClickPopupOpen}>
+            Add new pack
+          </Button>
+        </div>
 
-      <SettingsPacksList/>
+        <SettingsPacksList/>
 
-      <AnimationPage>
-        <TablePacksList/>
-      </AnimationPage>
-    </Container>
+        <AnimationPage>
+          <TablePacksList/>
+        </AnimationPage>
+      </Container>
+
+      <PopupAction
+        title={'Edit pack'}
+        isPopup={isPopup}
+        onClickPopup={onClickPopupClose}
+      >
+        hello
+      </PopupAction>
+    </>
   );
 })
