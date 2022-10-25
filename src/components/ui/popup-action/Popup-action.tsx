@@ -1,11 +1,13 @@
 import React, {FC, memo} from 'react';
 import s from './Popup-action.module.scss';
 import {AnimatePresence, motion} from "framer-motion";
+import {ContentNewPack} from "./content/content-new-pack/Content-new-pack";
 
+type ChildrenType = ReturnType<typeof ContentNewPack>
 type PopupActionType = {
   className?: string
   title: string
-  children: string
+  children: ChildrenType
   isPopup: boolean
   onClickPopup: () => void
 };

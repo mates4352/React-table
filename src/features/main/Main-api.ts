@@ -1,6 +1,6 @@
 import {dataEditProfileType, ForgotApiType} from "../auth/Auth-type";
 import {instance} from "../../app/App-api";
-import {GetCardsApiType} from "./Main-type";
+import {DataNewPackType, GetCardsApiType} from "./Main-type";
 
 export const MainApi = {
   getCardsPack: async () => {
@@ -10,6 +10,10 @@ export const MainApi = {
         max: 2
       }
     })
+  },
+
+  newPack: async (dataNewPack: DataNewPackType) => {
+    return await instance.post('cards/pack', {cardsPack: {...dataNewPack}})
   },
 
   updateProfile: async(dataEditProfile: dataEditProfileType) => {

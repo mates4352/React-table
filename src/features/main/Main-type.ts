@@ -26,3 +26,8 @@ export type CardPacksType = {
   updated: string
   more_id: string
 }
+
+export type DataNewPackType = {
+  name: string
+  private: boolean
+}

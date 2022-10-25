@@ -11,6 +11,7 @@ import {FilterRemove} from "../../../../components/bll/filter-remove/Filter-remo
 import {TablePacksList} from "../../../../components/ui/table-packs-list/Table-packs-list";
 import {SettingsPacksList} from "../../../../components/ui/settings-pasks-list/Settings-packs-list";
 import {PopupAction} from "../../../../components/ui/popup-action/Popup-action";
+import {ContentNewPack} from "../../../../components/ui/popup-action/content/content-new-pack/Content-new-pack";
 
 type PacksListType = {};
 
@@ -48,7 +49,7 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
         isPopup={isPopup}
         onClickPopup={onClickPopupClose}
       >
-        hello
+        <ContentNewPack/>
       </PopupAction>
     </>
   );
