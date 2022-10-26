@@ -1,4 +1,4 @@
-import React, {FC, memo, useEffect} from 'react';
+import React, {FC, memo, useCallback, useEffect} from 'react';
 import s from './Table-packs-list.module.scss';
 import {Actions} from "../actions/Actions";
 import {ButtonFilterTableDate} from "../../bll/button-filter-table-date/Button-filter-table-date";
@@ -6,14 +6,23 @@ import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {CardPacksType} from "../../../features/main/Main-type";
 import {TypeButtonAction} from "../../../utils/enum/type-button-action";
-import {getCardsPack} from "../../../features/main/Main-thunk";
+import {deletePack, getCardsPack} from "../../../features/main/Main-thunk";
+import {setIdPack, setPopup} from "../../../features/main/Main-slice";
+import {PopupPack} from "../../../utils/enum/popup";
 
-type TablePacksListType = {};
+type TablePacksListType = {
+};
 
 export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
   const dispatch = useAppDispatch();
   const {cardPacks} = useAppSelector(state => state.main.packsList)
+  const {isPopup} = useAppSelector(state => state.main);
   const {_id} = useAppSelector(state => state.app.user)
+  const onClickPopupDeletePack = useCallback((idPack: string) => () => {
+    dispatch(setPopup({popup: PopupPack.DeletePack, isPopup: !isPopup.isPopupDeletePack}))
+    dispatch(setIdPack(idPack))
+  }, [isPopup.isPopupDeletePack])
+
   useEffect(() => {
     dispatch(getCardsPack({page: 1, pageCount: 8}))
   }, [])
@@ -53,7 +62,10 @@ export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
           <td className={s.td}>{item.user_name}</td>
           <td className={s.td}>
             {item.user_id === _id ?
-              <Actions showActions={[TypeButtonAction.TEACHER, TypeButtonAction.EDIT, TypeButtonAction.DELETE]}/>:
+              <Actions
+                showActions={[TypeButtonAction.TEACHER, TypeButtonAction.EDIT, TypeButtonAction.DELETE]}
+                onClickButtonDelete={onClickPopupDeletePack(item._id)}
+              />:
               <Actions showActions={[TypeButtonAction.TEACHER]}/>
             }
           </td>

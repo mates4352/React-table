@@ -23,7 +23,20 @@ export const newPack = createAsyncThunk('main/newPack', async (dataNewPack: Data
 })=>{
   try {
     await MainApi.newPack(dataNewPack);
-    dispatch(getCardsPack({page: 1}))
+    dispatch(getCardsPack({page: 1, pageCount: 8}))
+  } catch(e) {
+    const error = e as AxiosError<LoginErrorType>;
+    return rejectWithValue(error.response?.data.error);
+  }
+})
+
+export const deletePack = createAsyncThunk('main/deletePack', async (idPack: string, {
+  rejectWithValue,
+  dispatch,
+})=>{
+  try {
+    await MainApi.deletePack(idPack);
+    dispatch(getCardsPack({page: 1, pageCount: 8}))
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;
     return rejectWithValue(error.response?.data.error);

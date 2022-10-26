@@ -1,3 +1,5 @@
+import {PopupPack} from "../../utils/enum/popup";
+
 export type GetCardsApiType = {
   cardPacks: Array<CardPacksType>
   page: number
@@ -42,3 +44,5 @@ export type DataNewPackType = {
   name: string
   private: boolean
 }
+
+export type PopupPackType = PopupPack.NewPack | PopupPack.EditPack | PopupPack.DeletePack;

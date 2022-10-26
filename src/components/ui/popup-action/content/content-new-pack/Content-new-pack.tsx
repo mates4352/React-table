@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import s from './Content-new-pack.module.scss';
 import {Field, Form, Formik} from "formik";
 import {Input} from "../../../../bll/input/Input";
@@ -14,7 +14,7 @@ type ContentNewPackType = {
   onClickNewPack?: () => void
 };
 
-export const ContentNewPack: FC<ContentNewPackType> = ({
+export const ContentNewPack: FC<ContentNewPackType> = memo(({
   className,
   onClickNewPack
 }) => {
@@ -28,7 +28,7 @@ export const ContentNewPack: FC<ContentNewPackType> = ({
         }}
         validationSchema={newPackSchema}
         onSubmit={async(dataNewPack: DataNewPackType) => {
-         await dispatch(newPack(dataNewPack))
+          await dispatch(newPack(dataNewPack))
           onClickNewPack && onClickNewPack()
         }}
       >
@@ -57,4 +57,4 @@ export const ContentNewPack: FC<ContentNewPackType> = ({
       </Formik>
     </div>
   );
-};
+})

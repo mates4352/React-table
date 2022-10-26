@@ -4,13 +4,15 @@ import {CardsPackOptionType, DataNewPackType, GetCardsApiType} from "./Main-type
 
 export const MainApi = {
   getCardsPack: async (option: CardsPackOptionType) => {
-    return await  instance.get<GetCardsApiType>('cards/pack', {
-      params: {...option}
-    })
+    return await  instance.get<GetCardsApiType>('cards/pack', {params: {...option}})
   },
 
   newPack: async (dataNewPack: DataNewPackType) => {
     return await instance.post('cards/pack', {cardsPack: {...dataNewPack}})
+  },
+
+  deletePack: async (idPack: string) => {
+    return await  instance.delete<any>(`/cards/pack?id=${idPack}`)
   },
 
   updateProfile: async(dataEditProfile: dataEditProfileType) => {
