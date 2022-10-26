@@ -11,10 +11,12 @@ import {newPack} from "../../../../../features/main/Main-thunk";
 
 type ContentNewPackType = {
   className?: string
+  onClickNewPack?: () => void
 };
 
 export const ContentNewPack: FC<ContentNewPackType> = ({
   className,
+  onClickNewPack
 }) => {
   const dispatch = useAppDispatch();
   return (
@@ -26,7 +28,8 @@ export const ContentNewPack: FC<ContentNewPackType> = ({
         }}
         validationSchema={newPackSchema}
         onSubmit={async(dataNewPack: DataNewPackType) => {
-          dispatch(newPack(dataNewPack))
+         await dispatch(newPack(dataNewPack))
+          onClickNewPack && onClickNewPack()
         }}
       >
         {formik => (

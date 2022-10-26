@@ -15,7 +15,7 @@ export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
   const {cardPacks} = useAppSelector(state => state.main.packsList)
   const {_id} = useAppSelector(state => state.app.user)
   useEffect(() => {
-    dispatch(getCardsPack())
+    dispatch(getCardsPack({page: 1, pageCount: 8}))
   }, [])
 
   return (

@@ -16,7 +16,7 @@ import {ContentNewPack} from "../../../../components/ui/popup-action/content/con
 type PacksListType = {};
 
 export const PacksList: FC<PacksListType> = memo(({}) => {
-  const [isPopup, setPopup] = useState<boolean>(true)
+  const [isPopup, setPopup] = useState<boolean>(false)
   const onClickPopupOpen = useCallback(() => {
     setPopup(true)
   }, [])
@@ -49,7 +49,7 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
         isPopup={isPopup}
         onClickPopup={onClickPopupClose}
       >
-        <ContentNewPack/>
+        <ContentNewPack onClickNewPack={onClickPopupClose}/>
       </PopupAction>
     </>
   );

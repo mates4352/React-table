@@ -27,6 +27,17 @@ export type CardPacksType = {
   more_id: string
 }
 
+export type CardsPackOptionType = {
+  packName?: string
+  min?: number
+  max?: number
+  sortPacks?: string
+  page?: number,
+  pageCount?: number
+  user_id?: string
+  block?: boolean
+}
+
 export type DataNewPackType = {
   name: string
   private: boolean
