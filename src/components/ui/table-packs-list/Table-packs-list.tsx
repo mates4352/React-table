@@ -6,7 +6,7 @@ import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {CardPacksType} from "../../../features/main/Main-type";
 import {TypeButtonAction} from "../../../utils/enum/type-button-action";
-import {deletePack, getCardsPack} from "../../../features/main/Main-thunk";
+import {getCardsPack} from "../../../features/main/Main-thunk";
 import {setIdPack, setPopup} from "../../../features/main/Main-slice";
 import {PopupPack} from "../../../utils/enum/popup";
 
@@ -22,6 +22,10 @@ export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
     dispatch(setPopup({popup: PopupPack.DeletePack, isPopup: !isPopup.isPopupDeletePack}))
     dispatch(setIdPack(idPack))
   }, [isPopup.isPopupDeletePack])
+  const onClickPopupEditPack = useCallback((idPack: string) => () => {
+    dispatch(setPopup({popup: PopupPack.EditPack, isPopup: !isPopup.isPopupEditPack}))
+    dispatch(setIdPack(idPack))
+  }, [isPopup.isPopupEditPack])
 
   useEffect(() => {
     dispatch(getCardsPack({page: 1, pageCount: 8}))
@@ -65,6 +69,7 @@ export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
               <Actions
                 showActions={[TypeButtonAction.TEACHER, TypeButtonAction.EDIT, TypeButtonAction.DELETE]}
                 onClickButtonDelete={onClickPopupDeletePack(item._id)}
+                onClickButtonEdit={onClickPopupEditPack(item._id)}
               />:
               <Actions showActions={[TypeButtonAction.TEACHER]}/>
             }

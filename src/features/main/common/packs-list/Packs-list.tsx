@@ -15,6 +15,7 @@ import {PopupPack} from "../../../../utils/enum/popup";
 import {
   ContentDeletePack
 } from "../../../../components/ui/popup-action/content/content-delete-pack/Content-delete-pack";
+import {ContentEditPack} from "../../../../components/ui/popup-action/content/content-edit-pack/Content-edit-pack";
 
 type PacksListType = {};
 
@@ -24,9 +25,13 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
   const onClickPopupNewPack = useCallback(() => {
     dispatch(setPopup({popup: PopupPack.NewPack, isPopup: !isPopup.isPopupNewPack}))
   }, [isPopup.isPopupNewPack])
+  const onClickPopupEditPack = useCallback(() => {
+    dispatch(setPopup({popup: PopupPack.EditPack, isPopup: !isPopup.isPopupEditPack}))
+  }, [isPopup.isPopupEditPack])
   const onClickPopupDeletePack = useCallback(() => {
     dispatch(setPopup({popup: PopupPack.DeletePack, isPopup: !isPopup.isPopupDeletePack}))
   }, [isPopup.isPopupDeletePack])
+
   return (
     <>
       <Container className={s.pasksList} type={'section'}>
@@ -62,6 +67,14 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
         onClickPopup={onClickPopupDeletePack}
       >
         <ContentDeletePack/>
+      </PopupAction>
+
+      <PopupAction
+        title={'Edit pack'}
+        isPopup={isPopup.isPopupEditPack}
+        onClickPopup={onClickPopupEditPack}
+      >
+        <ContentEditPack/>
       </PopupAction>
     </>
   );

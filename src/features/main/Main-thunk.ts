@@ -3,7 +3,7 @@ import {dataEditProfileType, LoginErrorType} from "../auth/Auth-type";
 import {getDataUser} from "../../app/App-thunk";
 import {AxiosError} from "axios";
 import {MainApi} from "./Main-api";
-import {CardsPackOptionType, DataNewPackType} from "./Main-type";
+import {CardsPackOptionType, DataEditPackType, DataNewPackType} from "./Main-type";
 
 export const getCardsPack = createAsyncThunk('main/getCardsPack', async (cardsPackOption: CardsPackOptionType, {
   rejectWithValue,
@@ -23,6 +23,19 @@ export const newPack = createAsyncThunk('main/newPack', async (dataNewPack: Data
 })=>{
   try {
     await MainApi.newPack(dataNewPack);
+    dispatch(getCardsPack({page: 1, pageCount: 8}))
+  } catch(e) {
+    const error = e as AxiosError<LoginErrorType>;
+    return rejectWithValue(error.response?.data.error);
+  }
+})
+
+export const editPack = createAsyncThunk('main/editPack', async (dataEditPack: DataEditPackType & {_id: string}, {
+  rejectWithValue,
+  dispatch,
+})=>{
+  try {
+    await MainApi.updatePack(dataEditPack);
     dispatch(getCardsPack({page: 1, pageCount: 8}))
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;

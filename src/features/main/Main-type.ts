@@ -45,4 +45,6 @@ export type DataNewPackType = {
   private: boolean
 }
 
+export type DataEditPackType = DataNewPackType
+
 export type PopupPackType = PopupPack.NewPack | PopupPack.EditPack | PopupPack.DeletePack;
