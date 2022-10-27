@@ -16,6 +16,15 @@ import {
   ContentDeletePack
 } from "../../../../components/ui/popup-action/content/content-delete-pack/Content-delete-pack";
 import {ContentEditPack} from "../../../../components/ui/popup-action/content/content-edit-pack/Content-edit-pack";
+import {
+  PopupActionNewPack
+} from "../../../../components/ui/popup-action/popups/popup-action-new-pack/Popup-action-new-pack";
+import {
+  PopupActionEditPack
+} from "../../../../components/ui/popup-action/popups/popup-action-edit-pack/Popup-action-edit-pack";
+import {
+  PopupActionDeletePack
+} from "../../../../components/ui/popup-action/popups/popup-action-delete-pack/Popup-action-delete-pack";
 
 type PacksListType = {};
 
@@ -25,12 +34,8 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
   const onClickPopupNewPack = useCallback(() => {
     dispatch(setPopup({popup: PopupPack.NewPack, isPopup: !isPopup.isPopupNewPack}))
   }, [isPopup.isPopupNewPack])
-  const onClickPopupEditPack = useCallback(() => {
-    dispatch(setPopup({popup: PopupPack.EditPack, isPopup: !isPopup.isPopupEditPack}))
-  }, [isPopup.isPopupEditPack])
-  const onClickPopupDeletePack = useCallback(() => {
-    dispatch(setPopup({popup: PopupPack.DeletePack, isPopup: !isPopup.isPopupDeletePack}))
-  }, [isPopup.isPopupDeletePack])
+
+
 
   return (
     <>
@@ -53,29 +58,9 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
         </AnimationPage>
       </Container>
 
-      <PopupAction
-        title={'Edit pack'}
-        isPopup={isPopup.isPopupNewPack}
-        onClickPopup={onClickPopupNewPack}
-      >
-        <ContentNewPack onClickNewPack={onClickPopupNewPack}/>
-      </PopupAction>
-
-      <PopupAction
-        title={'Delete pack'}
-        isPopup={isPopup.isPopupDeletePack}
-        onClickPopup={onClickPopupDeletePack}
-      >
-        <ContentDeletePack/>
-      </PopupAction>
-
-      <PopupAction
-        title={'Edit pack'}
-        isPopup={isPopup.isPopupEditPack}
-        onClickPopup={onClickPopupEditPack}
-      >
-        <ContentEditPack/>
-      </PopupAction>
+      <PopupActionNewPack/>
+      <PopupActionEditPack/>
+      <PopupActionDeletePack/>
     </>
   );
 })
