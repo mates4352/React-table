@@ -1,9 +1,13 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
 import {getCardsPack} from "./Main-thunk";
 import {GetCardsApiType, PopupPackType} from "./Main-type";
 import {PopupPack} from "../../utils/enum/popup";
+import {LoadingType} from "../../app/App-type";
+import {someNamesThunks} from "../../utils/helpers/functions/someNamesThunks";
+import {authNamesThunks} from "../../app/App-thunk";
+import {Statuses} from "../../utils/enum/statuses";
 
 
 interface MainStateType {
@@ -14,6 +18,7 @@ interface MainStateType {
     isPopupDeletePack: boolean
   }
   idPack: string
+  loading: LoadingType | ''
 }
 
 const initialState = {
@@ -32,7 +37,8 @@ const initialState = {
     isPopupEditPack: false,
     isPopupDeletePack: false
   },
-  idPack: ''
+  idPack: '',
+  loading: ''
 } as MainStateType;
 
 const mainSlice = createSlice({
@@ -56,6 +62,18 @@ const mainSlice = createSlice({
     builder.addCase(getCardsPack.fulfilled.type, (state: MainStateType, action: PayloadAction<GetCardsApiType>) => {
       state.packsList = action.payload;
     })
+    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/pending', action.type),(state: MainStateType, action: PayloadAction<string>) => {
+        state.loading = Statuses.PENDING;
+      }
+    )
+    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/fulfilled', action.type),(state: MainStateType, action: PayloadAction<string>) => {
+        state.loading = Statuses.SUCCEEDED;
+      }
+    )
+    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/rejected', action.type),(state: MainStateType, action: PayloadAction<string>) => {
+        state.loading = Statuses.FAILED;
+      }
+    )
   }
 });
 
