@@ -16,7 +16,7 @@ type TablePacksListType = {
 export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
   const dispatch = useAppDispatch();
   const {cardPacks} = useAppSelector(state => state.main.packsList)
-  const {isPopup} = useAppSelector(state => state.main);
+  const {isPopup, page, pageCount} = useAppSelector(state => state.main);
   const {_id} = useAppSelector(state => state.app.user)
   const onClickPopupDeletePack = useCallback((idPack: string) => () => {
     dispatch(setPopup({popup: PopupPack.DeletePack, isPopup: !isPopup.isPopupDeletePack}))
@@ -28,8 +28,8 @@ export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
   }, [isPopup.isPopupEditPack])
 
   useEffect(() => {
-    dispatch(getCardsPack({page: 1, pageCount: 8}))
-  }, [])
+    dispatch(getCardsPack({page: page, pageCount: pageCount}))
+  }, [page, pageCount])
 
   return (
     <table className={s.table}>
@@ -62,7 +62,7 @@ export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
         <tr className={s.tr} key={item._id}>
           <td className={s.td}>{item.name}</td>
           <td className={s.td}>{item.cardsCount}</td>
-          <td className={s.td}>{item.updated}</td>
+          <td className={s.td}>{item.updated.substr(0, 10)}</td>
           <td className={s.td}>{item.user_name}</td>
           <td className={s.td}>
             {item.user_id === _id ?

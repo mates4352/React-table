@@ -19,11 +19,9 @@ export const getCardsPack = createAsyncThunk('main/getCardsPack', async (cardsPa
 
 export const newPack = createAsyncThunk('main/newPack', async (dataNewPack: DataNewPackType, {
   rejectWithValue,
-  dispatch,
 })=>{
   try {
     await MainApi.newPack(dataNewPack);
-    dispatch(getCardsPack({page: 1, pageCount: 8}))
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;
     return rejectWithValue(error.response?.data.error);
@@ -32,11 +30,9 @@ export const newPack = createAsyncThunk('main/newPack', async (dataNewPack: Data
 
 export const editPack = createAsyncThunk('main/editPack', async (dataEditPack: DataEditPackType & {_id: string}, {
   rejectWithValue,
-  dispatch,
 })=>{
   try {
     await MainApi.updatePack(dataEditPack);
-    dispatch(getCardsPack({page: 1, pageCount: 8}))
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;
     return rejectWithValue(error.response?.data.error);
@@ -45,11 +41,9 @@ export const editPack = createAsyncThunk('main/editPack', async (dataEditPack: D
 
 export const deletePack = createAsyncThunk('main/deletePack', async (idPack: string, {
   rejectWithValue,
-  dispatch,
 })=>{
   try {
     await MainApi.deletePack(idPack);
-    dispatch(getCardsPack({page: 1, pageCount: 8}))
   } catch(e) {
     const error = e as AxiosError<LoginErrorType>;
     return rejectWithValue(error.response?.data.error);

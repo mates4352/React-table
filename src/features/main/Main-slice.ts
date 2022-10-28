@@ -17,6 +17,8 @@ interface MainStateType {
     isPopupEditPack: boolean
     isPopupDeletePack: boolean
   }
+  page: number,
+  pageCount: number,
   idPack: string
   loading: LoadingType | ''
 }
@@ -37,6 +39,8 @@ const initialState = {
     isPopupEditPack: false,
     isPopupDeletePack: false
   },
+  page: 1,
+  pageCount: 8,
   idPack: '',
   loading: ''
 } as MainStateType;

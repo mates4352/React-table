@@ -6,7 +6,7 @@ import {Input} from "../../../../bll/input/Input";
 import {Checkbox} from "../../../../bll/checkbox/Checkbox";
 import {Button} from "../../../../bll/button/Button";
 import {editPackSchema} from "../../../../../utils/helpers/validate/Edit-pack-validate";
-import {editPack} from "../../../../../features/main/Main-thunk";
+import {editPack, getCardsPack} from "../../../../../features/main/Main-thunk";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../../hooks/useAppSelector";
 import {setPopup} from "../../../../../features/main/Main-slice";
@@ -18,7 +18,7 @@ type ContentEditPackType = {
 
 export const ContentEditPack: FC<ContentEditPackType> = memo(({}) => {
   const dispatch = useAppDispatch();
-  const {idPack, isPopup} = useAppSelector(state => state.main)
+  const {idPack, isPopup, page, pageCount} = useAppSelector(state => state.main)
   return (
     <Formik
       initialValues={{
@@ -28,6 +28,7 @@ export const ContentEditPack: FC<ContentEditPackType> = memo(({}) => {
       validationSchema={editPackSchema}
       onSubmit={async(dataEditPack: DataEditPackType) => {
         await dispatch(editPack(({...dataEditPack, _id: idPack})))
+        dispatch(getCardsPack({page: page, pageCount: pageCount}))
         dispatch(setPopup({popup: PopupPack.EditPack, isPopup: !isPopup.isPopupEditPack}))
       }}
     >

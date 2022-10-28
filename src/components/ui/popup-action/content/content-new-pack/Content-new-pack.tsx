@@ -7,7 +7,8 @@ import {newPackSchema} from "../../../../../utils/helpers/validate/New-pack-vali
 import {DataNewPackType} from "../../../../../features/main/Main-type";
 import {Button} from "../../../../bll/button/Button";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch";
-import {newPack} from "../../../../../features/main/Main-thunk";
+import {getCardsPack, newPack} from "../../../../../features/main/Main-thunk";
+import {useAppSelector} from "../../../../../hooks/useAppSelector";
 
 type ContentNewPackType = {
   className?: string
@@ -19,6 +20,7 @@ export const ContentNewPack: FC<ContentNewPackType> = memo(({
   onClickNewPack
 }) => {
   const dispatch = useAppDispatch();
+  const {page, pageCount} = useAppSelector(state => state.main)
   return (
     <div className={s.content}>
       <Formik
@@ -29,6 +31,7 @@ export const ContentNewPack: FC<ContentNewPackType> = memo(({
         validationSchema={newPackSchema}
         onSubmit={async(dataNewPack: DataNewPackType) => {
           await dispatch(newPack(dataNewPack))
+          dispatch(getCardsPack({page: page, pageCount: pageCount}))
           onClickNewPack && onClickNewPack()
         }}
       >
