@@ -36,19 +36,29 @@
 .th,
 .td {
   padding: 15px;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   text-align: left;
   color: var(--g-dark);
 }
 
 .th {
   font: var(--g-p3);
+  white-space: nowrap;
   background-color: var(--g-blue-light-super);
 }
 
 .td {
   font: var(--g-p4-1);
+}
+
+.tdWrap {
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  &:hover {
+    -webkit-line-clamp: unset;
+  }
 }

@@ -9,6 +9,7 @@ import {TypeButtonAction} from "../../../utils/enum/type-button-action";
 import {getCardsPack} from "../../../features/main/Main-thunk";
 import {setIdPack, setPopup} from "../../../features/main/Main-slice";
 import {PopupPack} from "../../../utils/enum/popup";
+import {MainApi} from "../../../features/main/Main-api";
 
 type TablePacksListType = {
 };
@@ -44,7 +45,7 @@ export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
         </th>
 
         <th className={s.th}>
-          <ButtonFilterTableDate onClickButton={() => console.log('hello')}>Last Updated</ButtonFilterTableDate>
+          <ButtonFilterTableDate onClickButton={() => {}}>Last Updated</ButtonFilterTableDate>
         </th>
 
         <th className={s.th}>
@@ -60,10 +61,10 @@ export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
       <tbody className={s.tbody}>
       {cardPacks.map((item: CardPacksType) =>
         <tr className={s.tr} key={item._id}>
-          <td className={s.td}>{item.name}</td>
+          <td className={s.td}><div className={s.tdWrap}>{item.name}</div></td>
           <td className={s.td}>{item.cardsCount}</td>
           <td className={s.td}>{item.updated.substr(0, 10)}</td>
-          <td className={s.td}>{item.user_name}</td>
+          <td className={s.td}><div className={s.tdWrap}>{item.user_name}</div></td>
           <td className={s.td}>
             {item.user_id === _id ?
               <Actions
