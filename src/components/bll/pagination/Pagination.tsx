@@ -20,7 +20,7 @@ export const Pagination: FC<PaginationType> = memo(({
   const [maxNumber, setMaxNumber] = useState<number>(maxPageNumber)
   const dispatch = useAppDispatch();
 
-  const arryButton = [1,2,3,4,5]
+  const arryButton = [1, 2, 3, 4, 5]
 
   if(pageCurrentCount > maxNumber) {
     if(maxNumber > 5) {
@@ -33,13 +33,30 @@ export const Pagination: FC<PaginationType> = memo(({
   return (
     <div className={s.pagination}>
       <ButtonPaginationArrow classNameIcon={s.iconLeft} onClickButton={() => {
-        if(maxNumber >=5) setMaxNumber((value: number) => value -= 1)
+        if(maxNumber > 5) setMaxNumber((value: number) => value -= 1)
       }}/>
+
+      {maxNumber >= 10 &&
+          <>
+              <PaginationButton
+                  className={s.buttonPaginationMax}
+                  onClickButton={() => {
+                    setMaxNumber((value: number) => value -= 5)
+                  }}>
+                {maxNumber - 5}
+              </PaginationButton>
+
+              <div className={s.ellipsis}>...</div>
+          </>
+
+      }
 
       <ul className={s.list}>
         {arryButton.map((button: number) =>
           <li className={s.item} key={button}>
-            <PaginationButton pageCurrent={page} onClickButton={() => {dispatch(setPage(button))}}>{button}</PaginationButton>
+            <PaginationButton pageCurrent={page} onClickButton={() => {
+              dispatch(setPage(button))
+            }}>{button}</PaginationButton>
           </li>
         )}
       </ul>
