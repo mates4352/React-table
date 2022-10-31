@@ -9,20 +9,25 @@ import {TypeButtonAction} from "../../../utils/enum/type-button-action";
 import {getCardsPack} from "../../../features/main/Main-thunk";
 import {setIdPack, setPopup} from "../../../features/main/Main-slice";
 import {PopupPack} from "../../../utils/enum/popup";
-import {MainApi} from "../../../features/main/Main-api";
+import classNames from "classnames/bind";
 
 type TablePacksListType = {
+  className?: string
 };
 
-export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
+export const TablePacksList: FC<TablePacksListType> = memo(({
+  className
+}) => {
   const dispatch = useAppDispatch();
   const {cardPacks} = useAppSelector(state => state.main.packsList)
   const {isPopup, page, pageCount} = useAppSelector(state => state.main);
   const {_id} = useAppSelector(state => state.app.user)
+
   const onClickPopupDeletePack = useCallback((idPack: string) => () => {
     dispatch(setPopup({popup: PopupPack.DeletePack, isPopup: !isPopup.isPopupDeletePack}))
     dispatch(setIdPack(idPack))
   }, [isPopup.isPopupDeletePack])
+
   const onClickPopupEditPack = useCallback((idPack: string) => () => {
     dispatch(setPopup({popup: PopupPack.EditPack, isPopup: !isPopup.isPopupEditPack}))
     dispatch(setIdPack(idPack))
@@ -33,7 +38,7 @@ export const TablePacksList: FC<TablePacksListType> = memo(({}) => {
   }, [page, pageCount])
 
   return (
-    <table className={s.table}>
+    <table className={classNames(s.table, className)}>
       <thead className={s.thead}>
       <tr className={s.tr}>
         <th className={s.th}>

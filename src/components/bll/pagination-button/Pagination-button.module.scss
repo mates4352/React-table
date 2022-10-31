@@ -1,0 +1,23 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+
+  font: var(--g-p5);
+
+  background-color: transparent;
+  border-radius: 4px;
+  transition: background-color 300ms ease, color 300ms ease;
+
+  &:hover {
+    color: var(--g-white);
+    background-color: var(--g-blue-dark);
+  }
+}
+
+.buttonActive {
+  color: var(--g-white);
+  background-color: var(--g-blue-dark);
+}

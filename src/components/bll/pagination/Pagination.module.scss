@@ -1,0 +1,38 @@
+.pagination {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--g-minmax);
+  align-items: center;
+}
+
+.iconLeft {
+  width: 6px;
+  height: 9px;
+  margin-right: 22px;
+}
+
+.list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--g-minmax);
+  column-gap: 12px;
+  margin-right: 22px;
+}
+
+.item {
+
+}
+
+.ellipsis {
+  margin-right: 22px;
+}
+
+.buttonPaginationMax {
+  margin-right: 22px;
+}
+
+.iconRight {
+  width: 6px;
+  height: 9px;
+  transform: rotate(-180deg);
+}

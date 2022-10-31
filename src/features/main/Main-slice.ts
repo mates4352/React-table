@@ -60,6 +60,9 @@ const mainSlice = createSlice({
     },
     setIdPack: (state: MainStateType, action: PayloadAction<string>) => {
       state.idPack = action.payload
+    },
+    setPage: (state: MainStateType, action: PayloadAction<number>) => {
+      state.page = action.payload
     }
   },
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
@@ -82,5 +85,5 @@ const mainSlice = createSlice({
 });
 
 export const {reducer} = mainSlice;
-export const {setPopup, setIdPack} = mainSlice.actions;
+export const {setPopup, setIdPack, setPage} = mainSlice.actions;
 export const mainReducer = reducer;

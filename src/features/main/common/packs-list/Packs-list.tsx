@@ -25,17 +25,16 @@ import {
 import {
   PopupActionDeletePack
 } from "../../../../components/ui/popup-action/popups/popup-action-delete-pack/Popup-action-delete-pack";
+import {Pagination} from "../../../../components/bll/pagination/Pagination";
 
 type PacksListType = {};
 
 export const PacksList: FC<PacksListType> = memo(({}) => {
   const dispatch = useAppDispatch();
-  const {isPopup} = useAppSelector(state => state.main);
+  const {isPopup, page, packsList} = useAppSelector(state => state.main);
   const onClickPopupNewPack = useCallback(() => {
     dispatch(setPopup({popup: PopupPack.NewPack, isPopup: !isPopup.isPopupNewPack}))
   }, [isPopup.isPopupNewPack])
-
-
 
   return (
     <>
@@ -54,8 +53,10 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
         <SettingsPacksList/>
 
         <AnimationPage>
-          <TablePacksList/>
+          <TablePacksList className={s.table}/>
         </AnimationPage>
+
+        <Pagination page={page} maxPageNumber={5} pageCurrentCount={packsList.cardPacksTotalCount}/>
       </Container>
 
       <PopupActionNewPack/>
