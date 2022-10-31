@@ -1,0 +1,60 @@
+@import './../../../assets/style';
+
+.select {
+  position: relative;
+}
+
+.mainOption {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--g-minmax);
+  align-items: center;
+  column-gap: 4px;
+  padding: 5px 7px;
+
+  border: 1px solid var(--g-border-table);
+  border-radius: 2px;
+}
+
+.icon {
+  display: flex;
+  width: 6px;
+  height: 9px;
+  transform: rotate(-90deg);
+}
+
+.iconActive {
+  transform: rotate(-270deg);
+}
+
+.list {
+  position: absolute;
+  top: 100%;
+
+  width: 100%;
+
+  border: 1px solid var(--g-border-table);
+  border-radius: 2px;
+}
+
+.item {
+  width: 100%;
+  border-bottom: 1px solid var(--g-border-table);
+
+  &:last-of-type {
+    border: none;
+  }
+}
+
+.option {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 3px;
+
+  transition: background-color 400ms ease;
+
+  &:hover {
+    background-color: var(--g-blue-light);
+  }
+}

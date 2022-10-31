@@ -19,6 +19,22 @@
   margin-right: 22px;
 }
 
+.wrap {
+  margin-right: 30px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--g-minmax);
+  align-items: center;
+}
+
+.showMaxPage {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--g-minmax);
+  align-items: center;
+  column-gap: 5px;
+}
+
 .item {
 
 }

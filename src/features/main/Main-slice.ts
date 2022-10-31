@@ -63,6 +63,9 @@ const mainSlice = createSlice({
     },
     setPage: (state: MainStateType, action: PayloadAction<number>) => {
       state.page = action.payload
+    },
+    setPageCount: (state: MainStateType, action: PayloadAction<number>) => {
+      state.pageCount = action.payload
     }
   },
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
@@ -85,5 +88,5 @@ const mainSlice = createSlice({
 });
 
 export const {reducer} = mainSlice;
-export const {setPopup, setIdPack, setPage} = mainSlice.actions;
+export const {setPopup, setIdPack, setPage, setPageCount} = mainSlice.actions;
 export const mainReducer = reducer;
