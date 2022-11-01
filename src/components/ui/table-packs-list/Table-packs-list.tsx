@@ -19,7 +19,7 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
   className
 }) => {
   const dispatch = useAppDispatch();
-  const {cardPacks} = useAppSelector(state => state.main.packsList)
+  const {cardPacks} = useAppSelector(state => state.main)
   const {isPopup, page, pageCount} = useAppSelector(state => state.main);
   const {_id} = useAppSelector(state => state.app.user)
 

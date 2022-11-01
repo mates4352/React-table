@@ -2,14 +2,13 @@ import {AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
 import {getCardsPack} from "./Main-thunk";
-import {GetCardsApiType, PopupPackType} from "./Main-type";
+import {CardPacksType, GetCardsApiType, PopupPackType} from "./Main-type";
 import {PopupPack} from "../../utils/enum/popup";
 import {LoadingType} from "../../app/App-type";
 import {someNamesThunks} from "../../utils/helpers/functions/someNamesThunks";
 import {authNamesThunks} from "../../app/App-thunk";
 import {Statuses} from "../../utils/enum/statuses";
 import {valueTabType} from "../../components/bll/tabs/Tabs";
-
 
 interface MainStateType {
   packsList: GetCardsApiType
@@ -20,6 +19,7 @@ interface MainStateType {
   }
   page: number,
   pageCount: number,
+  cardPacks: Array<CardPacksType>
   idPack: string
   loading: LoadingType | ''
 }
@@ -42,6 +42,7 @@ const initialState = {
   },
   page: 1,
   pageCount: 8,
+  cardPacks: [],
   idPack: '',
   loading: ''
 } as MainStateType;
@@ -59,8 +60,19 @@ const mainSlice = createSlice({
         state.isPopup.isPopupDeletePack = action.payload.isPopup
       }
     },
-    filterPack: (state: MainStateType, action: PayloadAction<string>) => {
-      state.packsList.cardPacks = state.packsList.cardPacks.filter(item => item.user_id === action.payload)
+    filterPack: (state: MainStateType, action: PayloadAction<{type: valueTabType, userId?: string}>) => {
+      if(action.payload.type === 'My') {
+        state.cardPacks = state.packsList.cardPacks.filter(item => item.user_id === action.payload.userId)
+      } else if(action.payload.type === 'All') {
+        state.cardPacks = state.packsList.cardPacks
+      }
+    },
+    searchPack: (state: MainStateType, action: PayloadAction<string>) => {
+      if(action.payload !== '') {
+        state.cardPacks = state.packsList.cardPacks.filter(item => item.name.toLowerCase().includes(action.payload.toLowerCase()))
+      } else {
+        state.cardPacks = state.packsList.cardPacks
+      }
     },
     setIdPack: (state: MainStateType, action: PayloadAction<string>) => {
       state.idPack = action.payload
@@ -75,6 +87,7 @@ const mainSlice = createSlice({
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
     builder.addCase(getCardsPack.fulfilled.type, (state: MainStateType, action: PayloadAction<GetCardsApiType>) => {
       state.packsList = action.payload;
+      state.cardPacks = action.payload.cardPacks;
     })
     .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/pending', action.type), (state: MainStateType, action: PayloadAction<string>) => {
         state.loading = Statuses.PENDING;
@@ -92,5 +105,5 @@ const mainSlice = createSlice({
 });
 
 export const {reducer} = mainSlice;
-export const {setPopup, setIdPack, setPage, setPageCount, filterPack} = mainSlice.actions;
+export const {setPopup, setIdPack, setPage, setPageCount, filterPack, searchPack} = mainSlice.actions;
 export const mainReducer = reducer;

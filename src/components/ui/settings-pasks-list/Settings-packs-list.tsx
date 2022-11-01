@@ -6,7 +6,7 @@ import {InputRange, newValueInputRangeType} from "../../bll/input-range/Input-ra
 import {FilterRemove} from "../../bll/filter-remove/Filter-remove";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {filterPack} from "../../../features/main/Main-slice";
+import {filterPack, searchPack} from "../../../features/main/Main-slice";
 import {getCardsPack} from "../../../features/main/Main-thunk";
 
 type SettingsPasksListType = {};
@@ -14,20 +14,22 @@ type SettingsPasksListType = {};
 export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
   const dispatch = useAppDispatch()
   const {_id} = useAppSelector(state => state.app.user)
-  const {page, pageCount} = useAppSelector(state => state.main)
   const [inputText, setText] = useState<string>('')
   const [valueTab, setValueTab] = useState<valueTabType>('All')
 
   const onInputChangeValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setText(e.currentTarget.value)
   }, [])
+  const onSearchTable = useCallback(() => {
+      dispatch(searchPack(inputText))
+  }, [inputText])
   const onClickButtonMy = useCallback(() => {
     setValueTab('My')
-    dispatch(filterPack(_id));
+    dispatch(filterPack({type: 'My', userId: _id}));
   }, [])
   const onClickButtonAll = useCallback(() => {
     setValueTab('All')
-    dispatch(getCardsPack({page: page, pageCount: pageCount}))
+    dispatch(filterPack({type: 'All'}));
   }, [])
   const onChangeValueInputRange = useCallback((newValue: newValueInputRangeType) => {
     console.log(newValue)
@@ -45,6 +47,7 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
         placeholder={'Provide your text'}
         value={inputText}
         onChange={onInputChangeValue}
+        onSearchTable={onSearchTable}
       />
 
       <Tabs
