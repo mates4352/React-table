@@ -7,7 +7,7 @@ import {useAppSelector} from "../../../hooks/useAppSelector";
 import {CardPacksType} from "../../../features/main/Main-type";
 import {TypeButtonAction} from "../../../utils/enum/type-button-action";
 import {getCardsPack} from "../../../features/main/Main-thunk";
-import {setIdPack, setPopup} from "../../../features/main/Main-slice";
+import {setCardPacks, setIdPack, setPopup, setSortCardPacks} from "../../../features/main/Main-slice";
 import {PopupPack} from "../../../utils/enum/popup";
 import classNames from "classnames/bind";
 
@@ -19,7 +19,7 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
   className
 }) => {
   const dispatch = useAppDispatch();
-  const {cardPacks} = useAppSelector(state => state.main)
+  const {cardPacks, sortCardPacks} = useAppSelector(state => state.main)
   const {isPopup, page, pageCount} = useAppSelector(state => state.main);
   const {_id} = useAppSelector(state => state.app.user)
 
@@ -50,7 +50,10 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
         </th>
 
         <th className={s.th}>
-          <ButtonFilterTableDate onClickButton={() => {}}>Last Updated</ButtonFilterTableDate>
+          <ButtonFilterTableDate onClickButton={async() => {
+            await dispatch(setSortCardPacks(!sortCardPacks))
+            dispatch(setCardPacks())
+          }}>Last Updated</ButtonFilterTableDate>
         </th>
 
         <th className={s.th}>
@@ -66,17 +69,21 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
       <tbody className={s.tbody}>
       {cardPacks.map((item: CardPacksType) =>
         <tr className={s.tr} key={item._id}>
-          <td className={s.td}><div className={s.tdWrap}>{item.name}</div></td>
+          <td className={s.td}>
+            <div className={s.tdWrap}>{item.name}</div>
+          </td>
           <td className={s.td}>{item.cardsCount}</td>
           <td className={s.td}>{item.updated.substr(0, 10)}</td>
-          <td className={s.td}><div className={s.tdWrap}>{item.user_name}</div></td>
+          <td className={s.td}>
+            <div className={s.tdWrap}>{item.user_name}</div>
+          </td>
           <td className={s.td}>
             {item.user_id === _id ?
               <Actions
                 showActions={[TypeButtonAction.TEACHER, TypeButtonAction.EDIT, TypeButtonAction.DELETE]}
                 onClickButtonDelete={onClickPopupDeletePack(item._id)}
                 onClickButtonEdit={onClickPopupEditPack(item._id)}
-              />:
+              /> :
               <Actions showActions={[TypeButtonAction.TEACHER]}/>
             }
           </td>

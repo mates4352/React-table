@@ -20,6 +20,7 @@ interface MainStateType {
   page: number,
   pageCount: number,
   cardPacks: Array<CardPacksType>
+  sortCardPacks: boolean
   idPack: string
   loading: LoadingType | ''
 }
@@ -43,6 +44,7 @@ const initialState = {
   page: 1,
   pageCount: 8,
   cardPacks: [],
+  sortCardPacks: false,
   idPack: '',
   loading: ''
 } as MainStateType;
@@ -60,7 +62,7 @@ const mainSlice = createSlice({
         state.isPopup.isPopupDeletePack = action.payload.isPopup
       }
     },
-    filterPack: (state: MainStateType, action: PayloadAction<{type: valueTabType, userId?: string}>) => {
+    filterPack: (state: MainStateType, action: PayloadAction<{ type: valueTabType, userId?: string }>) => {
       if(action.payload.type === 'My') {
         state.cardPacks = state.packsList.cardPacks.filter(item => item.user_id === action.payload.userId)
       } else if(action.payload.type === 'All') {
@@ -73,6 +75,16 @@ const mainSlice = createSlice({
       } else {
         state.cardPacks = state.packsList.cardPacks
       }
+    },
+    setCardPacks: (state: MainStateType) => {
+      if(state.sortCardPacks) {
+        state.cardPacks = state.packsList.cardPacks.sort((a, b) => Date.parse(a.updated) - Date.parse(b.updated))
+      } else {
+        state.cardPacks = state.packsList.cardPacks.sort((a, b) => Date.parse(b.updated) - Date.parse(a.updated))
+      }
+    },
+    setSortCardPacks: (state: MainStateType, action: PayloadAction<boolean>) => {
+      state.sortCardPacks = action.payload
     },
     setIdPack: (state: MainStateType, action: PayloadAction<string>) => {
       state.idPack = action.payload
@@ -105,5 +117,5 @@ const mainSlice = createSlice({
 });
 
 export const {reducer} = mainSlice;
-export const {setPopup, setIdPack, setPage, setPageCount, filterPack, searchPack} = mainSlice.actions;
+export const {setPopup, setIdPack, setPage, setPageCount, filterPack, searchPack, setCardPacks, setSortCardPacks} = mainSlice.actions;
 export const mainReducer = reducer;
