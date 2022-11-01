@@ -10,7 +10,7 @@ type InputRangeType = {
   min: number
   max: number
   title: string
-  onChangeValue?: (newValue: newValueInputRangeType) => void
+  onChangeValue?: (valueMinMax: number[]) => void
   className?: {
     inputRange?: string
   }
