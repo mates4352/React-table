@@ -6,10 +6,15 @@ import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {CardPacksType} from "../../../features/main/Main-type";
 import {TypeButtonAction} from "../../../utils/enum/type-button-action";
-import {getCardsPack} from "../../../features/main/Main-thunk";
-import {setCardPacks, setIdPack, setPopup, setSortCardPacks} from "../../../features/main/Main-slice";
 import {PopupPack} from "../../../utils/enum/popup";
 import classNames from "classnames/bind";
+import {
+  setCardPacks,
+  setIdPack,
+  setPopup,
+  setSortCardPacks
+} from "../../../features/main/common/packs-list/Packs-list-slice";
+import {getCardsPack} from "../../../features/main/common/packs-list/Packs-list-thunk";
 
 type TablePacksListType = {
   className?: string
@@ -19,8 +24,8 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
   className
 }) => {
   const dispatch = useAppDispatch();
-  const {cardPacks, sortCardPacks} = useAppSelector(state => state.main)
-  const {isPopup, page, pageCount} = useAppSelector(state => state.main);
+  const {cardPacks, sortCardPacks} = useAppSelector(state => state.packsList)
+  const {isPopup, page, pageCount} = useAppSelector(state => state.packsList);
   const {_id} = useAppSelector(state => state.app.user)
 
   const onClickPopupDeletePack = useCallback((idPack: string) => () => {

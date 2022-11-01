@@ -8,7 +8,7 @@ import {appSelect} from "../../../app/App-select";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {IconEdit} from "../../icons/icon-edit/Icon-edit";
 import {AnimatePresence, motion} from "framer-motion";
-import {editProfile} from "../../../features/main/Main-thunk";
+import {editProfile} from "../../../features/main/common/packs-list/Packs-list-thunk";
 
 const animations = {
   initial: {height: 0, opacity: 0},

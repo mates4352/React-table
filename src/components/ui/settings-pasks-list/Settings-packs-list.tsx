@@ -2,19 +2,19 @@ import React, {ChangeEvent, FC, memo, useCallback, useState} from 'react';
 import s from './Settings-packs-list.module.scss';
 import {InputSearch} from "../../bll/inputSearch/InputSearch";
 import {Tabs, valueTabType} from "../../bll/tabs/Tabs";
-import {InputRange, newValueInputRangeType} from "../../bll/input-range/Input-range";
+import {InputRange} from "../../bll/input-range/Input-range";
 import {FilterRemove} from "../../bll/filter-remove/Filter-remove";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {filterPack, searchPack} from "../../../features/main/Main-slice";
-import {getCardsPack} from "../../../features/main/Main-thunk";
+import {filterPack, searchPack} from "../../../features/main/common/packs-list/Packs-list-slice";
+import {getCardsPack} from "../../../features/main/common/packs-list/Packs-list-thunk";
 
 type SettingsPasksListType = {};
 
 export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
   const dispatch = useAppDispatch()
   const {_id} = useAppSelector(state => state.app.user)
-  const {page, pageCount} = useAppSelector(state => state.main)
+  const {page, pageCount} = useAppSelector(state => state.packsList)
   const [inputText, setText] = useState<string>('')
   const [valueTab, setValueTab] = useState<valueTabType>('All')
   const [valueInputRange, setValueInputRange] = React.useState<number[]>([0, 10]);

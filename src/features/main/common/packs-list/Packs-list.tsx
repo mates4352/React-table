@@ -6,16 +6,10 @@ import {Button} from "../../../../components/bll/button/Button";
 import {AnimationPage} from "../../../../components/animations/animationPage";
 import {TablePacksList} from "../../../../components/ui/table-packs-list/Table-packs-list";
 import {SettingsPacksList} from "../../../../components/ui/settings-pasks-list/Settings-packs-list";
-import {PopupAction} from "../../../../components/ui/popup-action/Popup-action";
-import {ContentNewPack} from "../../../../components/ui/popup-action/content/content-new-pack/Content-new-pack";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
-import {setPopup} from "../../Main-slice";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {PopupPack} from "../../../../utils/enum/popup";
-import {
-  ContentDeletePack
-} from "../../../../components/ui/popup-action/content/content-delete-pack/Content-delete-pack";
-import {ContentEditPack} from "../../../../components/ui/popup-action/content/content-edit-pack/Content-edit-pack";
+
 import {
   PopupActionNewPack
 } from "../../../../components/ui/popup-action/popups/popup-action-new-pack/Popup-action-new-pack";
@@ -26,12 +20,13 @@ import {
   PopupActionDeletePack
 } from "../../../../components/ui/popup-action/popups/popup-action-delete-pack/Popup-action-delete-pack";
 import {Pagination} from "../../../../components/bll/pagination/Pagination";
+import {setPopup} from "./Packs-list-slice";
 
 type PacksListType = {};
 
 export const PacksList: FC<PacksListType> = memo(({}) => {
   const dispatch = useAppDispatch();
-  const {isPopup, page, packsList} = useAppSelector(state => state.main);
+  const {isPopup, page, packsList} = useAppSelector(state => state.packsList);
   const onClickPopupNewPack = useCallback(() => {
     dispatch(setPopup({popup: PopupPack.NewPack, isPopup: !isPopup.isPopupNewPack}))
   }, [isPopup.isPopupNewPack])

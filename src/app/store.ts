@@ -3,11 +3,13 @@ import {authReducer} from "../features/auth/Auth-slice";
 import {appReducer} from "./App-slice";
 import {appLoadState, appSaveState} from "../utils/localStorage/appLocalStorage";
 import {mainReducer} from "../features/main/Main-slice";
+import {packsListReducer} from "../features/main/common/packs-list/Packs-list-slice";
 
 const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
   main: mainReducer,
+  packsList: packsListReducer
 });
 
 export const store = configureStore({

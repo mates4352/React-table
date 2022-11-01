@@ -3,7 +3,14 @@ import {AppApi} from "./App-api";
 import {AxiosError} from "axios";
 import {LoginErrorType} from "../features/auth/Auth-type";
 import {register, restorePassword, setLogin, setNewPassword} from "../features/auth/Auth-thunk";
-import {deletePack, editPack, editProfile, getCardsPack, logout, newPack} from "../features/main/Main-thunk";
+import {logout} from "../features/main/Main-thunk";
+import {
+  deletePack,
+  editPack,
+  editProfile,
+  getCardsPack,
+  newPack
+} from "../features/main/common/packs-list/Packs-list-thunk";
 
 export const getDataUser = createAsyncThunk('auth/getDataUser', async(_, {
   rejectWithValue

@@ -1,11 +1,11 @@
-import React, {FC, memo, useEffect, useState} from 'react';
+import React, {FC, memo, useState} from 'react';
 import s from './Pagination.module.scss';
 import {PaginationButton} from "../pagination-button/Pagination-button";
 import {ButtonPaginationArrow} from "../button-pagination-arrow/Button-pagination-arrow";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {setPage} from "../../../features/main/Main-slice";
 import {Select} from "../select/Select";
+import {setPage} from "../../../features/main/common/packs-list/Packs-list-slice";
 
 type PaginationType = {
   page: number
@@ -18,7 +18,7 @@ export const Pagination: FC<PaginationType> = memo(({
   maxPageNumber,
   pageCurrentCount
 }) => {
-  const {pageCount} = useAppSelector(state => state.main)
+  const {pageCount} = useAppSelector(state => state.packsList)
   const [maxNumber, setMaxNumber] = useState<number>(maxPageNumber)
   const dispatch = useAppDispatch();
 

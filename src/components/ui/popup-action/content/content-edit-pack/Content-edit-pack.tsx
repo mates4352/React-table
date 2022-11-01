@@ -6,11 +6,11 @@ import {Input} from "../../../../bll/input/Input";
 import {Checkbox} from "../../../../bll/checkbox/Checkbox";
 import {Button} from "../../../../bll/button/Button";
 import {editPackSchema} from "../../../../../utils/helpers/validate/Edit-pack-validate";
-import {editPack, getCardsPack} from "../../../../../features/main/Main-thunk";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../../hooks/useAppSelector";
-import {setPopup} from "../../../../../features/main/Main-slice";
 import {PopupPack} from "../../../../../utils/enum/popup";
+import {setPopup} from "../../../../../features/main/common/packs-list/Packs-list-slice";
+import {editPack, getCardsPack} from "../../../../../features/main/common/packs-list/Packs-list-thunk";
 
 type ContentEditPackType = {
 
@@ -18,7 +18,7 @@ type ContentEditPackType = {
 
 export const ContentEditPack: FC<ContentEditPackType> = memo(({}) => {
   const dispatch = useAppDispatch();
-  const {idPack, isPopup, page, pageCount} = useAppSelector(state => state.main)
+  const {idPack, isPopup, page, pageCount} = useAppSelector(state => state.packsList)
   return (
     <Formik
       initialValues={{

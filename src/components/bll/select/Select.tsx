@@ -3,9 +3,8 @@ import s from './Select.module.scss';
 import {AnimatePresence, motion} from "framer-motion";
 import {ButtonPaginationArrow} from "../button-pagination-arrow/Button-pagination-arrow";
 import classNames from "classnames/bind";
-import {useAppSelector} from "../../../hooks/useAppSelector";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {setPageCount} from "../../../features/main/Main-slice";
+import {setPageCount} from "../../../features/main/common/packs-list/Packs-list-slice";
 
 type SelectType = {
   select: number

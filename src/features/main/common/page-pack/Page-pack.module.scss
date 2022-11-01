@@ -1,0 +1,28 @@
+.pagePack {
+
+}
+
+.buttonBack {
+  margin-top: 24px;
+  margin-bottom: 27px;
+}
+
+.title {
+  --c-title-font: var(--g-h2);
+  align-self: flex-start;
+  margin-bottom: 86px;
+}
+
+.contentNotCards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.caption {
+  margin-bottom: 32px;
+}
+
+.buttonAddCard {
+  max-width: 171px;
+}
