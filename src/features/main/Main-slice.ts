@@ -8,6 +8,7 @@ import {LoadingType} from "../../app/App-type";
 import {someNamesThunks} from "../../utils/helpers/functions/someNamesThunks";
 import {authNamesThunks} from "../../app/App-thunk";
 import {Statuses} from "../../utils/enum/statuses";
+import {valueTabType} from "../../components/bll/tabs/Tabs";
 
 
 interface MainStateType {
@@ -49,7 +50,7 @@ const mainSlice = createSlice({
   name: 'main',
   initialState,
   reducers: {
-    setPopup: (state: MainStateType, action: PayloadAction<{popup: PopupPackType, isPopup: boolean}>) => {
+    setPopup: (state: MainStateType, action: PayloadAction<{ popup: PopupPackType, isPopup: boolean }>) => {
       if(action.payload.popup === PopupPack.NewPack) {
         state.isPopup.isPopupNewPack = action.payload.isPopup
       } else if(action.payload.popup === PopupPack.EditPack) {
@@ -57,6 +58,9 @@ const mainSlice = createSlice({
       } else if(action.payload.popup === PopupPack.DeletePack) {
         state.isPopup.isPopupDeletePack = action.payload.isPopup
       }
+    },
+    filterPack: (state: MainStateType, action: PayloadAction<string>) => {
+      state.packsList.cardPacks = state.packsList.cardPacks.filter(item => item.user_id === action.payload)
     },
     setIdPack: (state: MainStateType, action: PayloadAction<string>) => {
       state.idPack = action.payload
@@ -72,15 +76,15 @@ const mainSlice = createSlice({
     builder.addCase(getCardsPack.fulfilled.type, (state: MainStateType, action: PayloadAction<GetCardsApiType>) => {
       state.packsList = action.payload;
     })
-    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/pending', action.type),(state: MainStateType, action: PayloadAction<string>) => {
+    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/pending', action.type), (state: MainStateType, action: PayloadAction<string>) => {
         state.loading = Statuses.PENDING;
       }
     )
-    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/fulfilled', action.type),(state: MainStateType, action: PayloadAction<string>) => {
+    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/fulfilled', action.type), (state: MainStateType, action: PayloadAction<string>) => {
         state.loading = Statuses.SUCCEEDED;
       }
     )
-    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/rejected', action.type),(state: MainStateType, action: PayloadAction<string>) => {
+    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/rejected', action.type), (state: MainStateType, action: PayloadAction<string>) => {
         state.loading = Statuses.FAILED;
       }
     )
@@ -88,5 +92,5 @@ const mainSlice = createSlice({
 });
 
 export const {reducer} = mainSlice;
-export const {setPopup, setIdPack, setPage, setPageCount} = mainSlice.actions;
+export const {setPopup, setIdPack, setPage, setPageCount, filterPack} = mainSlice.actions;
 export const mainReducer = reducer;
