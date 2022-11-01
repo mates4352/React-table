@@ -17,6 +17,7 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
   const {page, pageCount} = useAppSelector(state => state.main)
   const [inputText, setText] = useState<string>('')
   const [valueTab, setValueTab] = useState<valueTabType>('All')
+  const [valueInputRange, setValueInputRange] = React.useState<number[]>([0, 10]);
 
   const onInputChangeValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setText(e.currentTarget.value)
@@ -34,6 +35,11 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
   }, [])
   const onChangeValueInputRange = useCallback((valueMinMax: number[]) => {
     dispatch(getCardsPack({page: page, pageCount: pageCount, min: valueMinMax[0], max: valueMinMax[1]}))
+  }, [valueInputRange])
+  const onFilterRemove = useCallback(() => {
+    setValueTab('All')
+    setText('')
+    setValueInputRange([0, 10])
   }, [])
 
   return (
@@ -64,10 +70,13 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
       <InputRange
         min={0}
         max={10}
+        value={valueInputRange}
         title={'Number of cards'}
         onChangeValue={onChangeValueInputRange}
+        setValue={setValueInputRange}
       />
-      <FilterRemove/>
+
+      <FilterRemove onClickButton={onFilterRemove}/>
     </div>
   );
 })

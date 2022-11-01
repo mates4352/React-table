@@ -9,8 +9,10 @@ export type newValueInputRangeType = number | number[];
 type InputRangeType = {
   min: number
   max: number
+  value: number[]
   title: string
-  onChangeValue?: (valueMinMax: number[]) => void
+  onChangeValue?: (newValue: number[]) => void
+  setValue: (newValue: number[]) => void
   className?: {
     inputRange?: string
   }
@@ -19,11 +21,12 @@ type InputRangeType = {
 export const InputRange: FC<InputRangeType> = ({
   min,
   max,
+  value,
   title,
   onChangeValue,
+  setValue,
   className
 }) => {
-  const [value, setValue] = React.useState<number[]>([min, max]);
 
   const handleChange = (event: Event, newValue: newValueInputRangeType) => {
     setValue(newValue as number[]);
