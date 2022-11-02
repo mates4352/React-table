@@ -15,6 +15,8 @@ import {
   setSortCardPacks
 } from "../../../features/main/common/packs-list/Packs-list-slice";
 import {getCardsPack} from "../../../features/main/common/packs-list/Packs-list-thunk";
+import {useNavigate} from "react-router-dom";
+import {Link} from "../../../utils/enum/routing";
 
 type TablePacksListType = {
   className?: string
@@ -24,8 +26,8 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
   className
 }) => {
   const dispatch = useAppDispatch();
-  const {cardPacks, sortCardPacks} = useAppSelector(state => state.packsList)
-  const {isPopup, page, pageCount} = useAppSelector(state => state.packsList);
+  const navigate = useNavigate()
+  const {cardPacks, sortCardPacks, isPopup, page, pageCount} = useAppSelector(state => state.packsList)
   const {_id} = useAppSelector(state => state.app.user)
 
   const onClickPopupDeletePack = useCallback((idPack: string) => () => {
@@ -37,6 +39,14 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
     dispatch(setPopup({popup: PopupPack.EditPack, isPopup: !isPopup.isPopupEditPack}))
     dispatch(setIdPack(idPack))
   }, [isPopup.isPopupEditPack])
+
+  const onClickButtonTeacher = useCallback((idPack: string, idUser?: string) => () =>{
+    if(idUser === _id) {
+      navigate(Link.PAGE_PACK + '/' + idPack)
+    } else {
+      navigate(Link.PAGE_FRIENDS_PACK + '/' + idPack)
+    }
+  }, [])
 
   useEffect(() => {
     dispatch(getCardsPack({page: page, pageCount: pageCount}))
@@ -88,8 +98,9 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
                 showActions={[TypeButtonAction.TEACHER, TypeButtonAction.EDIT, TypeButtonAction.DELETE]}
                 onClickButtonDelete={onClickPopupDeletePack(item._id)}
                 onClickButtonEdit={onClickPopupEditPack(item._id)}
+                onClickButtonTeacher={onClickButtonTeacher(item._id, item.user_id)}
               /> :
-              <Actions showActions={[TypeButtonAction.TEACHER]}/>
+              <Actions showActions={[TypeButtonAction.TEACHER]} onClickButtonTeacher={onClickButtonTeacher(item._id)}/>
             }
           </td>
         </tr>

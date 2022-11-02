@@ -9,7 +9,6 @@ import {SettingsPacksList} from "../../../../components/ui/settings-pasks-list/S
 import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {PopupPack} from "../../../../utils/enum/popup";
-
 import {
   PopupActionNewPack
 } from "../../../../components/ui/popup-action/popups/popup-action-new-pack/Popup-action-new-pack";

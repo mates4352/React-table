@@ -6,6 +6,8 @@ import {Link} from "../../../../utils/enum/routing";
 import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {Button} from "../../../../components/bll/button/Button";
+import {useParams} from "react-router-dom";
+import {pagePackApi} from "./Page-pack-api";
 
 
 type PagePackType = {
@@ -13,6 +15,7 @@ type PagePackType = {
 };
 
 export const PagePack: FC<PagePackType> = ({}) => {
+  const params = useParams();
 
   useEffect(()=> {
 

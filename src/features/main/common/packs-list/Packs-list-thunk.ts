@@ -5,7 +5,7 @@ import {dataEditProfileType, LoginErrorType} from "../../../auth/Auth-type";
 import {getDataUser} from "../../../../app/App-thunk";
 import {PacksListApi} from "./Packs-list-api";
 
-export const getCardsPack = createAsyncThunk('main/getCardsPack', async (cardsPackOption: CardsPackOptionType, {
+export const getCardsPack = createAsyncThunk('pack-list/getCardsPack', async (cardsPackOption: CardsPackOptionType, {
   rejectWithValue,
 })=>{
   try {
@@ -17,7 +17,7 @@ export const getCardsPack = createAsyncThunk('main/getCardsPack', async (cardsPa
   }
 })
 
-export const newPack = createAsyncThunk('main/newPack', async (dataNewPack: DataNewPackType, {
+export const newPack = createAsyncThunk('pack-list/newPack', async (dataNewPack: DataNewPackType, {
   rejectWithValue,
 })=>{
   try {
@@ -28,7 +28,7 @@ export const newPack = createAsyncThunk('main/newPack', async (dataNewPack: Data
   }
 })
 
-export const editPack = createAsyncThunk('main/editPack', async (dataEditPack: DataEditPackType & {_id: string}, {
+export const editPack = createAsyncThunk('pack-list/editPack', async (dataEditPack: DataEditPackType & {_id: string}, {
   rejectWithValue,
 })=>{
   try {
@@ -39,7 +39,7 @@ export const editPack = createAsyncThunk('main/editPack', async (dataEditPack: D
   }
 })
 
-export const deletePack = createAsyncThunk('main/deletePack', async (idPack: string, {
+export const deletePack = createAsyncThunk('pack-list/deletePack', async (idPack: string, {
   rejectWithValue,
 })=>{
   try {
@@ -50,7 +50,7 @@ export const deletePack = createAsyncThunk('main/deletePack', async (idPack: str
   }
 })
 
-export const editProfile = createAsyncThunk('main/editProfile', async(dataEditProfile: dataEditProfileType, {
+export const editProfile = createAsyncThunk('pack-list/editProfile', async(dataEditProfile: dataEditProfileType, {
   rejectWithValue,
   dispatch,
 }) => {

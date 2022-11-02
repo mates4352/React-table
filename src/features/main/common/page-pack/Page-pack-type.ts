@@ -1,12 +1,12 @@
 export type getPackCardsType = {
-  cardAnswer: string
-  cardQuestion: string
+  cardAnswer?: string
+  cardQuestion?: string
   cardsPack_id: string
-  min: number
-  max: number
-  sortCards: string
-  page: number
-  pageCount: number
+  min?: number
+  max?: number
+  sortCards?: string
+  page?: number
+  pageCount?: number
 }
 
 export type responsePackCardsType = {
