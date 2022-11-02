@@ -41,6 +41,27 @@ export type cardsType = {
   updated: string
 }
 
+export type responseCardType = {
+  "newCard": {
+    _id: string
+    cardsPack_id: string
+    user_id: string
+    answer: string
+    question: string
+    grade: number
+    shots: number
+    comments: string
+    type: string
+    rating: number
+    more_id: string
+    created: string
+    updated: string
+    __v: 0
+  },
+  token: string
+  tokenDeathTime: number
+}
+
 export type dataCardType = {
   cardsPack_id: string
   question?: string

@@ -15,6 +15,8 @@ import {ContentNewCard} from "../../../../components/ui/popup-action/content/con
 import {PopupNewCard} from "../../../../components/ui/popup-action/popups/popup-new-card/Popup-new-card";
 import {cardsType} from "./Page-pack-type";
 import {TableMyPagePack} from "../../../../components/ui/table-my-page-pack/Table-my-page-pack";
+import {setPopup} from "./Page-pack-slice";
+import {PopupCard} from "../../../../utils/enum/popup";
 
 
 type PagePackType = {};
@@ -23,6 +25,9 @@ export const PagePack: FC<PagePackType> = ({}) => {
   const params = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const {cards} = useAppSelector(state => state.pagePack);
+  const onOpenPopup = () => {
+    dispatch(setPopup({popup: PopupCard.NewCard, isPopup: true}))
+  }
 
   useEffect(() => {
     if(params.id) dispatch(getPackCards({cardsPack_id: params.id}))
@@ -32,12 +37,12 @@ export const PagePack: FC<PagePackType> = ({}) => {
     <Container className={s.pagePack} type={'section'}>
       <ButtonBack className={s.buttonBack} to={Link.MAIN}>Back to Packs List</ButtonBack>
 
-      {cards === [] &&
+      {cards.length === 0 &&
           <div className={s.contentNotCards}>
               <Title className={s.title} type={"h2"}>Name Pack</Title>
 
               <Caption className={s.caption}>This pack is empty. Click add new card to fill this pack</Caption>
-              <Button className={s.buttonAddCard} type={'button'}>Add new card</Button>
+              <Button className={s.buttonAddCard} type={'button'} onClickButton={onOpenPopup}>Add new card</Button>
           </div>
       }
 

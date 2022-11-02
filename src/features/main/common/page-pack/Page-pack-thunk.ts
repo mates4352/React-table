@@ -16,7 +16,7 @@ export const getPackCards = createAsyncThunk('pagePack/getPackCards', async (dat
 })
 
 export const addCard = createAsyncThunk('pagePack/addCard', async (dataCard: dataCardType, {
-  rejectWithValue
+  rejectWithValue,
 }) => {
   try {
     const response = await pagePackApi.setCard(dataCard)

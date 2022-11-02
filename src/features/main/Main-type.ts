@@ -1,4 +1,4 @@
-import {PopupPack} from "../../utils/enum/popup";
+import {PopupCard, PopupPack} from "../../utils/enum/popup";
 
 export type GetCardsApiType = {
   cardPacks: Array<CardPacksType>
@@ -48,3 +48,4 @@ export type DataNewPackType = {
 export type DataEditPackType = DataNewPackType
 
 export type PopupPackType = PopupPack.NewPack | PopupPack.EditPack | PopupPack.DeletePack;
+export type PopupCardType = PopupCard.NewCard | PopupCard.EditCard | PopupCard.DeleteCard;

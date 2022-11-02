@@ -8,7 +8,7 @@ import {dataNewCard} from "../../../../../features/main/common/page-pack/Page-pa
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../../hooks/useAppSelector";
 import {Statuses} from "../../../../../utils/enum/statuses";
-import {addCard} from "../../../../../features/main/common/page-pack/Page-pack-thunk";
+import {addCard, getPackCards} from "../../../../../features/main/common/page-pack/Page-pack-thunk";
 import {useParams} from "react-router-dom";
 
 type ContentNewCardType = {
@@ -19,7 +19,7 @@ export const ContentNewCard: FC<ContentNewCardType> = ({
   onClosePopup
 }) => {
   const dispatch = useAppDispatch();
-  const {loading} = useAppSelector(state => state.pagePack)
+  const {loading, cardsPackId, page, pageCounter} = useAppSelector(state => state.pagePack)
   const params = useParams<{id: string}>()
   return (
     <Formik
@@ -31,6 +31,7 @@ export const ContentNewCard: FC<ContentNewCardType> = ({
       onSubmit={async(dataNewCard: dataNewCard) => {
         if(params.id) {
           await dispatch(addCard({...dataNewCard, cardsPack_id: params.id}))
+          dispatch(getPackCards({cardsPack_id: params.id, page: page, pageCount: pageCounter}))
           onClosePopup()
         }
       }}
