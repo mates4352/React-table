@@ -4,12 +4,14 @@ import {appReducer} from "./App-slice";
 import {appLoadState, appSaveState} from "../utils/localStorage/appLocalStorage";
 import {mainReducer} from "../features/main/Main-slice";
 import {packsListReducer} from "../features/main/common/packs-list/Packs-list-slice";
+import {pagePacksReducer} from "../features/main/common/page-pack/Page-pack-slice";
 
 const rootReducer = combineReducers({
   app: appReducer,
   auth: authReducer,
   main: mainReducer,
-  packsList: packsListReducer
+  packsList: packsListReducer,
+  pagePack: pagePacksReducer,
 });
 
 export const store = configureStore({

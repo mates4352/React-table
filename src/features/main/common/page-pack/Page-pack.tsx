@@ -7,29 +7,34 @@ import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {Button} from "../../../../components/bll/button/Button";
 import {useParams} from "react-router-dom";
-import {pagePackApi} from "./Page-pack-api";
+import {getPackCards} from "./Page-pack-thunk";
+import {useAppDispatch} from "../../../../hooks/useAppDispatch";
+import {useAppSelector} from "../../../../hooks/useAppSelector";
 
 
-type PagePackType = {
-
-};
+type PagePackType = {};
 
 export const PagePack: FC<PagePackType> = ({}) => {
-  const params = useParams();
+  const params = useParams<{ id: string }>();
+  const dispatch = useAppDispatch();
+  const {cards} = useAppSelector(state => state.pagePack);
 
-  useEffect(()=> {
-
-  }, [])
+  useEffect(() => {
+    if(params.id) dispatch(getPackCards(params.id))
+  }, [dispatch, params.id])
 
   return (
     <Container className={s.pagePack} type={'section'}>
       <ButtonBack className={s.buttonBack} to={Link.MAIN}>Back to Packs List</ButtonBack>
-      <div className={s.contentNotCards}>
-        <Title className={s.title} type={"h2"}>Name Pack</Title>
 
-        <Caption className={s.caption}>This pack is empty. Click add new card to fill this pack</Caption>
-        <Button className={s.buttonAddCard} type={'button'}>Add new card</Button>
-      </div>
+      {cards.length === 0 &&
+          <div className={s.contentNotCards}>
+              <Title className={s.title} type={"h2"}>Name Pack</Title>
+
+              <Caption className={s.caption}>This pack is empty. Click add new card to fill this pack</Caption>
+              <Button className={s.buttonAddCard} type={'button'}>Add new card</Button>
+          </div>
+      }
     </Container>
   );
 };
