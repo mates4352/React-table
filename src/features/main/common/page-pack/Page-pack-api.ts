@@ -7,7 +7,7 @@ export const pagePackApi = {
   },
 
   setCard: async(dataCard: dataCardType) => {
-    return await instance.post('cards/card', {...dataCard})
+    return await instance.post('cards/card', {card: {...dataCard}})
   },
 
   deleteCard: async(idCard: string) => {

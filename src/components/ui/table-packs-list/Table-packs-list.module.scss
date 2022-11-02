@@ -1,15 +1,8 @@
+@import './../../../assets/style';
+
 .table {
   display: grid;
   grid-template-columns: repeat(5, minmax(min-content, 1fr));
-
-  border-collapse: collapse;
-  box-shadow: 0 0 4px var(--g-border-table);
-}
-
-.thead,
-.tbody,
-.tr {
-  display: contents;
 }
 
 .thead {
@@ -23,31 +16,7 @@
 
 }
 
-.tbody .td {
-  border-bottom: 1px solid var(--g-border-table);
-
-
-}
-
-.tbody .tr:last-of-type .td {
-  border-bottom: unset;
-}
-
-.th,
 .td {
-  padding: 15px;
-  text-align: left;
-  color: var(--g-dark);
-}
-
-.th {
-  font: var(--g-p3);
-  white-space: nowrap;
-  background-color: var(--g-blue-light-super);
-}
-
-.td {
-  font: var(--g-p4-1);
 }
 
 .tdWrap {

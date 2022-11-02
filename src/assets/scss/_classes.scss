@@ -17,3 +17,51 @@
   clip: rect(0 0 0 0);
   overflow: hidden;
 }
+
+.tableG {
+  border-collapse: collapse;
+  box-shadow: 0 0 4px var(--g-border-table);
+}
+
+.theadG {
+
+}
+
+.tbodyG {
+
+}
+
+.theadG,
+.tbodyG,
+.trG {
+  display: contents;
+}
+
+.trG {
+
+}
+
+.thG,
+.tdG {
+  padding: 15px;
+  text-align: left;
+  color: var(--g-dark);
+}
+
+.thG {
+  font: var(--g-p3);
+  white-space: nowrap;
+  background-color: var(--g-blue-light-super);
+}
+
+.tdG {
+  font: var(--g-p4-1);
+}
+
+.tbodyG .tdG {
+  border-bottom: 1px solid var(--g-border-table);
+}
+
+.tbodyG .trG:last-of-type .tdG {
+  border-bottom: unset;
+}

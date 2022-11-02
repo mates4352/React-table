@@ -53,46 +53,46 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
   }, [page, pageCount])
 
   return (
-    <table className={classNames(s.table, className)}>
-      <thead className={s.thead}>
-      <tr className={s.tr}>
-        <th className={s.th}>
+    <table className={classNames(s.table, s.tableG, className)}>
+      <thead className={classNames(s.thead, s.theadG)}>
+      <tr className={classNames(s.tr, s.trG)}>
+        <th className={classNames(s.th, s.thG)}>
           Name
         </th>
 
-        <th className={s.th}>
+        <th className={classNames(s.th, s.thG)}>
           Cards
         </th>
 
-        <th className={s.th}>
+        <th className={classNames(s.th, s.thG)}>
           <ButtonFilterTableDate onClickButton={async() => {
             await dispatch(setSortCardPacks(!sortCardPacks))
             dispatch(setCardPacks())
           }}>Last Updated</ButtonFilterTableDate>
         </th>
 
-        <th className={s.th}>
+        <th className={classNames(s.th, s.thG)}>
           Created by
         </th>
 
-        <th className={s.th}>
+        <th className={classNames(s.th, s.thG)}>
           Actions
         </th>
       </tr>
       </thead>
 
-      <tbody className={s.tbody}>
+      <tbody className={classNames(s.tbody, s.tbodyG)}>
       {cardPacks.map((item: CardPacksType) =>
-        <tr className={s.tr} key={item._id}>
-          <td className={s.td}>
+        <tr className={classNames(s.tr, s.trG)} key={item._id}>
+          <td className={classNames(s.td, s.tdG)}>
             <div className={s.tdWrap}>{item.name}</div>
           </td>
-          <td className={s.td}>{item.cardsCount}</td>
-          <td className={s.td}>{item.updated.substr(0, 10)}</td>
-          <td className={s.td}>
+          <td className={classNames(s.td, s.tdG)}>{item.cardsCount}</td>
+          <td className={classNames(s.td, s.tdG)}>{item.updated.substr(0, 10)}</td>
+          <td className={classNames(s.td, s.tdG)}>
             <div className={s.tdWrap}>{item.user_name}</div>
           </td>
-          <td className={s.td}>
+          <td className={classNames(s.td, s.tdG)}>
             {item.user_id === _id ?
               <Actions
                 showActions={[TypeButtonAction.TEACHER, TypeButtonAction.EDIT, TypeButtonAction.DELETE]}

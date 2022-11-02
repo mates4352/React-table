@@ -11,6 +11,7 @@ import {
   getCardsPack,
   newPack
 } from "../features/main/common/packs-list/Packs-list-thunk";
+import {addCard, getPackCards} from "../features/main/common/page-pack/Page-pack-thunk";
 
 export const getDataUser = createAsyncThunk('auth/getDataUser', async(_, {
   rejectWithValue
@@ -37,4 +38,6 @@ export const authNamesThunks = [
   deletePack.typePrefix,
   editProfile.typePrefix,
   logout.typePrefix,
+  getPackCards.typePrefix,
+  addCard.typePrefix,
 ]

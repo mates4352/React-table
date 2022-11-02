@@ -1,0 +1,10 @@
+@import './../../../assets/style';
+
+.table {
+  display: grid;
+  grid-template-columns:
+          repeat(2, minmax(min-content, 2fr))
+          repeat(2, minmax(min-content, 1.5fr))
+          minmax(min-content, 1fr)
+;
+}

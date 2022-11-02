@@ -11,34 +11,49 @@ export type getPackCardsType = {
 
 export type responsePackCardsType = {
   cards: Array<cardsType>
-  cardsTotalCount: number
-  maxGrade: number
-  minGrade: number
+  packUserId: string
+  packName: string
+  packPrivate: boolean
+  packCreated: string
+  packUpdated: string
   page: number
   pageCount: number
-  packUserId: string
+  cardsTotalCount: number
+  minGrade: number
+  maxGrade: number
+  token: string
+  tokenDeathTime: number
 }
 
 export type cardsType = {
+  _id: string
+  cardsPack_id: string
+  user_id: string
   answer: string
   question: string
-  cardsPack_id: string
   grade: number
   shots: number
-  user_id: string
+  comments: string
+  type: string
+  rating: number
+  more_id: string
   created: string
   updated: string
-  _id: string
 }
 
 export type dataCardType = {
   cardsPack_id: string
-  question: string
-  answer: string
-  grade: number
-  shots: number
-  answerImg: string
-  questionImg: string
-  questionVideo: string
-  answerVideo: string
+  question?: string
+  answer?: string
+  grade?: number
+  shots?: number
+  answerImg?: string
+  questionImg?: string
+  questionVideo?: string
+  answerVideo?: string
+}
+
+export type dataNewCard = {
+  cardAnswer: string
+  cardQuestion: string
 }

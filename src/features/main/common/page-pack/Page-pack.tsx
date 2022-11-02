@@ -10,6 +10,11 @@ import {useParams} from "react-router-dom";
 import {getPackCards} from "./Page-pack-thunk";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
+import {PopupAction} from "../../../../components/ui/popup-action/Popup-action";
+import {ContentNewCard} from "../../../../components/ui/popup-action/content/content-new-card/Content-new-card";
+import {PopupNewCard} from "../../../../components/ui/popup-action/popups/popup-new-card/Popup-new-card";
+import {cardsType} from "./Page-pack-type";
+import {TableMyPagePack} from "../../../../components/ui/table-my-page-pack/Table-my-page-pack";
 
 
 type PagePackType = {};
@@ -20,14 +25,14 @@ export const PagePack: FC<PagePackType> = ({}) => {
   const {cards} = useAppSelector(state => state.pagePack);
 
   useEffect(() => {
-    if(params.id) dispatch(getPackCards(params.id))
+    if(params.id) dispatch(getPackCards({cardsPack_id: params.id}))
   }, [dispatch, params.id])
 
   return (
     <Container className={s.pagePack} type={'section'}>
       <ButtonBack className={s.buttonBack} to={Link.MAIN}>Back to Packs List</ButtonBack>
 
-      {cards.length === 0 &&
+      {cards === [] &&
           <div className={s.contentNotCards}>
               <Title className={s.title} type={"h2"}>Name Pack</Title>
 
@@ -35,6 +40,12 @@ export const PagePack: FC<PagePackType> = ({}) => {
               <Button className={s.buttonAddCard} type={'button'}>Add new card</Button>
           </div>
       }
+
+      {cards.length >= 1 &&
+        <TableMyPagePack cards={cards}/>
+      }
+
+    <PopupNewCard/>
     </Container>
   );
 };
