@@ -7,8 +7,8 @@ import {LoadingType} from "../../../../app/App-type";
 import {someNamesThunks} from "../../../../utils/helpers/functions/someNamesThunks";
 import {authNamesThunks} from "../../../../app/App-thunk";
 import {Statuses} from "../../../../utils/enum/statuses";
-import {PopupCardType, PopupPackType} from "../../Main-type";
-import {PopupCard, PopupPack} from "../../../../utils/enum/popup";
+import {PopupCardType} from "../../Main-type";
+import {PopupCard} from "../../../../utils/enum/popup";
 
 interface PagePackStateType {
   packCards: responsePackCardsType
@@ -21,7 +21,6 @@ interface PagePackStateType {
   }
   page: number
   pageCounter: number
-  cardsPackId: string
 }
 
 export const initialState = {
@@ -46,7 +45,6 @@ export const initialState = {
     isPopupEditCard: false,
     isPopupDeleteCard: false,
   },
-  cardsPackId: '',
   loading: '',
   page: 1,
   pageCounter: 8
@@ -72,9 +70,6 @@ const pagePackSlice = createSlice({
     builder.addCase(getPackCards.fulfilled.type, (state: PagePackStateType, action: PayloadAction<responsePackCardsType>) => {
       state.packCards = action.payload
       state.cards = action.payload.cards
-    })
-    .addCase(addCard.fulfilled.type, (state: PagePackStateType, action: PayloadAction<responseCardType>) => {
-      state.cardsPackId = action.payload.newCard.cardsPack_id
     })
     .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/pending', action.type),(state: PagePackStateType, action: PayloadAction<string>) => {
         state.loading = Statuses.PENDING;

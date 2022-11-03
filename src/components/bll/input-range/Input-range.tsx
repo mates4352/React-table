@@ -29,9 +29,6 @@ export const InputRange: FC<InputRangeType> = memo(({
   setValue,
   className
 }) => {
-  const dispatch = useAppDispatch();
-  const {isInputRange} = useAppSelector(state => state.packsList)
-
   const handleChange = (event: Event, newValue: newValueInputRangeType) => {
     setValue(newValue as number[]);
   };

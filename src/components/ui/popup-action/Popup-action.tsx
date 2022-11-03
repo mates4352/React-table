@@ -1,15 +1,11 @@
-import React, {FC, memo} from 'react';
+import React, {FC, memo, ReactNode} from 'react';
 import s from './Popup-action.module.scss';
 import {AnimatePresence, motion} from "framer-motion";
-import {ContentNewPack} from "./content/content-new-pack/Content-new-pack";
-import {ContentEditPack} from "./content/content-edit-pack/Content-edit-pack";
-import {ContentDeletePack} from "./content/content-delete-pack/Content-delete-pack";
 
-type ChildrenType = ReturnType<typeof ContentNewPack> | ReturnType<typeof ContentEditPack> | ReturnType<typeof ContentDeletePack>
 type PopupActionType = {
   className?: string
   title: string
-  children: ChildrenType
+  children: ReactNode
   isPopup: boolean
   onClickPopup: () => void
 };
