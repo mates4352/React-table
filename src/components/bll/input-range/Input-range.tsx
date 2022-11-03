@@ -1,8 +1,10 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, memo, useEffect} from 'react';
 import s from './Input-range.module.scss';
 import classNames from "classnames/bind";
 import Slider from '@mui/material/Slider';
 import {Box} from "@mui/material";
+import {useAppDispatch} from "../../../hooks/useAppDispatch";
+import {useAppSelector} from "../../../hooks/useAppSelector";
 
 export type newValueInputRangeType = number | number[];
 
@@ -11,14 +13,14 @@ type InputRangeType = {
   max: number
   value: number[]
   title: string
-  onChangeValue?: (newValue: number[]) => void
+  onChangeValue: (newValue: number[]) => () => void
   setValue: (newValue: number[]) => void
   className?: {
     inputRange?: string
   }
 };
 
-export const InputRange: FC<InputRangeType> = ({
+export const InputRange: FC<InputRangeType> = memo(({
   min,
   max,
   value,
@@ -27,17 +29,12 @@ export const InputRange: FC<InputRangeType> = ({
   setValue,
   className
 }) => {
+  const dispatch = useAppDispatch();
+  const {isInputRange} = useAppSelector(state => state.packsList)
 
   const handleChange = (event: Event, newValue: newValueInputRangeType) => {
     setValue(newValue as number[]);
   };
-
-  useEffect(() => {
-    const idTimeout = setTimeout(() => {
-      onChangeValue && onChangeValue(value)
-    }, 300)
-    return () => clearTimeout(idTimeout)
-  }, [value[0], value[1]])
 
   return (
     <div className={s.inputRange}>
@@ -52,6 +49,7 @@ export const InputRange: FC<InputRangeType> = ({
             max={max}
             value={value}
             onChange={handleChange}
+            onMouseUp={onChangeValue(value)}
             getAriaLabel={() => 'Temperature range'}
             valueLabelDisplay="auto"
           />
@@ -61,4 +59,4 @@ export const InputRange: FC<InputRangeType> = ({
       </div>
     </div>
   );
-};
+})

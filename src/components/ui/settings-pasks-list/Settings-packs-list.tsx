@@ -33,9 +33,9 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
     setValueTab('All')
     dispatch(filterPack({type: 'All'}));
   }, [])
-  const onChangeValueInputRange = useCallback((valueMinMax: number[]) => {
+  const onChangeValueInputRange = useCallback((valueMinMax: number[]) => () => {
     dispatch(getCardsPack({page: page, pageCount: pageCount, min: valueMinMax[0], max: valueMinMax[1]}))
-  }, [valueInputRange])
+  }, [])
   const onFilterRemove = useCallback(() => {
     setValueTab('All')
     setText('')

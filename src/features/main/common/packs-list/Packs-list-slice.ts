@@ -18,6 +18,7 @@ interface MainStateType {
   cardPacks: Array<CardPacksType>
   sortCardPacks: boolean
   idPack: string
+  isInputRange: boolean
 }
 
 const initialState = {
@@ -41,6 +42,7 @@ const initialState = {
   cardPacks: [],
   sortCardPacks: false,
   idPack: '',
+  isInputRange: false
 } as MainStateType;
 
 const packsListSlice = createSlice({
@@ -83,6 +85,9 @@ const packsListSlice = createSlice({
     setIdPack: (state: MainStateType, action: PayloadAction<string>) => {
       state.idPack = action.payload
     },
+    setInputRange: (state: MainStateType, action: PayloadAction<boolean>) => {
+      state.isInputRange = action.payload
+    },
     setPage: (state: MainStateType, action: PayloadAction<number>) => {
       state.page = action.payload
     },
@@ -99,5 +104,5 @@ const packsListSlice = createSlice({
 });
 
 export const {reducer} = packsListSlice;
-export const {setPopup, setIdPack, setPage, setPageCount, filterPack, searchPack, setCardPacks, setSortCardPacks} = packsListSlice.actions;
+export const {setPopup, setIdPack, setPage, setPageCount, filterPack, searchPack, setCardPacks, setSortCardPacks, setInputRange} = packsListSlice.actions;
 export const packsListReducer = reducer;
