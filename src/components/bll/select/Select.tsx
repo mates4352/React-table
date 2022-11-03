@@ -5,6 +5,7 @@ import {ButtonPaginationArrow} from "../button-pagination-arrow/Button-paginatio
 import classNames from "classnames/bind";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {setPageCount} from "../../../features/main/common/packs-list/Packs-list-slice";
+import {IconSmallArrow} from "../../icons/icon-small-arrow/Icon-small-arrow";
 
 type SelectType = {
   select: number
@@ -35,7 +36,7 @@ export const Select: FC<SelectType> = memo(({
         type={'button'}
         onClick={() => {setOptions(value => !value)}}>
         {selectName}
-        <ButtonPaginationArrow classNameIcon={classNames(s.icon, isOptions && s.iconActive)}/>
+        <IconSmallArrow className={classNames(s.icon, isOptions && s.iconActive)}/>
       </button>
 
       <AnimatePresence>
