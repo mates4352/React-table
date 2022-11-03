@@ -19,16 +19,25 @@ import {
   PopupActionDeletePack
 } from "../../../../components/ui/popup-action/popups/popup-action-delete-pack/Popup-action-delete-pack";
 import {Pagination} from "../../../../components/bll/pagination/Pagination";
-import {setPopup} from "./Packs-list-slice";
+import {setPage, setPageCount, setPopup} from "./Packs-list-slice";
 
 type PacksListType = {};
 
 export const PacksList: FC<PacksListType> = memo(({}) => {
   const dispatch = useAppDispatch();
-  const {isPopup, page, packsList} = useAppSelector(state => state.packsList);
+  const {isPopup, page, pageCount, packsList} = useAppSelector(state => state.packsList);
+
   const onClickPopupNewPack = useCallback(() => {
     dispatch(setPopup({popup: PopupPack.NewPack, isPopup: !isPopup.isPopupNewPack}))
   }, [isPopup.isPopupNewPack])
+
+  const onClickButton = useCallback((button: number) => {
+    dispatch(setPage(button))
+  }, [dispatch])
+
+  const onClickSelect = useCallback((option: number) => {
+    dispatch(setPageCount(option))
+  }, [dispatch])
 
   return (
     <>
@@ -50,7 +59,14 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
           <TablePacksList className={s.table}/>
         </AnimationPage>
 
-        <Pagination page={page} maxPageNumber={5} pageCurrentCount={packsList.cardPacksTotalCount}/>
+        <Pagination
+          page={page}
+          pageCount={pageCount}
+          maxPageNumber={5}
+          pageCurrentCount={packsList.cardPacksTotalCount}
+          onClickButton={onClickButton}
+          onClickSelect={onClickSelect}
+        />
       </Container>
 
       <PopupActionNewPack/>

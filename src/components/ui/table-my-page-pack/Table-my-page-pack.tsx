@@ -7,15 +7,17 @@ import {TypeButtonAction} from "../../../utils/enum/type-button-action";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 
 type TableMyPagePackType = {
+  className: string
   cards: Array<cardsType>
 };
 
 export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
+  className,
   cards
 }) => {
   const {_id} = useAppSelector(state => state.app.user)
   return (
-    <table className={classNames(s.table, s.tableG)}>
+    <table className={classNames(s.table, s.tableG, className)}>
       <thead className={classNames(s.thead, s.theadG)}>
       <tr className={classNames(s.tr, s.trG)}>
         <th className={classNames(s.th, s.thG)}>

@@ -20,7 +20,7 @@ interface PagePackStateType {
     isPopupDeleteCard: boolean
   }
   page: number
-  pageCounter: number
+  pageCount: number
 }
 
 export const initialState = {
@@ -47,7 +47,7 @@ export const initialState = {
   },
   loading: '',
   page: 1,
-  pageCounter: 8
+  pageCount: 8
 } as PagePackStateType
 
 
@@ -64,6 +64,14 @@ const pagePackSlice = createSlice({
         state.isPopup.isPopupDeleteCard = action.payload.isPopup
       }
     },
+
+    setPageCards: (state: PagePackStateType, action: PayloadAction<number>) => {
+      state.page = action.payload
+    },
+
+    setPageCountCards: (state: PagePackStateType, action: PayloadAction<number>) => {
+      state.pageCount = action.payload
+    }
   },
 
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
@@ -87,4 +95,4 @@ const pagePackSlice = createSlice({
 })
 
 export const pagePacksReducer = pagePackSlice.reducer
-export const {setPopup} = pagePackSlice.actions;
+export const {setPopup, setPageCards, setPageCountCards} = pagePackSlice.actions;

@@ -9,6 +9,7 @@ import {setPageCount} from "../../../features/main/common/packs-list/Packs-list-
 type SelectType = {
   select: number
   options: Array<number>
+  onClickSelect: (option: number) => void
 };
 
 const animations = {
@@ -19,7 +20,8 @@ const animations = {
 
 export const Select: FC<SelectType> = memo(({
   select,
-  options
+  options,
+  onClickSelect
 }) => {
   const dispatch = useAppDispatch();
   const [selectName, setSelectName] = useState(select)
@@ -50,7 +52,7 @@ export const Select: FC<SelectType> = memo(({
                     arr.push(selectName)
                     setArrOptions(arr)
                     setSelectName(option)
-                    dispatch(setPageCount(option))
+                    onClickSelect(option)
                   }}>{option}</button>
                 </li>
               )}

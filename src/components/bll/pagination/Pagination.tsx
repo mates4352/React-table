@@ -9,25 +9,34 @@ import {setPage} from "../../../features/main/common/packs-list/Packs-list-slice
 
 type PaginationType = {
   page: number
+  pageCount: number
   maxPageNumber: number
   pageCurrentCount: number
+  onClickSelect: (option: number) => void
+  onClickButton: (button: number) => void
 };
 
 export const Pagination: FC<PaginationType> = memo(({
   page,
+  pageCount,
   maxPageNumber,
-  pageCurrentCount
+  pageCurrentCount,
+  onClickSelect,
+  onClickButton
 }) => {
-  const {pageCount} = useAppSelector(state => state.packsList)
   const [maxNumber, setMaxNumber] = useState<number>(maxPageNumber)
-  const dispatch = useAppDispatch();
+  const arryButton = []
+  const maxNumberCount = Math.ceil(pageCurrentCount / pageCount)
 
-  const arryButton = [1, 2, 3, 4, 5]
-
+  console.log()
   if(pageCurrentCount > maxNumber) {
-    if(maxNumber > 5) {
+    if(maxNumberCount > 5) {
       for(let i = maxNumber - 4, j = 0; i <= maxNumber; i++, j++) {
         arryButton[j] = i
+      }
+    } else {
+      for(let i = 1; i <= maxNumberCount; i++) {
+        arryButton[i] = i
       }
     }
   }
@@ -57,21 +66,26 @@ export const Pagination: FC<PaginationType> = memo(({
           {arryButton.map((button: number) =>
             <li className={s.item} key={button}>
               <PaginationButton pageCurrent={page} onClickButton={() => {
-                dispatch(setPage(button))
+                onClickButton(button)
               }}>{button}</PaginationButton>
             </li>
           )}
         </ul>
 
-        <div className={s.ellipsis}>...</div>
 
-        <PaginationButton
-          className={s.buttonPaginationMax}
-          onClickButton={() => {
-            if(pageCurrentCount > maxNumber) setMaxNumber((value: number) => value += 5)
-          }}>
-          {maxNumber + 1}
-        </PaginationButton>
+        {maxNumberCount > 5 &&
+            <>
+                <div className={s.ellipsis}>...</div>
+
+                <PaginationButton
+                    className={s.buttonPaginationMax}
+                    onClickButton={() => {
+                      if(pageCurrentCount > maxNumber) setMaxNumber((value: number) => value += 5)
+                    }}>
+                  {maxNumber + 1}
+                </PaginationButton>
+            </>
+        }
 
         <ButtonPaginationArrow classNameIcon={s.iconRight} onClickButton={() => {
           if(pageCurrentCount > maxNumber) setMaxNumber((value: number) => value += 1)
@@ -81,7 +95,7 @@ export const Pagination: FC<PaginationType> = memo(({
       <div className={s.showMaxPage}>
         <span className={s.show}>Show</span>
 
-        <Select select={pageCount} options={[10, 15, 20]}/>
+        <Select select={pageCount} options={[10, 15, 20]} onClickSelect={onClickSelect}/>
 
         <span className={s.show}>Cards per Page</span>
       </div>

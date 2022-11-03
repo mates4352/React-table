@@ -20,7 +20,7 @@ type PopupNewCardType = {
 export const PopupNewCard: FC<PopupNewCardType> = memo(({}) => {
   const dispatch = useAppDispatch()
   const params = useParams<{id: string}>()
-  const {isPopup, loading, page, pageCounter} = useAppSelector(state => state.pagePack)
+  const {isPopup, loading, page, pageCount} = useAppSelector(state => state.pagePack)
   const onClosePopup = useCallback( () => {
     dispatch(setPopup({popup: PopupCard.NewCard, isPopup: false}))
   }, [])
@@ -36,7 +36,7 @@ export const PopupNewCard: FC<PopupNewCardType> = memo(({}) => {
         onSubmit={async(dataNewCard: dataNewCard) => {
           if(params.id) {
             await dispatch(addCard({...dataNewCard, cardsPack_id: params.id}))
-            dispatch(getPackCards({cardsPack_id: params.id, page: page, pageCount: pageCounter}))
+            dispatch(getPackCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
             onClosePopup()
           }
         }}
