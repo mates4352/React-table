@@ -16,6 +16,7 @@ import {searchCard, setPageCards, setPageCountCards, setPopup} from "./Page-pack
 import {PopupCard} from "../../../../utils/enum/popup";
 import {InputSearch} from "../../../../components/bll/inputSearch/InputSearch";
 import {Pagination} from "../../../../components/bll/pagination/Pagination";
+import {PopupDeleteCard} from "../../../../components/ui/popup-action/popups/popup-delete-card/Popup-delete-card";
 
 type PagePackType = {};
 
@@ -91,6 +92,7 @@ export const PagePack: FC<PagePackType> = ({}) => {
           </>
       }
     <PopupNewCard/>
+    <PopupDeleteCard/>
     </Container>
   );
 };

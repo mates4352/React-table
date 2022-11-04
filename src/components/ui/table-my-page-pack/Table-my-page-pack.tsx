@@ -5,6 +5,9 @@ import classNames from "classnames";
 import {Actions} from "../actions/Actions";
 import {TypeButtonAction} from "../../../utils/enum/type-button-action";
 import {useAppSelector} from "../../../hooks/useAppSelector";
+import {useAppDispatch} from "../../../hooks/useAppDispatch";
+import {addIdCard, setPopup} from "../../../features/main/common/page-pack/Page-pack-slice";
+import {PopupCard} from "../../../utils/enum/popup";
 
 type TableMyPagePackType = {
   className: string
@@ -15,7 +18,14 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
   className,
   cards
 }) => {
+  const dispatch = useAppDispatch();
+  const {isPopup} = useAppSelector(state => state.pagePack)
   const {_id} = useAppSelector(state => state.app.user)
+
+  const onClickButtonDelete = (idCard: string) => () => {
+    dispatch(addIdCard(idCard))
+    dispatch(setPopup({isPopup: true, popup: PopupCard.DeleteCard}))
+  }
   return (
     <table className={classNames(s.table, s.tableG, className)}>
       <thead className={classNames(s.thead, s.theadG)}>
@@ -55,7 +65,7 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
           <td className={classNames(s.td, s.tdG)}>
             <Actions
               showActions={[TypeButtonAction.EDIT, TypeButtonAction.DELETE]}
-              onClickButtonDelete={() => console.log('hello')}
+              onClickButtonDelete={onClickButtonDelete(card._id)}
               onClickButtonEdit={() => console.log('hello')}
             />
           </td>

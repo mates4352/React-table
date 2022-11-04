@@ -26,3 +26,14 @@ export const addCard = createAsyncThunk('pagePack/addCard', async (dataCard: dat
     return rejectWithValue(error.response?.data.error);
   }
 })
+
+export const deleteCard = createAsyncThunk('pagePack/deleteCard', async (idCard: string, {
+  rejectWithValue,
+}) => {
+  try {
+    await pagePackApi.deleteCard(idCard)
+  } catch(e) {
+    const error = e as AxiosError<any>;
+    return rejectWithValue(error.response?.data.error);
+  }
+})

@@ -1,7 +1,7 @@
 import {AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
-import {addCard, getPackCards} from "./Page-pack-thunk";
+import {addCard, deleteCard, getPackCards} from "./Page-pack-thunk";
 import {cardsType, responseCardType, responsePackCardsType} from "./Page-pack-type";
 import {LoadingType} from "../../../../app/App-type";
 import {someNamesThunks} from "../../../../utils/helpers/functions/someNamesThunks";
@@ -21,6 +21,7 @@ interface PagePackStateType {
   }
   page: number
   pageCount: number
+  idCard: string
 }
 
 export const initialState = {
@@ -47,7 +48,8 @@ export const initialState = {
   },
   loading: '',
   page: 1,
-  pageCount: 8
+  pageCount: 8,
+  idCard: ''
 } as PagePackStateType
 
 
@@ -55,7 +57,7 @@ const pagePackSlice = createSlice({
   name: 'pagePack',
   initialState,
   reducers: {
-    setPopup: (state: PagePackStateType, action: PayloadAction<{ popup: PopupCardType, isPopup: boolean}>) => {
+    setPopup: (state: PagePackStateType, action: PayloadAction<{ popup: PopupCardType, isPopup: boolean }>) => {
       if(action.payload.popup === PopupCard.NewCard) {
         state.isPopup.isPopupAddNewCard = action.payload.isPopup
       } else if(action.payload.popup === PopupCard.EditCard) {
@@ -73,12 +75,16 @@ const pagePackSlice = createSlice({
       state.pageCount = action.payload
     },
 
+    addIdCard: (state: PagePackStateType, action: PayloadAction<string>) => {
+      state.idCard = action.payload
+    },
+
     searchCard: (state: PagePackStateType, action: PayloadAction<string>) => {
       if(action.payload) {
         const arrayCards = state.packCards.cards.filter(card => {
           const answer = card.answer.toLowerCase().slice(0, action.payload.length) === action.payload.toLowerCase().trim()
           const question = card.question.toLowerCase().slice(0, action.payload.length) === action.payload.toLowerCase().trim()
-          return  answer || question
+          return answer || question
         })
         if(arrayCards.length !== 0) {
           state.cards = arrayCards
@@ -96,15 +102,18 @@ const pagePackSlice = createSlice({
       state.packCards = action.payload
       state.cards = action.payload.cards
     })
-    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/pending', action.type),(state: PagePackStateType, action: PayloadAction<string>) => {
+    .addCase(deleteCard.fulfilled.type, (state: PagePackStateType) => {
+      state.idCard = ''
+    })
+    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/pending', action.type), (state: PagePackStateType, action: PayloadAction<string>) => {
         state.loading = Statuses.PENDING;
       }
     )
-    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/fulfilled', action.type),(state: PagePackStateType, action: PayloadAction<string>) => {
+    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/fulfilled', action.type), (state: PagePackStateType, action: PayloadAction<string>) => {
         state.loading = Statuses.SUCCEEDED;
       }
     )
-    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/rejected', action.type),(state: PagePackStateType, action: PayloadAction<string>) => {
+    .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/rejected', action.type), (state: PagePackStateType, action: PayloadAction<string>) => {
         state.loading = Statuses.FAILED;
       }
     )
@@ -112,4 +121,4 @@ const pagePackSlice = createSlice({
 })
 
 export const pagePacksReducer = pagePackSlice.reducer
-export const {setPopup, setPageCards, setPageCountCards, searchCard} = pagePackSlice.actions;
+export const {setPopup, setPageCards, setPageCountCards, searchCard, addIdCard} = pagePackSlice.actions;
