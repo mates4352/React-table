@@ -6,8 +6,15 @@ import {Actions} from "../actions/Actions";
 import {TypeButtonAction} from "../../../utils/enum/type-button-action";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {addIdCard, setPopup} from "../../../features/main/common/page-pack/Page-pack-slice";
+import {
+  addIdCard,
+  changeIsSortCards,
+  setPopup,
+  sortCards
+} from "../../../features/main/common/page-pack/Page-pack-slice";
 import {PopupCard} from "../../../utils/enum/popup";
+import {ButtonFilterTableDate} from "../../bll/button-filter-table-date/Button-filter-table-date";
+import {setCardPacks, setSortCardPacks} from "../../../features/main/common/packs-list/Packs-list-slice";
 
 type TableMyPagePackType = {
   className: string
@@ -19,7 +26,7 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
   cards
 }) => {
   const dispatch = useAppDispatch();
-  const {isPopup} = useAppSelector(state => state.pagePack)
+  const {isPopup, isSortCards} = useAppSelector(state => state.pagePack)
   const {_id} = useAppSelector(state => state.app.user)
 
   const onClickButtonDelete = (idCard: string) => () => {
@@ -39,7 +46,10 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
         </th>
 
         <th className={classNames(s.th, s.thG)}>
-          Last Updated
+          <ButtonFilterTableDate onClickButton={async() => {
+            await dispatch(changeIsSortCards(!isSortCards))
+            dispatch(sortCards())
+          }}>Last Updated</ButtonFilterTableDate>
         </th>
 
         <th className={classNames(s.th, s.thG)}>

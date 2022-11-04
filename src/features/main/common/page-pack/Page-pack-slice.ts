@@ -1,8 +1,8 @@
 import {AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
-import {addCard, deleteCard, getPackCards} from "./Page-pack-thunk";
-import {cardsType, responseCardType, responsePackCardsType} from "./Page-pack-type";
+import {deleteCard, getPackCards} from "./Page-pack-thunk";
+import {cardsType, responsePackCardsType} from "./Page-pack-type";
 import {LoadingType} from "../../../../app/App-type";
 import {someNamesThunks} from "../../../../utils/helpers/functions/someNamesThunks";
 import {authNamesThunks} from "../../../../app/App-thunk";
@@ -22,6 +22,7 @@ interface PagePackStateType {
   page: number
   pageCount: number
   idCard: string
+  isSortCards: boolean
 }
 
 export const initialState = {
@@ -49,7 +50,8 @@ export const initialState = {
   loading: '',
   page: 1,
   pageCount: 8,
-  idCard: ''
+  idCard: '',
+  isSortCards: false,
 } as PagePackStateType
 
 
@@ -94,7 +96,17 @@ const pagePackSlice = createSlice({
       } else {
         state.cards = state.packCards.cards
       }
-    }
+    },
+    sortCards: (state: PagePackStateType) => {
+      if(state.isSortCards) {
+        state.cards = state.packCards.cards.sort((a, b) => Date.parse(a.updated) - Date.parse(b.updated))
+      } else {
+        state.cards = state.packCards.cards.sort((a, b) => Date.parse(b.updated) - Date.parse(a.updated))
+      }
+    },
+    changeIsSortCards: (state: PagePackStateType, action: PayloadAction<boolean>) => {
+      state.isSortCards = action.payload
+    },
   },
 
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
@@ -121,4 +133,4 @@ const pagePackSlice = createSlice({
 })
 
 export const pagePacksReducer = pagePackSlice.reducer
-export const {setPopup, setPageCards, setPageCountCards, searchCard, addIdCard} = pagePackSlice.actions;
+export const {setPopup, setPageCards, setPageCountCards, searchCard, addIdCard, sortCards, changeIsSortCards} = pagePackSlice.actions;
