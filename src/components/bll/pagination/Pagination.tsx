@@ -28,33 +28,28 @@ export const Pagination: FC<PaginationType> = memo(({
   const arryButton = []
   const maxNumberCount = Math.ceil(pageCurrentCount / pageCount)
 
-  console.log()
-  if(pageCurrentCount > maxNumber) {
-    if(maxNumberCount > 5) {
-      for(let i = maxNumber - 4, j = 0; i <= maxNumber; i++, j++) {
-        arryButton[j] = i
-      }
-    } else {
-      for(let i = 1; i <= maxNumberCount; i++) {
-        arryButton[i] = i
-      }
+  if(maxNumberCount > 5) {
+    for(let i = maxNumber - 4, j = 0; i <= maxNumber; i++, j++) {
+      arryButton[j] = i
+    }
+  } else {
+    for(let i = 1; i <= maxNumberCount; i++) {
+      arryButton[i] = i
     }
   }
 
   return (
     <div className={s.pagination}>
       <div className={s.wrap}>
-        <ButtonPaginationArrow classNameIcon={s.iconLeft} onClickButton={() => {
-          if(maxNumber > 5) setMaxNumber((value: number) => value -= 1)
+        <ButtonPaginationArrow classNameIcon={s.iconLeft} disabled={maxNumber <= 5} onClickButton={() => {
+          setMaxNumber((value: number) => value -= 1)
         }}/>
 
         {maxNumber >= 10 &&
             <>
                 <PaginationButton
                     className={s.buttonPaginationMax}
-                    onClickButton={() => {
-                      setMaxNumber((value: number) => value -= 5)
-                    }}>
+                    onClickButton={() => {setMaxNumber((value: number) => value -= 5)}}>
                   {maxNumber - 5}
                 </PaginationButton>
 
@@ -79,16 +74,14 @@ export const Pagination: FC<PaginationType> = memo(({
 
                 <PaginationButton
                     className={s.buttonPaginationMax}
-                    onClickButton={() => {
-                      if(pageCurrentCount > maxNumber) setMaxNumber((value: number) => value += 5)
-                    }}>
+                    onClickButton={() => {setMaxNumber((value: number) => value += 5)}}>
                   {maxNumber + 1}
                 </PaginationButton>
             </>
         }
 
-        <ButtonPaginationArrow classNameIcon={s.iconRight} onClickButton={() => {
-          if(pageCurrentCount > maxNumber) setMaxNumber((value: number) => value += 1)
+        <ButtonPaginationArrow classNameIcon={s.iconRight} disabled={maxNumberCount <= 5} onClickButton={() => {
+          setMaxNumber((value: number) => value += 1)
         }}/>
       </div>
 

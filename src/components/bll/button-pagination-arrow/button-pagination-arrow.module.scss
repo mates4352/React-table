@@ -1,0 +1,5 @@
+.buttonArrow {
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
