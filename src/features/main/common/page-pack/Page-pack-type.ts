@@ -75,6 +75,6 @@ export type dataCardType = {
 }
 
 export type dataNewCard = {
-  cardAnswer: string
-  cardQuestion: string
+  question: string
+  answer: string
 }

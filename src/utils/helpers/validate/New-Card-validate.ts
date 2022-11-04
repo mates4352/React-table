@@ -1,8 +1,8 @@
 import * as Yup from 'yup';
 
 export const newCardSchema = Yup.object().shape({
-  cardAnswer: Yup.string()
+  answer: Yup.string()
   .required('Required value name'),
-  cardQuestion: Yup.string()
+  question: Yup.string()
   .required('Required value name'),
 });

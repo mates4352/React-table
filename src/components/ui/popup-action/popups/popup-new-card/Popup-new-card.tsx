@@ -29,8 +29,8 @@ export const PopupNewCard: FC<PopupNewCardType> = memo(({}) => {
     <PopupAction title={'Add new card'} isPopup={isPopup.isPopupAddNewCard} onClickPopup={onClosePopup}>
       <Formik
         initialValues={{
-          cardQuestion: '',
-          cardAnswer: '',
+          question: '',
+          answer: '',
         }}
         validationSchema={newCardSchema}
         onSubmit={async(dataNewCard: dataNewCard) => {
@@ -45,14 +45,14 @@ export const PopupNewCard: FC<PopupNewCardType> = memo(({}) => {
           <Form className={s.form}>
             <Field
               className={s.input}
-              name={'cardQuestion'}
+              name={'question'}
               type={'text'}
               label={'Question'}
               component={Input}/>
 
             <Field
               className={s.input}
-              name={'cardAnswer'}
+              name={'answer'}
               type={'text'}
               label={'Answer'}
               component={Input}/>
