@@ -71,6 +71,23 @@ const pagePackSlice = createSlice({
 
     setPageCountCards: (state: PagePackStateType, action: PayloadAction<number>) => {
       state.pageCount = action.payload
+    },
+
+    searchCard: (state: PagePackStateType, action: PayloadAction<string>) => {
+      if(action.payload) {
+        const arrayCards = state.packCards.cards.filter(card => {
+          const answer = card.answer.toLowerCase().slice(0, action.payload.length) === action.payload.toLowerCase().trim()
+          const question = card.question.toLowerCase().slice(0, action.payload.length) === action.payload.toLowerCase().trim()
+          return  answer || question
+        })
+        if(arrayCards.length !== 0) {
+          state.cards = arrayCards
+        } else {
+          state.cards = state.packCards.cards
+        }
+      } else {
+        state.cards = state.packCards.cards
+      }
     }
   },
 
@@ -95,4 +112,4 @@ const pagePackSlice = createSlice({
 })
 
 export const pagePacksReducer = pagePackSlice.reducer
-export const {setPopup, setPageCards, setPageCountCards} = pagePackSlice.actions;
+export const {setPopup, setPageCards, setPageCountCards, searchCard} = pagePackSlice.actions;

@@ -12,7 +12,7 @@ import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {PopupNewCard} from "../../../../components/ui/popup-action/popups/popup-new-card/Popup-new-card";
 import {TableMyPagePack} from "../../../../components/ui/table-my-page-pack/Table-my-page-pack";
-import {setPageCards, setPageCountCards, setPopup} from "./Page-pack-slice";
+import {searchCard, setPageCards, setPageCountCards, setPopup} from "./Page-pack-slice";
 import {PopupCard} from "../../../../utils/enum/popup";
 import {InputSearch} from "../../../../components/bll/inputSearch/InputSearch";
 import {Pagination} from "../../../../components/bll/pagination/Pagination";
@@ -38,6 +38,10 @@ export const PagePack: FC<PagePackType> = ({}) => {
   const onClickSelect = useCallback((option: number) => {
     dispatch(setPageCountCards(option))
   }, [dispatch])
+
+  const onSearchCard = () => {
+    dispatch(searchCard(valueInput))
+  }
 
 
   useEffect(() => {
@@ -71,6 +75,7 @@ export const PagePack: FC<PagePackType> = ({}) => {
                   placeholder={'Provide your text'}
                   title={'Search'}
                   value={valueInput}
+                  onSearchTable={onSearchCard}
                   onChange={onChangeInputSearch}
               />
               <TableMyPagePack className={s.table} cards={cards}/>
@@ -85,7 +90,6 @@ export const PagePack: FC<PagePackType> = ({}) => {
               />
           </>
       }
-
     <PopupNewCard/>
     </Container>
   );

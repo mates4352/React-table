@@ -64,8 +64,15 @@ const packsListSlice = createSlice({
       }
     },
     searchPack: (state: MainStateType, action: PayloadAction<string>) => {
-      if(action.payload !== '') {
-        state.cardPacks = state.packsList.cardPacks.filter(item => item.name.toLowerCase().includes(action.payload.toLowerCase()))
+      if(action.payload) {
+        const arrayCardPacks = state.packsList.cardPacks.filter(packs => {
+          return packs.name.toLowerCase().slice(0, action.payload.length) === action.payload.toLowerCase().trim()
+        })
+        if(arrayCardPacks.length !== 0) {
+          state.cardPacks = arrayCardPacks
+        } else {
+          state.cardPacks = state.packsList.cardPacks
+        }
       } else {
         state.cardPacks = state.packsList.cardPacks
       }
