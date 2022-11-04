@@ -10,7 +10,7 @@ export type getPackCardsType = {
 }
 
 export type responsePackCardsType = {
-  cards: Array<cardsType>
+  cards: Array<cardType>
   packUserId: string
   packName: string
   packPrivate: boolean
@@ -25,7 +25,7 @@ export type responsePackCardsType = {
   tokenDeathTime: number
 }
 
-export type cardsType = {
+export type cardType = {
   _id: string
   cardsPack_id: string
   user_id: string
@@ -74,7 +74,25 @@ export type dataCardType = {
   answerVideo?: string
 }
 
+export type dataUpdateCardType = {
+  _id: string
+  cardsPack_id?: string
+  user_id?: string
+  answer?: string
+  question?: string
+  grade?: number
+  shots?: number
+  comments?: string
+  type?: string
+  rating?: number
+  more_id?: string
+  created?: string
+  updated?: string
+}
+
 export type dataNewCard = {
   question: string
   answer: string
 }
+
+export type dataUpdateCard = dataNewCard

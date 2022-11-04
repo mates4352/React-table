@@ -1,5 +1,10 @@
 import {instance} from "../../../../app/App-api";
-import {dataCardType, getPackCardsType, responseCardType, responsePackCardsType} from "./Page-pack-type";
+import {
+  dataCardType, dataUpdateCardType,
+  getPackCardsType,
+  responseCardType,
+  responsePackCardsType
+} from "./Page-pack-type";
 
 export const pagePackApi = {
   getPackCards: async(dataPacksCards: getPackCardsType) => {
@@ -14,7 +19,7 @@ export const pagePackApi = {
     return await instance.delete('cards/card', {params: {id: idCard}})
   },
 
-  updateCard: async(dataCard: dataCardType) => {
-    return await instance.put('cards/card', {...dataCard})
+  updateCard: async(dataCard: dataUpdateCardType) => {
+    return await instance.put('cards/card', {card: {...dataCard}})
   },
 }

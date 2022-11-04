@@ -17,6 +17,7 @@ import {PopupCard} from "../../../../utils/enum/popup";
 import {InputSearch} from "../../../../components/bll/inputSearch/InputSearch";
 import {Pagination} from "../../../../components/bll/pagination/Pagination";
 import {PopupDeleteCard} from "../../../../components/ui/popup-action/popups/popup-delete-card/Popup-delete-card";
+import {PopupEditCard} from "../../../../components/ui/popup-action/popups/popup-edit-card/Popup-edit-card";
 
 type PagePackType = {};
 
@@ -91,8 +92,9 @@ export const PagePack: FC<PagePackType> = ({}) => {
               />
           </>
       }
-    <PopupNewCard/>
-    <PopupDeleteCard/>
+      <PopupNewCard/>
+      <PopupDeleteCard/>
+      <PopupEditCard/>
     </Container>
   );
 };

@@ -1,6 +1,6 @@
 import React, {FC, memo} from 'react';
 import s from './Table-my-page-pack.module.scss';
-import {cardsType} from "../../../features/main/common/page-pack/Page-pack-type";
+import {cardType} from "../../../features/main/common/page-pack/Page-pack-type";
 import classNames from "classnames";
 import {Actions} from "../actions/Actions";
 import {TypeButtonAction} from "../../../utils/enum/type-button-action";
@@ -14,11 +14,10 @@ import {
 } from "../../../features/main/common/page-pack/Page-pack-slice";
 import {PopupCard} from "../../../utils/enum/popup";
 import {ButtonFilterTableDate} from "../../bll/button-filter-table-date/Button-filter-table-date";
-import {setCardPacks, setSortCardPacks} from "../../../features/main/common/packs-list/Packs-list-slice";
 
 type TableMyPagePackType = {
   className: string
-  cards: Array<cardsType>
+  cards: Array<cardType>
 };
 
 export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
@@ -33,6 +32,12 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
     dispatch(addIdCard(idCard))
     dispatch(setPopup({isPopup: true, popup: PopupCard.DeleteCard}))
   }
+
+  const onClickButtonEdit = (idCard: string) => () => {
+    dispatch(addIdCard(idCard))
+    dispatch(setPopup({isPopup: true, popup: PopupCard.EditCard}))
+  }
+
   return (
     <table className={classNames(s.table, s.tableG, className)}>
       <thead className={classNames(s.thead, s.theadG)}>
@@ -62,7 +67,7 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
       </thead>
 
       <tbody className={classNames(s.tbody, s.tbodyG)}>
-      {cards.map((card: cardsType) =>
+      {cards.map((card: cardType) =>
         <tr className={classNames(s.tr, s.trG)} key={card._id}>
           <td className={classNames(s.td, s.tdG)}>{card.question}</td>
 
@@ -76,7 +81,7 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
             <Actions
               showActions={[TypeButtonAction.EDIT, TypeButtonAction.DELETE]}
               onClickButtonDelete={onClickButtonDelete(card._id)}
-              onClickButtonEdit={() => console.log('hello')}
+              onClickButtonEdit={onClickButtonEdit(card._id)}
             />
           </td>
         </tr>

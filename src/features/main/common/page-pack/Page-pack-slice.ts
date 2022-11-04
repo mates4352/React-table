@@ -2,7 +2,7 @@ import {AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
 import {deleteCard, getPackCards} from "./Page-pack-thunk";
-import {cardsType, responsePackCardsType} from "./Page-pack-type";
+import {cardType, responsePackCardsType} from "./Page-pack-type";
 import {LoadingType} from "../../../../app/App-type";
 import {someNamesThunks} from "../../../../utils/helpers/functions/someNamesThunks";
 import {authNamesThunks} from "../../../../app/App-thunk";
@@ -12,7 +12,7 @@ import {PopupCard} from "../../../../utils/enum/popup";
 
 interface PagePackStateType {
   packCards: responsePackCardsType
-  cards: Array<cardsType>
+  cards: Array<cardType>
   loading: LoadingType | ''
   isPopup: {
     isPopupAddNewCard: boolean

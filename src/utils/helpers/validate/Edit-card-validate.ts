@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const newCardSchema = Yup.object().shape({
+export const editCardSchema = Yup.object().shape({
   answer: Yup.string()
   .required('Required value answer'),
   question: Yup.string()
