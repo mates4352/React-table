@@ -2,7 +2,7 @@ import React, {FC, useCallback, useEffect, useState} from 'react';
 import s from './InputEditName.module.scss';
 import {Input} from "../input/Input";
 import {FieldInputProps} from "formik";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {appSelect} from "../../../app/App-select";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";

@@ -1,7 +1,7 @@
 import React, {FC, memo} from 'react';
 import s from './Filter-remove.module.scss';
 import {IconFilterRemove} from "../../icons/icon-filter-remove/Icon-filter-remove";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 
 type FilterRemoveType = {
   className?: string

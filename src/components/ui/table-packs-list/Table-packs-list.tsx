@@ -7,7 +7,7 @@ import {useAppSelector} from "../../../hooks/useAppSelector";
 import {CardPacksType} from "../../../features/main/Main-type";
 import {TypeButtonAction} from "../../../utils/enum/type-button-action";
 import {PopupPack} from "../../../utils/enum/popup";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {
   setCardPacks,
   setIdPack,

@@ -1,6 +1,6 @@
 import React, {FC, memo, useState} from 'react';
 import s from './Header.module.scss'
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import logo from './../../../assets/images/logo.svg'
 import {Button} from "../../bll/button/Button";
 import {useNavigate} from "react-router-dom";

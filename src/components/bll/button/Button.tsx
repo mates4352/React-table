@@ -1,6 +1,6 @@
 import React, {FC, memo, ReactNode} from 'react';
 import s from './Button.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 
 type ButtonType = {
   type: "button" | "submit" | "reset"

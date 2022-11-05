@@ -4,7 +4,7 @@ import {IconDelete} from "../../icons/icon-delete/Icon-delete";
 import {IconEdit} from "../../icons/icon-edit/Icon-edit";
 import {IconTeacher} from "../../icons/icon-teacher/Icon-teacher";
 import {TypeButtonAction} from "../../../utils/enum/type-button-action";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 
 export type buttonActionType = TypeButtonAction.DELETE | TypeButtonAction.EDIT | TypeButtonAction.TEACHER
 type ButtonActionType = {

@@ -1,6 +1,6 @@
 import React, {FC, memo, useEffect, useState} from 'react';
 import s from './Alert.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {LoadingType} from "../../../app/App-type";
 import {AnimatePresence, motion} from "framer-motion";
 import {Statuses} from "../../../utils/enum/statuses";

@@ -1,6 +1,6 @@
 import React, {FC, memo, useState} from 'react';
 import s from './Input.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {IconEye} from "../../icons/icon-eye/Icon-eye";
 import {FieldInputProps, FormikState} from "formik";
 import {Error} from "../../ui/error/Error";

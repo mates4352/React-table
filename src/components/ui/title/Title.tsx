@@ -1,6 +1,6 @@
 import React, {FC, memo} from 'react';
 import s from './Title.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 
 type TitleType = {
   className?: string

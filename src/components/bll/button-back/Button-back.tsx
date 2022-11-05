@@ -1,8 +1,8 @@
 import React, {FC, memo, ReactNode} from 'react';
 import s from './Button-back.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {useNavigate} from "react-router-dom";
-import {IconArrow} from "../../icons/icon-arrow/Icon-arrow";
+import {IconArrow} from "../../icons/icon-arrow/icon-arrow";
 
 type ButtonBackType = {
   className?: string

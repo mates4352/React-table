@@ -1,6 +1,6 @@
 import React, {FC, memo} from 'react';
 import s from './Checkbox.module.scss'
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {FieldInputProps} from "formik";
 
 type CheckboxType = {

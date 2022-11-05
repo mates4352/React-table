@@ -1,7 +1,7 @@
 import React, {FC, memo} from 'react';
 import s from './Actions.module.scss';
 import {ButtonAction, buttonActionType} from "../../bll/button-action/Button-action";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {TypeButtonAction} from "../../../utils/enum/type-button-action";
 
 type ActionsType = {

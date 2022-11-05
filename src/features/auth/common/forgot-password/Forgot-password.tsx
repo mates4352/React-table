@@ -4,7 +4,7 @@ import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {Field, Form, Formik} from "formik";
 import {Link, Routing} from "../../../../utils/enum/routing";
-import {forgotPasswordSchema} from "../../../../utils/helpers/validate/Forgot-password-validate";
+import {forgotPasswordSchema} from "../../../../utils/helpers/validate/forgot-password-validate";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";
 import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";

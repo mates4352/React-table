@@ -1,6 +1,6 @@
 import React, {FC, memo} from 'react';
 import s from './Caption.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 
 type CaptionType = {
   className?: string

@@ -1,7 +1,7 @@
 import React, {FC, memo} from 'react';
 import s from './LinkCommon.module.scss';
 import {Link} from "react-router-dom";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 
 type LinkCommonType = {
   className?: string

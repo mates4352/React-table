@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import s from './Error.module.scss';
 import {AnimatePresence, motion} from "framer-motion";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 
 type ErrorType = {
   isError: boolean

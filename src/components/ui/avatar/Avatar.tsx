@@ -1,6 +1,6 @@
 import React, {FC, memo} from 'react';
 import s from './Avatar.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import avatar from './../../../assets/images/avatar.jpg';
 
 type AvatarType = {

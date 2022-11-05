@@ -1,6 +1,6 @@
 import React, {ChangeEvent, FC, memo, useEffect} from 'react';
 import s from './InputSearch.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {IconSearch} from "../../icons/icon-search/Icon-search";
 
 type InputSearchType = {

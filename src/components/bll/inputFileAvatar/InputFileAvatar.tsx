@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FC, memo, useState} from 'react';
 import s from './InputFileAvatar.module.scss';
 import {Avatar} from "../../ui/avatar/Avatar";
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {IconPhoto} from "../../icons/icon-photo/Icon-photo";
 import {FieldInputProps} from "formik";
 import {getBase64} from "../../../utils/helpers/functions/getBase64";

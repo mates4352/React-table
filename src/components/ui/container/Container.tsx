@@ -1,6 +1,6 @@
 import React, {FC, ReactNode, memo} from 'react';
 import s from './Container.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 
 type ContainerType = {
   className?: string

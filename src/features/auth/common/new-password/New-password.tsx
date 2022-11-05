@@ -3,7 +3,7 @@ import s from './New-password.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {Field, Form, Formik} from "formik";
-import {newPasswordSchema} from "../../../../utils/helpers/validate/New-password-validate";
+import {newPasswordSchema} from "../../../../utils/helpers/validate/new-password-validate";
 import {Navigate, useNavigate, useParams} from "react-router-dom";
 import {Link} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";

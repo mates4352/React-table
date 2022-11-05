@@ -1,6 +1,6 @@
 import React, {FC, memo} from 'react';
 import s from './button-pagination-arrow.module.scss'
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {IconSmallArrow} from "../../icons/icon-small-arrow/Icon-small-arrow";
 
 type ButtonPaginationArrowType = {

@@ -1,6 +1,6 @@
 import React, {FC, memo, ReactNode} from 'react';
 import s from './Button-linear.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {NavLink} from "react-router-dom";
 
 type CommonButtonLinearType = {

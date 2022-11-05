@@ -1,6 +1,6 @@
 import React, {FC, memo} from 'react';
 import s from './Tabs.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 
 export type valueTabType = 'My' | 'All';
 

@@ -3,7 +3,7 @@ import s from './Register.module.scss';
 import {Input} from "../../../../components/bll/input/Input";
 import {Button} from "../../../../components/bll/button/Button";
 import {Field, Form, Formik} from "formik";
-import {registerSchema} from "../../../../utils/helpers/validate/Register-validate";
+import {registerSchema} from "../../../../utils/helpers/validate/register-validate";
 import {useNavigate} from "react-router-dom";
 import {Link} from "../../../../utils/enum/routing";
 import {AnimationAuth} from "../../../../components/animations/animationAuth";

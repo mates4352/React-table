@@ -10,7 +10,7 @@ import {Caption} from "../../../../components/ui/caption/Caption";
 import {LinkCommon} from "../../../../components/ui/linkCommon/LinkCommon";
 import {Checkbox} from "../../../../components/bll/checkbox/Checkbox";
 import {LoginSubmitType} from "../../Auth-type";
-import {loginSchema} from "../../../../utils/helpers/validate/Login-validate";
+import {loginSchema} from "../../../../utils/helpers/validate/login-validate";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {Error} from "../../../../components/ui/error/Error";

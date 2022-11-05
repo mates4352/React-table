@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
 import s from './Button-filter-table-date.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {IconPolygon} from "../../icons/icon-polygon/Icon-polygon";
 
 type ButtonFilterTableDateType = {

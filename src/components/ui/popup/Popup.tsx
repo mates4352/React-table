@@ -2,7 +2,7 @@ import React, { memo, useRef} from 'react';
 import {AnimatePresence, motion} from "framer-motion";
 import {FC} from "react";
 import s from './Popup.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import {useOnClickOutside} from "../../../hooks/useOnClickOutside";
 import {ContentPopupAvatar} from "./children/content-popup-avatar/Content-popup-avatar";
 

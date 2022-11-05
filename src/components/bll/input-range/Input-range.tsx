@@ -1,6 +1,6 @@
 import React, {FC, memo, useEffect} from 'react';
 import s from './Input-range.module.scss';
-import classNames from "classnames/bind";
+import classNames from "classnames";
 import Slider from '@mui/material/Slider';
 import {Box} from "@mui/material";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
