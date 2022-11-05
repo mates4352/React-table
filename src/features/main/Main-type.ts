@@ -49,3 +49,8 @@ export type DataEditPackType = DataNewPackType
 
 export type PopupPackType = PopupPack.NewPack | PopupPack.EditPack | PopupPack.DeletePack;
 export type PopupCardType = PopupCard.NewCard | PopupCard.EditCard | PopupCard.DeleteCard;
+
+export type dataUpdateRatingType = {
+  grade: number
+  card_id: string
+}

@@ -14,6 +14,10 @@ import {
 } from "../../../features/main/common/page-pack/Page-pack-slice";
 import {PopupCard} from "../../../utils/enum/popup";
 import {ButtonFilterTableDate} from "../../bll/button-filter-table-date/Button-filter-table-date";
+import {Rating} from "@mui/material";
+import {updateRating} from "../../../features/main/Main-thunk";
+import {getPackCards} from "../../../features/main/common/page-pack/Page-pack-thunk";
+import {useParams} from "react-router-dom";
 
 type TableMyPagePackType = {
   className: string
@@ -25,7 +29,8 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
   cards
 }) => {
   const dispatch = useAppDispatch();
-  const {isPopup, isSortCards} = useAppSelector(state => state.pagePack)
+  const params = useParams<{id: string}>()
+  const {isPopup, isSortCards, page, pageCount} = useAppSelector(state => state.pagePack)
   const {_id} = useAppSelector(state => state.app.user)
 
   const onClickButtonDelete = (idCard: string) => () => {
@@ -75,7 +80,14 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
 
           <td className={classNames(s.td, s.tdG)}>{card.updated.substring(0, 10)}</td>
 
-          <td className={classNames(s.td, s.tdG)}>{card.rating}</td>
+          <td className={classNames(s.td, s.tdG)}><Rating defaultValue={card.grade} precision={0.5} onChange={async (event, newValue) => {
+            if(newValue) {
+              await dispatch(updateRating({card_id: card._id, grade: newValue}))
+              if(params.id) {
+                dispatch(getPackCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
+              }
+            }
+          }}/></td>
 
           <td className={classNames(s.td, s.tdG)}>
             <Actions
