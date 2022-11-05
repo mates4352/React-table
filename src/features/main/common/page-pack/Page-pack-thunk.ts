@@ -1,13 +1,14 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {pagePackApi} from "./Page-pack-api";
 import {AxiosError} from "axios";
-import {cardType, dataCardType, dataUpdateCardType, getPackCardsType} from "./Page-pack-type";
+import {dataCardType, dataUpdateCardType, getPackCardsType} from "./Page-pack-type";
+import {MainApi} from "../../Main-api";
 
-export const getPackCards = createAsyncThunk('pagePack/getPackCards', async (dataPackCards: getPackCardsType, {
+export const getPackMyCards = createAsyncThunk('pagePack/getPackMyCards', async (dataPackCards: getPackCardsType, {
   rejectWithValue
 }) => {
   try {
-    const response = await pagePackApi.getPackCards(dataPackCards)
+    const response = await MainApi.getPackCards(dataPackCards)
     return response.data
   } catch(e) {
     const error = e as AxiosError<any>;

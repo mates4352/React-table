@@ -1,46 +1,32 @@
-import React, {FC, memo} from 'react';
-import s from './Table-my-page-pack.module.scss';
-import {cardType} from "../../../features/main/common/page-pack/Page-pack-type";
+import React, {FC, memo, useEffect} from 'react';
+import s from './Table-friends-page-pack.module.scss';
 import classNames from "classnames";
-import {Actions} from "../actions/Actions";
-import {TypeButtonAction} from "../../../utils/enum/type-button-action";
-import {useAppSelector} from "../../../hooks/useAppSelector";
-import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {
-  addIdCard,
-  changeIsSortCards,
-  setPopup,
-  sortCards
-} from "../../../features/main/common/page-pack/Page-pack-slice";
-import {PopupCard} from "../../../utils/enum/popup";
 import {ButtonFilterTableDate} from "../../bll/button-filter-table-date/Button-filter-table-date";
+import {cardType} from "../../../features/main/common/page-pack/Page-pack-type";
 import {Rating} from "@mui/material";
 import {updateRating} from "../../../features/main/Main-thunk";
+import {useAppDispatch} from "../../../hooks/useAppDispatch";
 import {useParams} from "react-router-dom";
+import {useAppSelector} from "../../../hooks/useAppSelector";
+import {getPackFriendsCards} from "../../../features/main/common/page-friends-pack/Page-friends-pack-thunk";
+import {changeIsSortCards, sortCards} from "../../../features/main/common/page-friends-pack/Page-friends-pack-slice";
 
-type TableMyPagePackType = {
+type TableFriendsPagePackType = {
   className: string
-  cards: Array<cardType>
 };
 
-export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
+export const TableFriendsPagePack: FC<TableFriendsPagePackType> = memo(({
   className,
-  cards
 }) => {
   const dispatch = useAppDispatch();
+  const {cards, page, pageCount, isSortCards} = useAppSelector(state => state.pagePackFriends)
   const params = useParams<{id: string}>()
-  const {isPopup, isSortCards, page, pageCount} = useAppSelector(state => state.pagePack)
-  const {_id} = useAppSelector(state => state.app.user)
 
-  const onClickButtonDelete = (idCard: string) => () => {
-    dispatch(addIdCard(idCard))
-    dispatch(setPopup({isPopup: true, popup: PopupCard.DeleteCard}))
-  }
-
-  const onClickButtonEdit = (idCard: string) => () => {
-    dispatch(addIdCard(idCard))
-    dispatch(setPopup({isPopup: true, popup: PopupCard.EditCard}))
-  }
+  useEffect(() => {
+    if(params.id) {
+      dispatch(getPackFriendsCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
+    }
+  }, [page, pageCount])
 
   return (
     <table className={classNames(s.table, s.tableG, className)}>
@@ -64,9 +50,6 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
         <th className={classNames(s.th, s.thG)}>
           Grade
         </th>
-
-        <th className={classNames(s.th, s.thG)}>
-        </th>
       </tr>
       </thead>
 
@@ -84,14 +67,6 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
               await dispatch(updateRating({card_id: card._id, grade: newValue}))
             }
           }}/></td>
-
-          <td className={classNames(s.td, s.tdG)}>
-            <Actions
-              showActions={[TypeButtonAction.EDIT, TypeButtonAction.DELETE]}
-              onClickButtonDelete={onClickButtonDelete(card._id)}
-              onClickButtonEdit={onClickButtonEdit(card._id)}
-            />
-          </td>
         </tr>
       )}
       </tbody>

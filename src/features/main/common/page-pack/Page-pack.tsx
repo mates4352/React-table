@@ -7,7 +7,7 @@ import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {Button} from "../../../../components/bll/button/Button";
 import {useParams} from "react-router-dom";
-import {getPackCards} from "./Page-pack-thunk";
+import {getPackMyCards} from "./Page-pack-thunk";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {PopupNewCard} from "../../../../components/ui/popup-action/popups/popup-new-card/Popup-new-card";
@@ -47,7 +47,7 @@ export const PagePack: FC<PagePackType> = ({}) => {
 
 
   useEffect(() => {
-    if(params.id) dispatch(getPackCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
+    if(params.id) dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
   }, [dispatch, params.id, page, pageCount])
 
   return (

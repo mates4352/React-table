@@ -5,6 +5,7 @@ import {appLoadState, appSaveState} from "../utils/localStorage/appLocalStorage"
 import {mainReducer} from "../features/main/Main-slice";
 import {packsListReducer} from "../features/main/common/packs-list/Packs-list-slice";
 import {pagePacksReducer} from "../features/main/common/page-pack/Page-pack-slice";
+import {pageFriendsPackReducer} from "../features/main/common/page-friends-pack/Page-friends-pack-slice";
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   main: mainReducer,
   packsList: packsListReducer,
   pagePack: pagePacksReducer,
+  pagePackFriends: pageFriendsPackReducer,
 });
 
 export const store = configureStore({

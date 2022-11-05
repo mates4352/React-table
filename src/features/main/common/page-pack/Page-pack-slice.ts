@@ -1,7 +1,7 @@
 import {AnyAction, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ActionReducerMapBuilder} from "@reduxjs/toolkit/src/mapBuilders";
 import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
-import {deleteCard, getPackCards} from "./Page-pack-thunk";
+import {deleteCard, getPackMyCards} from "./Page-pack-thunk";
 import {cardType, responsePackCardsType} from "./Page-pack-type";
 import {LoadingType} from "../../../../app/App-type";
 import {someNamesThunks} from "../../../../utils/helpers/functions/someNamesThunks";
@@ -110,7 +110,7 @@ const pagePackSlice = createSlice({
   },
 
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
-    builder.addCase(getPackCards.fulfilled.type, (state: PagePackStateType, action: PayloadAction<responsePackCardsType>) => {
+    builder.addCase(getPackMyCards.fulfilled.type, (state: PagePackStateType, action: PayloadAction<responsePackCardsType>) => {
       state.packCards = action.payload
       state.cards = action.payload.cards
     })

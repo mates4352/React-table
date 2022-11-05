@@ -4,4 +4,20 @@
 
 .buttonBack {
   margin-top: 24px;
+  margin-bottom: 27px;
+}
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.button {
+  max-width: 174px;
+}
+
+.table {
+  margin-bottom: 40px;
 }

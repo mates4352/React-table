@@ -7,7 +7,7 @@ import {useAppSelector} from "../../../../../hooks/useAppSelector";
 import {setPopup} from "../../../../../features/main/common/page-pack/Page-pack-slice";
 import {PopupCard} from "../../../../../utils/enum/popup";
 import {useParams} from "react-router-dom";
-import {deleteCard, getPackCards} from "../../../../../features/main/common/page-pack/Page-pack-thunk";
+import {deleteCard, getPackMyCards} from "../../../../../features/main/common/page-pack/Page-pack-thunk";
 
 type PopupDeleteCardType = {};
 
@@ -24,7 +24,7 @@ export const PopupDeleteCard: FC<PopupDeleteCardType> = memo(({}) => {
     if(params.id) {
       await dispatch(deleteCard(idCard))
       dispatch(setPopup({isPopup: false, popup: PopupCard.DeleteCard}))
-      dispatch(getPackCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
+      dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
     }
   }
 

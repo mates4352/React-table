@@ -6,7 +6,7 @@ import {useAppDispatch} from "../../../../../hooks/useAppDispatch";
 import {setPopup} from "../../../../../features/main/common/page-pack/Page-pack-slice";
 import {PopupCard} from "../../../../../utils/enum/popup";
 import {newCardSchema} from "../../../../../utils/helpers/validate/New-Card-validate";
-import {addCard, getPackCards} from "../../../../../features/main/common/page-pack/Page-pack-thunk";
+import {addCard, getPackMyCards} from "../../../../../features/main/common/page-pack/Page-pack-thunk";
 import {Field, Form, Formik} from "formik";
 import {Input} from "../../../../bll/input/Input";
 import {Button} from "../../../../bll/button/Button";
@@ -36,7 +36,7 @@ export const PopupNewCard: FC<PopupNewCardType> = memo(({}) => {
         onSubmit={async(dataNewCard: dataNewCard) => {
           if(params.id) {
             await dispatch(addCard({...dataNewCard, cardsPack_id: params.id}))
-            dispatch(getPackCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
+            dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
             onClosePopup()
           }
         }}

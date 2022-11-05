@@ -5,12 +5,12 @@ import {useAppSelector} from "../../../../../hooks/useAppSelector";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch";
 import {setPopup} from "../../../../../features/main/common/page-pack/Page-pack-slice";
 import {PopupCard} from "../../../../../utils/enum/popup";
-import {getPackCards, updateCard} from "../../../../../features/main/common/page-pack/Page-pack-thunk";
+import {getPackMyCards, updateCard} from "../../../../../features/main/common/page-pack/Page-pack-thunk";
 import {Field, Form, Formik} from "formik";
 import {Input} from "../../../../bll/input/Input";
 import {Button} from "../../../../bll/button/Button";
 import {Statuses} from "../../../../../utils/enum/statuses";
-import {dataNewCard, dataUpdateCard} from "../../../../../features/main/common/page-pack/Page-pack-type";
+import {dataUpdateCard} from "../../../../../features/main/common/page-pack/Page-pack-type";
 import {useParams} from "react-router-dom";
 import {editCardSchema} from "../../../../../utils/helpers/validate/Edit-card-validate";
 
@@ -36,7 +36,7 @@ export const PopupEditCard: FC<PopupNewCardType> = memo(({}) => {
         onSubmit={async(dataEditCard: dataUpdateCard) => {
           if(params.id) {
             await dispatch(updateCard({...dataEditCard, _id: idCard}))
-            dispatch(getPackCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
+            dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
             onClosePopup()
           }
         }}
