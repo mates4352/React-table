@@ -9,6 +9,7 @@ import {authNamesThunks} from "../../../../app/App-thunk";
 import {Statuses} from "../../../../utils/enum/statuses";
 import {PopupCardType} from "../../Main-type";
 import {PopupCard} from "../../../../utils/enum/popup";
+import {deletePack} from "../packs-list/Packs-list-thunk";
 
 interface PagePackStateType {
   packCards: responsePackCardsType
@@ -116,6 +117,10 @@ const pagePackSlice = createSlice({
     })
     .addCase(deleteCard.fulfilled.type, (state: PagePackStateType) => {
       state.idCard = ''
+    })
+    .addCase(deletePack.fulfilled.type, (state: PagePackStateType) => {
+      state.packCards.cards = [];
+      state.cards = [];
     })
     .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/pending', action.type), (state: PagePackStateType, action: PayloadAction<string>) => {
         state.loading = Statuses.PENDING;

@@ -1,4 +1,4 @@
-import React, {FC, memo} from 'react';
+import React, {FC, memo, useCallback} from 'react';
 import s from './Popup-title.module.scss';
 import {ButtonLinear} from "../../../../bll/button-linear/Button-linear";
 import {IconProfile} from "../../../../icons/icon-profile/Icon-profile";
@@ -25,13 +25,13 @@ export const PopupTitle: FC<PopupTitleType> = memo(({
   const dispatch = useAppDispatch()
   const paramas = useParams<{id: string}>()
 
-  const onClickButtonEdit = () => {
+  const onClickButtonEdit = useCallback(() => {
     dispatch(setPopupPack({isPopup: true, popup: PopupPack.EditPack}))
-  }
+  }, [])
 
-  const onClickButtonDelete = () => {
-
-  }
+  const onClickButtonDelete = useCallback(() => {
+    dispatch(setPopupPack({popup: PopupPack.DeletePack, isPopup: true}))
+  }, [])
 
   const onClickButtonLearn = () => {
 

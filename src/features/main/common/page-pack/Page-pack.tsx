@@ -23,9 +23,12 @@ import {PopupTitle} from "../../../../components/ui/popup/popups/popup-title/Pop
 import {
   PopupActionEditPack
 } from "../../../../components/ui/popup-action/popups/popup-action-edit-pack/Popup-action-edit-pack";
-import {editPack} from "../packs-list/Packs-list-thunk";
+import {deletePack, editPack, getCardsPack} from "../packs-list/Packs-list-thunk";
 import {DataEditPackType} from "../../Main-type";
 import {setPopupPack} from "../packs-list/Packs-list-slice";
+import {
+  PopupActionDeletePack
+} from "../../../../components/ui/popup-action/popups/popup-action-delete-pack/Popup-action-delete-pack";
 
 type PagePackType = {};
 
@@ -66,9 +69,16 @@ export const PagePack: FC<PagePackType> = ({}) => {
     if(params.id) {
       await dispatch(editPack(({...dataEditPack, _id: params.id})))
       dispatch(setPopupPack({popup: PopupPack.EditPack, isPopup: false}))
-      if(params.id) dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
+      dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
     }
-  }, [])
+  }, [params.id, page, pageCount])
+
+  const onClickDeletePack = useCallback(async () => {
+    if(params.id) {
+      await dispatch(deletePack(params.id))
+      dispatch(setPopupPack({popup: PopupPack.DeletePack, isPopup: false}))
+    }
+  }, [params.id, page, pageCount])
 
   useEffect(() => {
     if(params.id) dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
@@ -122,6 +132,7 @@ export const PagePack: FC<PagePackType> = ({}) => {
       }
 
       <PopupActionEditPack onSubmit={onPopupEditPackSubmit}/>
+      <PopupActionDeletePack onDeletePack={onClickDeletePack}/>
       <PopupNewCard/>
       <PopupDeleteCard/>
       <PopupEditCard/>

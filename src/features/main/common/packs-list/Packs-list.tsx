@@ -21,7 +21,7 @@ import {
 import {Pagination} from "../../../../components/bll/pagination/Pagination";
 import {setPage, setPageCount, setPopupPack} from "./Packs-list-slice";
 import {DataEditPackType} from "../../Main-type";
-import {editPack, getCardsPack} from "./Packs-list-thunk";
+import {deletePack, editPack, getCardsPack} from "./Packs-list-thunk";
 
 type PacksListType = {};
 
@@ -46,6 +46,12 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
     await dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount}))
     dispatch(setPopupPack({popup: PopupPack.EditPack, isPopup: !isPopupPacks.isPopupEditPack}))
   }, [idPack, PacksPage, PacksPageCount, isPopupPacks])
+
+  const onClickDeletePack = useCallback(async () => {
+    await dispatch(deletePack(idPack))
+    dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount}))
+    dispatch(setPopupPack({popup: PopupPack.DeletePack, isPopup: false}))
+  }, [dispatch, idPack])
 
   return (
     <>
@@ -79,7 +85,7 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
 
       <PopupActionNewPack/>
       <PopupActionEditPack onSubmit={onPopupEditPackSubmit}/>
-      <PopupActionDeletePack/>
+      <PopupActionDeletePack onDeletePack={onClickDeletePack}/>
     </>
   );
 })

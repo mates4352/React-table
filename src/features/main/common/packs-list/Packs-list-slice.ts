@@ -4,7 +4,7 @@ import {NoInfer} from "@reduxjs/toolkit/src/tsHelpers";
 import {valueTabType} from "../../../../components/bll/tabs/Tabs";
 import {CardPacksType, GetCardsApiType, PopupPackType} from "../../Main-type";
 import {PopupPack} from "../../../../utils/enum/popup";
-import {getCardsPack} from "./Packs-list-thunk";
+import {deletePack, getCardsPack} from "./Packs-list-thunk";
 
 interface MainStateType {
   packsList: GetCardsApiType
