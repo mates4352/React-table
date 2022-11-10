@@ -14,7 +14,7 @@ type SettingsPasksListType = {};
 export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
   const dispatch = useAppDispatch()
   const {_id} = useAppSelector(state => state.app.user)
-  const {page, pageCount} = useAppSelector(state => state.packsList)
+  const {PacksPage, PacksPageCount} = useAppSelector(state => state.packsList)
   const [inputText, setText] = useState<string>('')
   const [valueTab, setValueTab] = useState<valueTabType>('All')
   const [valueInputRange, setValueInputRange] = React.useState<number[]>([0, 10]);
@@ -34,7 +34,7 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
     dispatch(filterPack({type: 'All'}));
   }, [])
   const onChangeValueInputRange = useCallback((valueMinMax: number[]) => () => {
-    dispatch(getCardsPack({page: page, pageCount: pageCount, min: valueMinMax[0], max: valueMinMax[1]}))
+    dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount, min: valueMinMax[0], max: valueMinMax[1]}))
   }, [])
   const onFilterRemove = useCallback(() => {
     setValueTab('All')

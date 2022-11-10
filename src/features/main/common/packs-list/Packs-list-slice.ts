@@ -8,13 +8,13 @@ import {getCardsPack} from "./Packs-list-thunk";
 
 interface MainStateType {
   packsList: GetCardsApiType
-  isPopup: {
+  isPopupPacks: {
     isPopupNewPack: boolean
     isPopupEditPack: boolean
     isPopupDeletePack: boolean
   }
-  page: number,
-  pageCount: number,
+  PacksPage: number,
+  PacksPageCount: number,
   cardPacks: Array<CardPacksType>
   sortCardPacks: boolean
   idPack: string
@@ -31,13 +31,13 @@ const initialState = {
     token: '',
     tokenDeathTime: 0,
   },
-  isPopup: {
+  isPopupPacks: {
     isPopupNewPack: false,
     isPopupEditPack: false,
     isPopupDeletePack: false
   },
-  page: 1,
-  pageCount: 8,
+  PacksPage: 1,
+  PacksPageCount: 8,
   cardPacks: [],
   sortCardPacks: false,
   idPack: '',
@@ -47,13 +47,13 @@ const packsListSlice = createSlice({
   name: 'main',
   initialState,
   reducers: {
-    setPopup: (state: MainStateType, action: PayloadAction<{ popup: PopupPackType, isPopup: boolean }>) => {
+    setPopupPack: (state: MainStateType, action: PayloadAction<{ popup: PopupPackType, isPopup: boolean }>) => {
       if(action.payload.popup === PopupPack.NewPack) {
-        state.isPopup.isPopupNewPack = action.payload.isPopup
+        state.isPopupPacks.isPopupNewPack = action.payload.isPopup
       } else if(action.payload.popup === PopupPack.EditPack) {
-        state.isPopup.isPopupEditPack = action.payload.isPopup
+        state.isPopupPacks.isPopupEditPack = action.payload.isPopup
       } else if(action.payload.popup === PopupPack.DeletePack) {
-        state.isPopup.isPopupDeletePack = action.payload.isPopup
+        state.isPopupPacks.isPopupDeletePack = action.payload.isPopup
       }
     },
     filterPack: (state: MainStateType, action: PayloadAction<{ type: valueTabType, userId?: string }>) => {
@@ -91,10 +91,10 @@ const packsListSlice = createSlice({
       state.idPack = action.payload
     },
     setPage: (state: MainStateType, action: PayloadAction<number>) => {
-      state.page = action.payload
+      state.PacksPage = action.payload
     },
     setPageCount: (state: MainStateType, action: PayloadAction<number>) => {
-      state.pageCount = action.payload
+      state.PacksPageCount = action.payload
     }
   },
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
@@ -106,5 +106,5 @@ const packsListSlice = createSlice({
 });
 
 export const {reducer} = packsListSlice;
-export const {setPopup, setIdPack, setPage, setPageCount, filterPack, searchPack, setCardPacks, setSortCardPacks} = packsListSlice.actions;
+export const {setPopupPack, setIdPack, setPage, setPageCount, filterPack, searchPack, setCardPacks, setSortCardPacks} = packsListSlice.actions;
 export const packsListReducer = reducer;

@@ -9,7 +9,7 @@ import {useAppSelector} from "../../../hooks/useAppSelector";
 import {appSelect} from "../../../app/App-select";
 import {Avatar} from "../avatar/Avatar";
 import {Popup} from "../popup/Popup";
-import {ContentPopupAvatar} from "../popup/children/content-popup-avatar/Content-popup-avatar";
+import {PopupAvatar} from "../popup/popups/popup-avatar/Popup-avatar";
 
 type HeaderType = {};
 
@@ -46,12 +46,7 @@ export const Header: FC<HeaderType> = memo(() => {
             onClick={onClickShowPopup}>
             <p className={classNames(s.name, isPopup && s.name_active)}>{user.name}</p>
             <Avatar src={user.avatar} alt="Пользователь"/>
-            <Popup
-              className={s.popup}
-              isPopup={isPopup}
-              onClosePopup={onClosePopup}>
-              <ContentPopupAvatar/>
-            </Popup>
+            <PopupAvatar isPopup={isPopup} onClosePopup={onClosePopup}/>
           </button>
         }
       </div>

@@ -19,17 +19,19 @@ import {
   PopupActionDeletePack
 } from "../../../../components/ui/popup-action/popups/popup-action-delete-pack/Popup-action-delete-pack";
 import {Pagination} from "../../../../components/bll/pagination/Pagination";
-import {setPage, setPageCount, setPopup} from "./Packs-list-slice";
+import {setPage, setPageCount, setPopupPack} from "./Packs-list-slice";
+import {DataEditPackType} from "../../Main-type";
+import {editPack, getCardsPack} from "./Packs-list-thunk";
 
 type PacksListType = {};
 
 export const PacksList: FC<PacksListType> = memo(({}) => {
   const dispatch = useAppDispatch();
-  const {isPopup, page, pageCount, packsList} = useAppSelector(state => state.packsList);
+  const {idPack, isPopupPacks, PacksPage, PacksPageCount, packsList} = useAppSelector(state => state.packsList);
 
   const onClickPopupNewPack = useCallback(() => {
-    dispatch(setPopup({popup: PopupPack.NewPack, isPopup: !isPopup.isPopupNewPack}))
-  }, [isPopup.isPopupNewPack])
+    dispatch(setPopupPack({popup: PopupPack.NewPack, isPopup: !isPopupPacks.isPopupNewPack}))
+  }, [isPopupPacks.isPopupNewPack])
 
   const onClickButton = useCallback((button: number) => {
     dispatch(setPage(button))
@@ -38,6 +40,12 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
   const onClickSelect = useCallback((option: number) => {
     dispatch(setPageCount(option))
   }, [dispatch])
+
+  const onPopupEditPackSubmit = useCallback( async (dataEditPack: DataEditPackType) => {
+    await dispatch(editPack(({...dataEditPack, _id: idPack})))
+    await dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount}))
+    dispatch(setPopupPack({popup: PopupPack.EditPack, isPopup: !isPopupPacks.isPopupEditPack}))
+  }, [idPack, PacksPage, PacksPageCount, isPopupPacks])
 
   return (
     <>
@@ -60,8 +68,8 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
         </AnimationPage>
 
         <Pagination
-          page={page}
-          pageCount={pageCount}
+          page={PacksPage}
+          pageCount={PacksPageCount}
           maxPageNumber={5}
           pageCurrentCount={packsList.cardPacksTotalCount}
           onClickButton={onClickButton}
@@ -70,7 +78,7 @@ export const PacksList: FC<PacksListType> = memo(({}) => {
       </Container>
 
       <PopupActionNewPack/>
-      <PopupActionEditPack/>
+      <PopupActionEditPack onSubmit={onPopupEditPackSubmit}/>
       <PopupActionDeletePack/>
     </>
   );

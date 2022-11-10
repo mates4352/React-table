@@ -13,11 +13,19 @@ import {useAppSelector} from "../../../../hooks/useAppSelector";
 import {PopupNewCard} from "../../../../components/ui/popup-action/popups/popup-new-card/Popup-new-card";
 import {TableMyPagePack} from "../../../../components/ui/table-my-page-pack/Table-my-page-pack";
 import {searchCard, setPageCards, setPageCountCards, setPopup} from "./Page-pack-slice";
-import {PopupCard} from "../../../../utils/enum/popup";
+import {PopupCard, PopupPack} from "../../../../utils/enum/popup";
 import {InputSearch} from "../../../../components/bll/inputSearch/InputSearch";
 import {Pagination} from "../../../../components/bll/pagination/Pagination";
 import {PopupDeleteCard} from "../../../../components/ui/popup-action/popups/popup-delete-card/Popup-delete-card";
 import {PopupEditCard} from "../../../../components/ui/popup-action/popups/popup-edit-card/Popup-edit-card";
+import {ButtonMyPack} from "../../../../components/bll/button-my-pack/Button-my-pack";
+import {PopupTitle} from "../../../../components/ui/popup/popups/popup-title/Popup-title";
+import {
+  PopupActionEditPack
+} from "../../../../components/ui/popup-action/popups/popup-action-edit-pack/Popup-action-edit-pack";
+import {editPack} from "../packs-list/Packs-list-thunk";
+import {DataEditPackType} from "../../Main-type";
+import {setPopupPack} from "../packs-list/Packs-list-slice";
 
 type PagePackType = {};
 
@@ -25,6 +33,7 @@ export const PagePack: FC<PagePackType> = ({}) => {
   const params = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const {cards, page, pageCount, packCards} = useAppSelector(state => state.pagePack);
+  const [isPopupTitle, setPopupTitle] = useState<boolean>(false)
   const [valueInput, setValueInput] = useState<string>('')
   const onChangeInputSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setValueInput(e.currentTarget.value)
@@ -45,10 +54,25 @@ export const PagePack: FC<PagePackType> = ({}) => {
     dispatch(searchCard(valueInput))
   }
 
+  const onOpenPopupTitle = () => {
+    setPopupTitle(true)
+  }
+
+  const onClosePopupTitle = () => {
+    setPopupTitle(false)
+  }
+
+  const onPopupEditPackSubmit = useCallback( async (dataEditPack: DataEditPackType) => {
+    if(params.id) {
+      await dispatch(editPack(({...dataEditPack, _id: params.id})))
+      dispatch(setPopupPack({popup: PopupPack.EditPack, isPopup: false}))
+      if(params.id) dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
+    }
+  }, [])
 
   useEffect(() => {
     if(params.id) dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
-  }, [dispatch, params.id, page, pageCount])
+  }, [dispatch, page, pageCount])
 
   return (
     <Container className={s.pagePack} type={'section'}>
@@ -56,7 +80,7 @@ export const PagePack: FC<PagePackType> = ({}) => {
 
       {cards.length === 0 &&
           <div className={s.contentNotCards}>
-              <Title className={s.title} type={"h2"}>Name Pack</Title>
+              <Title className={s.title} type={"h2"}>{packCards.packName ? packCards.packName : 'Name Pack'}</Title>
 
               <Caption className={s.caption}>This pack is empty. Click add new card to fill this pack</Caption>
               <Button className={s.buttonAddCard} type={'button'} onClickButton={onOpenPopup}>Add new card</Button>
@@ -66,7 +90,11 @@ export const PagePack: FC<PagePackType> = ({}) => {
       {cards.length >= 1 &&
           <>
               <div className={s.wrap}>
-                  <Title type={'h2'}>My Pack</Title>
+                  <div className={s.wrapTitle}>
+                      <Title type={'h2'}>{packCards.packName ? packCards.packName : 'Name Pack'}</Title>
+                      <ButtonMyPack onClickButton={onOpenPopupTitle}/>
+                      <PopupTitle isPopupTitle={isPopupTitle} onClosePopup={onClosePopupTitle}/>
+                  </div>
 
                   <Button className={s.buttonAddCard} type={'button'} onClickButton={onOpenPopup}>Add new card</Button>
               </div>
@@ -92,6 +120,8 @@ export const PagePack: FC<PagePackType> = ({}) => {
               />
           </>
       }
+
+      <PopupActionEditPack onSubmit={onPopupEditPackSubmit}/>
       <PopupNewCard/>
       <PopupDeleteCard/>
       <PopupEditCard/>

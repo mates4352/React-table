@@ -4,7 +4,7 @@ import {PopupAction} from "../../Popup-action";
 import {useAppSelector} from "../../../../../hooks/useAppSelector";
 import {PopupPack} from "../../../../../utils/enum/popup";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch";
-import {setPopup} from "../../../../../features/main/common/packs-list/Packs-list-slice";
+import {setPopupPack} from "../../../../../features/main/common/packs-list/Packs-list-slice";
 import {Field, Form, Formik} from "formik";
 import {newPackSchema} from "../../../../../utils/helpers/validate/New-pack-validate";
 import {DataNewPackType} from "../../../../../features/main/Main-type";
@@ -17,15 +17,15 @@ type PopupActionNewPackType = {};
 
 export const PopupActionNewPack: FC<PopupActionNewPackType> = memo(({}) => {
   const dispatch = useAppDispatch();
-  const {isPopup, page, pageCount} = useAppSelector(state => state.packsList);
+  const {isPopupPacks, PacksPage, PacksPageCount} = useAppSelector(state => state.packsList);
   const onClickPopupNewPack = useCallback(() => {
-    dispatch(setPopup({popup: PopupPack.NewPack, isPopup: !isPopup.isPopupNewPack}))
-  }, [isPopup.isPopupNewPack])
+    dispatch(setPopupPack({popup: PopupPack.NewPack, isPopup: !isPopupPacks.isPopupNewPack}))
+  }, [isPopupPacks.isPopupNewPack])
 
   return (
     <PopupAction
       title={'Add new pack'}
-      isPopup={isPopup.isPopupNewPack}
+      isPopup={isPopupPacks.isPopupNewPack}
       onClickPopup={onClickPopupNewPack}
     >
       <div className={s.content}>
@@ -37,7 +37,7 @@ export const PopupActionNewPack: FC<PopupActionNewPackType> = memo(({}) => {
           validationSchema={newPackSchema}
           onSubmit={async(dataNewPack: DataNewPackType) => {
             await dispatch(newPack(dataNewPack))
-            dispatch(getCardsPack({page: page, pageCount: pageCount}))
+            dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount}))
             onClickPopupNewPack()
           }}
         >

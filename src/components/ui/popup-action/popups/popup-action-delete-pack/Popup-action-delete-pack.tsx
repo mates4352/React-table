@@ -4,7 +4,7 @@ import {PopupAction} from "../../Popup-action";
 import {PopupPack} from "../../../../../utils/enum/popup";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../../hooks/useAppSelector";
-import {setPopup} from "../../../../../features/main/common/packs-list/Packs-list-slice";
+import {setPopupPack} from "../../../../../features/main/common/packs-list/Packs-list-slice";
 import {Button} from "../../../../bll/button/Button";
 import {deletePack, getCardsPack} from "../../../../../features/main/common/packs-list/Packs-list-thunk";
 
@@ -13,21 +13,21 @@ type PopupActionDeletePackType = {
 };
 export const PopupActionDeletePack: FC<PopupActionDeletePackType> = memo(() => {
   const dispatch = useAppDispatch();
-  const {isPopup, idPack, page, pageCount} = useAppSelector(state => state.packsList);
+  const {isPopupPacks, idPack, PacksPage, PacksPageCount} = useAppSelector(state => state.packsList);
   const onClickPopupDeletePack = useCallback(() => {
-    dispatch(setPopup({popup: PopupPack.DeletePack, isPopup: !isPopup.isPopupDeletePack}))
-  }, [isPopup.isPopupDeletePack])
+    dispatch(setPopupPack({popup: PopupPack.DeletePack, isPopup: !isPopupPacks.isPopupDeletePack}))
+  }, [isPopupPacks.isPopupDeletePack])
 
   const onClickDeletePack = useCallback(async () => {
     await dispatch(deletePack(idPack))
-    dispatch(getCardsPack({page: page, pageCount: pageCount}))
-    dispatch(setPopup({popup: PopupPack.DeletePack, isPopup: !isPopup.isPopupDeletePack}))
+    dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount}))
+    dispatch(setPopupPack({popup: PopupPack.DeletePack, isPopup: !isPopupPacks.isPopupDeletePack}))
   }, [dispatch, idPack])
 
   return (
     <PopupAction
       title={'Delete pack'}
-      isPopup={isPopup.isPopupDeletePack}
+      isPopup={isPopupPacks.isPopupDeletePack}
       onClickPopup={onClickPopupDeletePack}
     >
       <div className={s.content}>

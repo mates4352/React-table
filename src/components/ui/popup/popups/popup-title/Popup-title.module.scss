@@ -1,0 +1,28 @@
+.popupTitle {
+  position: absolute;
+  top: 33px;
+  right: -4px;
+  z-index: 10000;
+}
+
+.content {
+  display: grid;
+  grid-auto-rows: var(--g-minmax);
+  row-gap: 16px;
+}
+
+.iconEdit,
+.iconDelete,
+.iconTeacher {
+  width: 16px;
+  height: 16px;
+}
+
+.iconDelete,
+.iconEdit {
+  fill: currentColor;
+}
+
+.iconTeacher {
+  stroke: currentColor;
+}

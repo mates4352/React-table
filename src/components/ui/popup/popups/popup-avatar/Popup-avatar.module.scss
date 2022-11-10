@@ -1,3 +1,11 @@
+div.popup {
+  position: absolute;
+  top: 48px;
+  right: 0;
+
+  width: 136px;
+}
+
 .content {
   display: grid;
   grid-auto-rows: var(--g-minmax);

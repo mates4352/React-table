@@ -11,7 +11,7 @@ import classNames from "classnames";
 import {
   setCardPacks,
   setIdPack,
-  setPopup,
+  setPopupPack,
   setSortCardPacks
 } from "../../../features/main/common/packs-list/Packs-list-slice";
 import {getCardsPack} from "../../../features/main/common/packs-list/Packs-list-thunk";
@@ -27,18 +27,18 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
 }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate()
-  const {cardPacks, sortCardPacks, isPopup, page, pageCount} = useAppSelector(state => state.packsList)
+  const {cardPacks, sortCardPacks, isPopupPacks, PacksPage, PacksPageCount,} = useAppSelector(state => state.packsList)
   const {_id} = useAppSelector(state => state.app.user)
 
   const onClickPopupDeletePack = useCallback((idPack: string) => () => {
-    dispatch(setPopup({popup: PopupPack.DeletePack, isPopup: !isPopup.isPopupDeletePack}))
+    dispatch(setPopupPack({popup: PopupPack.DeletePack, isPopup: !isPopupPacks.isPopupDeletePack}))
     dispatch(setIdPack(idPack))
-  }, [isPopup.isPopupDeletePack])
+  }, [isPopupPacks.isPopupDeletePack])
 
   const onClickPopupEditPack = useCallback((idPack: string) => () => {
-    dispatch(setPopup({popup: PopupPack.EditPack, isPopup: !isPopup.isPopupEditPack}))
+    dispatch(setPopupPack({popup: PopupPack.EditPack, isPopup: !isPopupPacks.isPopupEditPack}))
     dispatch(setIdPack(idPack))
-  }, [isPopup.isPopupEditPack])
+  }, [isPopupPacks.isPopupEditPack])
 
   const onClickButtonTeacher = useCallback((idPack: string, idUser?: string) => () =>{
     if(idUser === _id) {
@@ -49,8 +49,8 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
   }, [])
 
   useEffect(() => {
-    dispatch(getCardsPack({page: page, pageCount: pageCount}))
-  }, [page, pageCount])
+    dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount}))
+  }, [PacksPage, PacksPageCount])
 
   return (
     <table className={classNames(s.table, s.tableG, className)}>

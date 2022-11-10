@@ -33,6 +33,22 @@
   margin-bottom: 30px;
 }
 
+.wrapTitle {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(min-content, max-content);
+  align-items: center;
+  column-gap: 10px;
+}
+
+.popupMyPack {
+  position: absolute;
+  top: 33px;
+  right: -4px;
+  z-index: 10000;
+}
+
 .inputSearch {
   margin-bottom: 24px;
 }
