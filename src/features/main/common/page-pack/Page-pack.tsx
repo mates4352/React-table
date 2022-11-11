@@ -6,7 +6,7 @@ import {Link} from "../../../../utils/enum/routing";
 import {Title} from "../../../../components/ui/title/Title";
 import {Caption} from "../../../../components/ui/caption/Caption";
 import {Button} from "../../../../components/bll/button/Button";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {getPackMyCards} from "./Page-pack-thunk";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {useAppSelector} from "../../../../hooks/useAppSelector";
@@ -23,7 +23,7 @@ import {PopupTitle} from "../../../../components/ui/popup/popups/popup-title/Pop
 import {
   PopupActionEditPack
 } from "../../../../components/ui/popup-action/popups/popup-action-edit-pack/Popup-action-edit-pack";
-import {deletePack, editPack, getCardsPack} from "../packs-list/Packs-list-thunk";
+import {deletePack, editPack} from "../packs-list/Packs-list-thunk";
 import {DataEditPackType} from "../../Main-type";
 import {setPopupPack} from "../packs-list/Packs-list-slice";
 import {
@@ -34,6 +34,7 @@ type PagePackType = {};
 
 export const PagePack: FC<PagePackType> = ({}) => {
   const params = useParams<{ id: string }>();
+  const navigate = useNavigate()
   const dispatch = useAppDispatch();
   const {cards, page, pageCount, packCards} = useAppSelector(state => state.pagePack);
   const [isPopupTitle, setPopupTitle] = useState<boolean>(false)
@@ -76,7 +77,8 @@ export const PagePack: FC<PagePackType> = ({}) => {
   const onClickDeletePack = useCallback(async () => {
     if(params.id) {
       await dispatch(deletePack(params.id))
-      dispatch(setPopupPack({popup: PopupPack.DeletePack, isPopup: false}))
+      await dispatch(setPopupPack({popup: PopupPack.DeletePack, isPopup: false}))
+      navigate(Link.MAIN)
     }
   }, [params.id, page, pageCount])
 

@@ -55,7 +55,6 @@ export const initialState = {
   isSortCards: false,
 } as PagePackStateType
 
-
 const pagePackSlice = createSlice({
   name: 'pagePack',
   initialState,
@@ -118,10 +117,6 @@ const pagePackSlice = createSlice({
     .addCase(deleteCard.fulfilled.type, (state: PagePackStateType) => {
       state.idCard = ''
     })
-    .addCase(deletePack.fulfilled.type, (state: PagePackStateType) => {
-      state.packCards.cards = [];
-      state.cards = [];
-    })
     .addMatcher((action: AnyAction) => someNamesThunks(authNamesThunks, '/pending', action.type), (state: PagePackStateType, action: PayloadAction<string>) => {
         state.loading = Statuses.PENDING;
       }
@@ -138,4 +133,12 @@ const pagePackSlice = createSlice({
 })
 
 export const pagePacksReducer = pagePackSlice.reducer
-export const {setPopup, setPageCards, setPageCountCards, searchCard, addIdCard, sortCards, changeIsSortCards} = pagePackSlice.actions;
+export const {
+  setPopup,
+  setPageCards,
+  setPageCountCards,
+  searchCard,
+  addIdCard,
+  sortCards,
+  changeIsSortCards
+} = pagePackSlice.actions;
