@@ -3,7 +3,7 @@ import {AppApi} from "./App-api";
 import {AxiosError} from "axios";
 import {LoginErrorType} from "../features/auth/Auth-type";
 import {register, restorePassword, setLogin, setNewPassword} from "../features/auth/Auth-thunk";
-import {logout} from "../features/main/Main-thunk";
+import {logout, updateRating} from "../features/main/Main-thunk";
 import {
   deletePack,
   editPack,
@@ -12,6 +12,7 @@ import {
   newPack
 } from "../features/main/common/packs-list/Packs-list-thunk";
 import {addCard, getPackMyCards} from "../features/main/common/page-pack/Page-pack-thunk";
+import {getPackLearnCards} from "../features/main/common/page-learn/Page-learn-thunk";
 
 export const getDataUser = createAsyncThunk('auth/getDataUser', async(_, {
   rejectWithValue
@@ -40,4 +41,6 @@ export const authNamesThunks = [
   logout.typePrefix,
   getPackMyCards.typePrefix,
   addCard.typePrefix,
+  getPackLearnCards.typePrefix,
+  updateRating.typePrefix,
 ]

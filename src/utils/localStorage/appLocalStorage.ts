@@ -1,6 +1,4 @@
-import {AppStateType} from "../../app/App-slice";
-
-export const appLoadState = (nameItem: string) => {
+export const appLoadStateVerified = (nameItem: string) => {
   try {
     const serializedState = localStorage.getItem(nameItem);
     if (!serializedState) return undefined;
@@ -10,7 +8,7 @@ export const appLoadState = (nameItem: string) => {
   }
 };
 
-export const appSaveState = (appState: AppStateType, nameItem: string) => {
+export const appSaveStateVerified = (appState: boolean, nameItem: string) => {
   try {
     const serializedState = JSON.stringify(appState);
     localStorage.setItem(nameItem, serializedState);

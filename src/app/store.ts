@@ -1,7 +1,7 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {authReducer} from "../features/auth/Auth-slice";
 import {appReducer} from "./App-slice";
-import {appLoadState, appSaveState} from "../utils/localStorage/appLocalStorage";
+import {appLoadStateVerified, appSaveStateVerified} from "../utils/localStorage/appLocalStorage";
 import {mainReducer} from "../features/main/Main-slice";
 import {packsListReducer} from "../features/main/common/packs-list/Packs-list-slice";
 import {pagePacksReducer} from "../features/main/common/page-pack/Page-pack-slice";
@@ -21,12 +21,17 @@ const rootReducer = combineReducers({
 export const store = configureStore({
   reducer: rootReducer,
   preloadedState: {
-    app: appLoadState('app'),
+    app: {
+      // @ts-ignore
+      user: {
+        verified: appLoadStateVerified('verified'),
+      }
+    }
   }
 });
 
 store.subscribe(() => {
-  appSaveState(store.getState().app, 'app')
+  appSaveStateVerified(store.getState().app.user.verified, 'verified')
 })
 
 export type AppState = ReturnType<typeof rootReducer>;

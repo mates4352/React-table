@@ -13,8 +13,16 @@ import {useNavigate, useParams} from "react-router-dom";
 import {updateRating} from "../../Main-thunk";
 import {Link} from "../../../../utils/enum/routing";
 import {fitlerCards} from "./Page-learn-slice";
+import {AnimationPage} from "../../../../components/animations/animationPage";
+import {AnimatePresence, motion} from "framer-motion";
 
 type PageLearnType = {};
+
+const animations = {
+  initial: {height: 0, opacity: 0},
+  animate: {height: 'auto', opacity: 1},
+  exit: {height: 0, opacity: 0},
+}
 
 export const PageLearn: FC<PageLearnType> = ({
   ...props
@@ -43,7 +51,7 @@ export const PageLearn: FC<PageLearnType> = ({
 
   useEffect(() => {
     if(!cards[0] && params.id) {
-      dispatch(getPackLearnCards({cardsPack_id: params.id}))
+      dispatch(getPackLearnCards({cardsPack_id: params.id, pageCount: 10}))
     }
   }, [])
 
@@ -55,55 +63,64 @@ export const PageLearn: FC<PageLearnType> = ({
 
       <Title className={s.title} type={'h2'}>Learn {packCards.packName ? packCards.packName : '“Pack Name”'}</Title>
 
-      <div className={s.body}>
-        <p className={s.text}><span>Question:</span> {cards[0] && cards[0].question}</p>
-        <p className={s.subText}>Количество попыток ответов на вопрос: {cards.length}</p>
+      <AnimationPage>
+        <div className={s.body}>
+          <p className={s.text}><span>Question:</span> {cards[0] && cards[0].question}</p>
+          <p className={s.subText}>Количество попыток ответов на вопрос: {cards.length}</p>
 
-        {isOpenContent &&
-            <>
-                <div className={s.wrap}>
+
+          <AnimatePresence>
+            {isOpenContent &&
+                <motion.div
+                    className={s.wrap}
+                    variants={animations}
+                    initial={'initial'}
+                    animate={'animate'}
+                    exit={'exit'}>
                     <p className={s.text}><span>Answer:</span> {cards[0] && cards[0].answer}</p>
                     <p className={classNames(s.text, s.textRate)}>Rate yourself:</p>
-                </div>
 
-                <ul className={s.list}>
-                    <li className={s.item}>
-                        <InputRadio name={'rario'} text={'Did not know'} onClickInputRadio={onClickInput(1)}/>
-                    </li>
+                    <ul className={s.list}>
+                        <li className={s.item}>
+                            <InputRadio name={'rario'} text={'Did not know'} onClickInputRadio={onClickInput(1)}/>
+                        </li>
 
-                    <li className={s.item}>
-                        <InputRadio name={'rario'} text={'Forgot'} onClickInputRadio={onClickInput(2)}/>
-                    </li>
+                        <li className={s.item}>
+                            <InputRadio name={'rario'} text={'Forgot'} onClickInputRadio={onClickInput(2)}/>
+                        </li>
 
-                    <li className={s.item}>
-                        <InputRadio name={'rario'} text={'A lot of thought'} onClickInputRadio={onClickInput(3)}/>
-                    </li>
+                        <li className={s.item}>
+                            <InputRadio name={'rario'} text={'A lot of thought'} onClickInputRadio={onClickInput(3)}/>
+                        </li>
 
-                    <li className={s.item}>
-                        <InputRadio name={'rario'} text={'Сonfused'} onClickInputRadio={onClickInput(4)}/>
-                    </li>
+                        <li className={s.item}>
+                            <InputRadio name={'rario'} text={'Сonfused'} onClickInputRadio={onClickInput(4)}/>
+                        </li>
 
-                    <li className={s.item}>
-                        <InputRadio name={'rario'} text={'Knew the answer'} onClickInputRadio={onClickInput(5)}/>
-                    </li>
-                </ul>
+                        <li className={s.item}>
+                            <InputRadio name={'rario'} text={'Knew the answer'} onClickInputRadio={onClickInput(5)}/>
+                        </li>
+                    </ul>
 
 
-                <Button
-                    className={s.button}
-                    buttonType={'common'}
-                    type={'button'}
-                    disabled={rating === 0}
-                    onClickButton={onClickUpdateRating(rating, cards[0]._id)}
-                >
-                    Next question
-                </Button>
-            </>
-        }
+                    <Button
+                        className={s.button}
+                        buttonType={'common'}
+                        type={'button'}
+                        disabled={rating === 0}
+                        onClickButton={onClickUpdateRating(rating, cards[0]._id)}
+                    >
+                        Next question
+                    </Button>
+                </motion.div>
+            }
+          </AnimatePresence>
 
-        {!isOpenContent && <Button className={s.button} buttonType={'common'} type={'button'}
-                                   onClickButton={() => setContent(true)}>Next</Button>}
-      </div>
+          {!isOpenContent && <Button className={s.button} buttonType={'common'} type={'button'}
+                                     onClickButton={() => setContent(true)}>Next</Button>}
+        </div>
+      </AnimationPage>
+
 
     </Container>
   );

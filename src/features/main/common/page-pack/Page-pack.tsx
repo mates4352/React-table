@@ -29,6 +29,7 @@ import {setPopupPack} from "../packs-list/Packs-list-slice";
 import {
   PopupActionDeletePack
 } from "../../../../components/ui/popup-action/popups/popup-action-delete-pack/Popup-action-delete-pack";
+import {AnimationPage} from "../../../../components/animations/animationPage";
 
 type PagePackType = {};
 
@@ -91,12 +92,12 @@ export const PagePack: FC<PagePackType> = ({}) => {
       <ButtonBack className={s.buttonBack} to={Link.MAIN}>Back to Packs List</ButtonBack>
 
       {cards.length === 0 &&
-          <div className={s.contentNotCards}>
+          <AnimationPage className={s.contentNotCards}>
               <Title className={s.title} type={"h2"}>{packCards.packName ? packCards.packName : 'Name Pack'}</Title>
 
               <Caption className={s.caption}>This pack is empty. Click add new card to fill this pack</Caption>
               <Button className={s.buttonAddCard} type={'button'} onClickButton={onOpenPopup}>Add new card</Button>
-          </div>
+          </AnimationPage>
       }
 
       {cards.length >= 1 &&
@@ -121,7 +122,9 @@ export const PagePack: FC<PagePackType> = ({}) => {
                   onChange={onChangeInputSearch}
               />
 
-              <TableMyPagePack className={s.table} cards={cards}/>
+              <AnimationPage>
+                  <TableMyPagePack className={s.table} cards={cards}/>
+              </AnimationPage>
 
               <Pagination
                   page={page}

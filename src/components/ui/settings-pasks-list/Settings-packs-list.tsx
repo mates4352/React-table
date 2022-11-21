@@ -6,7 +6,7 @@ import {InputRange} from "../../bll/input-range/Input-range";
 import {FilterRemove} from "../../bll/filter-remove/Filter-remove";
 import {useAppSelector} from "../../../hooks/useAppSelector";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {filterPack, searchPack} from "../../../features/main/common/packs-list/Packs-list-slice";
+import {filterPack, searchPack, setMinMax} from "../../../features/main/common/packs-list/Packs-list-slice";
 import {getCardsPack} from "../../../features/main/common/packs-list/Packs-list-thunk";
 
 type SettingsPasksListType = {};
@@ -40,7 +40,12 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
     setValueTab('All')
     setText('')
     setValueInputRange([0, 10])
+    dispatch(setMinMax({min: 0, max: 10}))
   }, [])
+  const onFilterInputRange = (valueMinMax: number[]) => {
+    dispatch(setMinMax({min: valueMinMax[0], max: valueMinMax[1]}))
+    setValueInputRange(valueMinMax)
+  }
 
   return (
     <div className={s.settings}>
@@ -73,7 +78,7 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
         value={valueInputRange}
         title={'Number of cards'}
         onChangeValue={onChangeValueInputRange}
-        setValue={setValueInputRange}
+        setValue={onFilterInputRange}
       />
 
       <FilterRemove onClickButton={onFilterRemove}/>

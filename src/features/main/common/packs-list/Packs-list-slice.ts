@@ -15,6 +15,8 @@ interface MainStateType {
   }
   PacksPage: number,
   PacksPageCount: number,
+  min: number,
+  max: number,
   cardPacks: Array<CardPacksType>
   sortCardPacks: boolean
   idPack: string
@@ -38,6 +40,8 @@ const initialState = {
   },
   PacksPage: 1,
   PacksPageCount: 8,
+  min: 0,
+  max: 10,
   cardPacks: [],
   sortCardPacks: false,
   idPack: '',
@@ -95,6 +99,10 @@ const packsListSlice = createSlice({
     },
     setPageCount: (state: MainStateType, action: PayloadAction<number>) => {
       state.PacksPageCount = action.payload
+    },
+    setMinMax: (state: MainStateType, action: PayloadAction<{min: number, max: number}>) => {
+      state.min = action.payload.min
+      state.max = action.payload.max
     }
   },
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
@@ -106,5 +114,5 @@ const packsListSlice = createSlice({
 });
 
 export const {reducer} = packsListSlice;
-export const {setPopupPack, setIdPack, setPage, setPageCount, filterPack, searchPack, setCardPacks, setSortCardPacks} = packsListSlice.actions;
+export const {setPopupPack, setIdPack, setPage, setPageCount, filterPack, searchPack, setCardPacks, setSortCardPacks, setMinMax} = packsListSlice.actions;
 export const packsListReducer = reducer;

@@ -28,7 +28,7 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
 }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate()
-  const {cardPacks, sortCardPacks, isPopupPacks, PacksPage, PacksPageCount,} = useAppSelector(state => state.packsList)
+  const {cardPacks, sortCardPacks, isPopupPacks, PacksPage, PacksPageCount, min, max} = useAppSelector(state => state.packsList)
   const {_id} = useAppSelector(state => state.app.user)
 
   const onClickPopupDeletePack = useCallback((idPack: string) => () => {
@@ -50,13 +50,13 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
   }, [])
 
   const onClickButtonTeacher = useCallback((idPack: string) => async () => {
-    await dispatch(getPackLearnCards({cardsPack_id: idPack}))
+    await dispatch(getPackLearnCards({cardsPack_id: idPack, pageCount: 10}))
     navigate(Link.PAGE_LEARN + '/' + idPack)
   }, [])
 
   useEffect(() => {
-    dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount}))
-  }, [PacksPage, PacksPageCount])
+    dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount, min: min, max: max}))
+  }, [PacksPage, PacksPageCount, min, max])
 
   return (
     <table className={classNames(s.table, s.tableG, className)}>

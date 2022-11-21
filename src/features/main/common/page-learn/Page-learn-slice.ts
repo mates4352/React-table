@@ -40,7 +40,7 @@ const PageLearnSlice = createSlice({
   extraReducers: (builder: ActionReducerMapBuilder<NoInfer<any>>) => {
     builder.addCase(getPackLearnCards.fulfilled.type, (state: PageLearnSliceStateType, action: PayloadAction<responsePackCardsType>) => {
       state.packCards = action.payload
-      state.cards = action.payload.cards
+      state.cards = action.payload.cards.sort((a, b) => a.grade - b.grade)
     })
   }
 })

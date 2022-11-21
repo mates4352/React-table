@@ -12,6 +12,7 @@ import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {setPageCards, setPageCountCards} from "./Page-friends-pack-slice";
 import {useNavigate, useParams} from "react-router-dom";
 import {getPackLearnCards} from "../page-learn/Page-learn-thunk";
+import {AnimationPage} from "../../../../components/animations/animationPage";
 
 type PageFriendsPackType = {
 
@@ -32,7 +33,7 @@ export const PageFriendsPack: FC<PageFriendsPackType> = ({}) => {
   }, [dispatch])
 
   const onClickButtonLearn = useCallback((idPack: string) => async () => {
-    await dispatch(getPackLearnCards({cardsPack_id: idPack}))
+    await dispatch(getPackLearnCards({cardsPack_id: idPack, pageCount: 10}))
     navigate(Link.PAGE_LEARN + '/' + idPack)
   }, [])
 
@@ -46,7 +47,9 @@ export const PageFriendsPack: FC<PageFriendsPackType> = ({}) => {
         <Button className={s.button} type={'button'} onClickButton={onClickButtonLearn(String(params.id))}>Learn to pack</Button>
       </div>
 
-      <TableFriendsPagePack className={s.table}/>
+      <AnimationPage>
+        <TableFriendsPagePack className={s.table}/>
+      </AnimationPage>
 
       <Pagination
         page={page}

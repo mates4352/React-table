@@ -38,7 +38,7 @@ export const PopupTitle: FC<PopupTitleType> = memo(({
 
 
   const onClickButtonLearn = useCallback((idPack: string) => async () => {
-    await dispatch(getPackLearnCards({cardsPack_id: idPack}))
+    await dispatch(getPackLearnCards({cardsPack_id: idPack, pageCount: 10}))
     navigate(Link.PAGE_LEARN + '/' + idPack)
   }, [])
 
