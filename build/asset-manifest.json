@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fa57e008.css",
+    "main.js": "/static/js/main.9337a1d0.js",
+    "static/js/787.a663bc8e.chunk.js": "/static/js/787.a663bc8e.chunk.js",
+    "static/media/SF-UI-Display-Semibold.woff": "/static/media/SF-UI-Display-Semibold.df4855fdeebbfd730663.woff",
+    "static/media/SF-UI-Display-Medium.woff": "/static/media/SF-UI-Display-Medium.7a83304e816b06d35492.woff",
+    "static/media/SF-UI-Display-Bold.woff": "/static/media/SF-UI-Display-Bold.42a114dc81fbcbfb38c2.woff",
+    "static/media/Lato-Regular.woff": "/static/media/Lato-Regular.ba2b048bed146a337122.woff",
+    "static/media/Poppins-SemiBold.woff": "/static/media/Poppins-SemiBold.93a2a944e73e625cd116.woff",
+    "static/media/SF-UI-Display-Regular.woff": "/static/media/SF-UI-Display-Regular.a5782f9286a232d19504.woff",
+    "static/media/check-email.svg": "/static/media/check-email.0366a56f3d44477b44fb5db0120b67af.svg",
+    "static/media/logo.svg": "/static/media/logo.3c09153556dc0fef65c4fc532ee16562.svg",
+    "static/media/arrow.svg": "/static/media/arrow.567e7d00f4a12b80b74d.svg",
+    "index.html": "/index.html",
+    "main.fa57e008.css.map": "/static/css/main.fa57e008.css.map",
+    "main.9337a1d0.js.map": "/static/js/main.9337a1d0.js.map",
+    "787.a663bc8e.chunk.js.map": "/static/js/787.a663bc8e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa57e008.css",
+    "static/js/main.9337a1d0.js"
+  ]
+}
