@@ -35,6 +35,7 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
   }, [])
   const onChangeValueInputRange = useCallback((valueMinMax: number[]) => () => {
     dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount, min: valueMinMax[0], max: valueMinMax[1]}))
+    dispatch(setMinMax({min: valueMinMax[0], max: valueMinMax[1]}))
   }, [])
   const onFilterRemove = useCallback(() => {
     setValueTab('All')
@@ -42,10 +43,6 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
     setValueInputRange([0, 10])
     dispatch(setMinMax({min: 0, max: 10}))
   }, [])
-  const onFilterInputRange = (valueMinMax: number[]) => {
-    dispatch(setMinMax({min: valueMinMax[0], max: valueMinMax[1]}))
-    setValueInputRange(valueMinMax)
-  }
 
   return (
     <div className={s.settings}>
@@ -78,7 +75,7 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
         value={valueInputRange}
         title={'Number of cards'}
         onChangeValue={onChangeValueInputRange}
-        setValue={onFilterInputRange}
+        setValue={setValueInputRange}
       />
 
       <FilterRemove onClickButton={onFilterRemove}/>

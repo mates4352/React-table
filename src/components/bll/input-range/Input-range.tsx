@@ -33,6 +33,12 @@ export const InputRange: FC<InputRangeType> = memo(({
     setValue(newValue as number[]);
   };
 
+  useEffect(() => {
+    const id = setTimeout(onChangeValue(value), 500)
+
+    return () => clearTimeout(id)
+  }, [value])
+
   return (
     <div className={s.inputRange}>
       {title && <h3 className={s.title}>{title}</h3>}
@@ -40,13 +46,12 @@ export const InputRange: FC<InputRangeType> = memo(({
       <div className={s.wrap}>
         <div className={classNames(s.value, s.value_min,)}>{value[0]}</div>
 
-        <Box sx={{ width: 155 }}>
+        <Box sx={{width: 155}}>
           <Slider
             min={min}
             max={max}
             value={value}
             onChange={handleChange}
-            onMouseUp={onChangeValue(value)}
             getAriaLabel={() => 'Temperature range'}
             valueLabelDisplay="auto"
           />
