@@ -10,6 +10,8 @@ import {Title} from "../../../../components/ui/title/Title";
 import {Button} from "../../../../components/bll/button/Button";
 import {useAppDispatch} from "../../../../hooks/useAppDispatch";
 import {setPageCards, setPageCountCards} from "./Page-friends-pack-slice";
+import {useNavigate, useParams} from "react-router-dom";
+import {getPackLearnCards} from "../page-learn/Page-learn-thunk";
 
 type PageFriendsPackType = {
 
@@ -17,6 +19,8 @@ type PageFriendsPackType = {
 
 export const PageFriendsPack: FC<PageFriendsPackType> = ({}) => {
   const dispatch = useAppDispatch()
+  const params = useParams<{id: string}>()
+  const navigate = useNavigate()
   const {page, pageCount, packCards} = useAppSelector(state => state.pagePackFriends)
 
   const onClickButton = useCallback((button: number) => {
@@ -27,6 +31,11 @@ export const PageFriendsPack: FC<PageFriendsPackType> = ({}) => {
     dispatch(setPageCountCards(option))
   }, [dispatch])
 
+  const onClickButtonLearn = useCallback((idPack: string) => async () => {
+    await dispatch(getPackLearnCards({cardsPack_id: idPack}))
+    navigate(Link.PAGE_LEARN + '/' + idPack)
+  }, [])
+
   return (
     <Container className={s.pageFriendsPack} type={'section'}>
       <ButtonBack className={s.buttonBack} to={Link.MAIN}>Back to Packs List</ButtonBack>
@@ -34,7 +43,7 @@ export const PageFriendsPack: FC<PageFriendsPackType> = ({}) => {
       <div className={s.wrap}>
         <Title type={'h2'}>Friend’s Pack</Title>
 
-        <Button className={s.button} type={'button'} onClickButton={() => {}}>Learn to pack</Button>
+        <Button className={s.button} type={'button'} onClickButton={onClickButtonLearn(String(params.id))}>Learn to pack</Button>
       </div>
 
       <TableFriendsPagePack className={s.table}/>

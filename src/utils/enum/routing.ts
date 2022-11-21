@@ -8,7 +8,8 @@ export enum Routing {
   MAIN = 'Main/*',
   EDIT_PROFILE = 'Edit-profile',
   PAGE_PACK = 'Page-pack',
-  PAGE_FRIENDS_PACK = 'Page-friends-pack'
+  PAGE_FRIENDS_PACK = 'Page-friends-pack',
+  PAGE_LEARN = 'Page-learn'
 }
 
 export enum Link {
@@ -21,5 +22,6 @@ export enum Link {
   MAIN = '/Main',
   EDIT_PROFILE = '/Main/Edit-profile',
   PAGE_PACK = '/Main/Page-pack',
-  PAGE_FRIENDS_PACK = '/Main/Page-friends-pack'
+  PAGE_FRIENDS_PACK = '/Main/Page-friends-pack',
+  PAGE_LEARN = '/Main/Page-learn'
 }

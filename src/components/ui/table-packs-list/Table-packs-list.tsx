@@ -17,6 +17,7 @@ import {
 import {getCardsPack} from "../../../features/main/common/packs-list/Packs-list-thunk";
 import {useNavigate} from "react-router-dom";
 import {Link} from "../../../utils/enum/routing";
+import {getPackLearnCards} from "../../../features/main/common/page-learn/Page-learn-thunk";
 
 type TablePacksListType = {
   className?: string
@@ -40,12 +41,17 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
     dispatch(setIdPack(idPack))
   }, [isPopupPacks.isPopupEditPack])
 
-  const onClickButtonTeacher = useCallback((idPack: string, idUser?: string) => () =>{
+  const onClickButtonRedirect = useCallback((idPack: string, idUser?: string) => () => {
     if(idUser === _id) {
       navigate(Link.PAGE_PACK + '/' + idPack)
     } else {
       navigate(Link.PAGE_FRIENDS_PACK + '/' + idPack)
     }
+  }, [])
+
+  const onClickButtonTeacher = useCallback((idPack: string) => async () => {
+    await dispatch(getPackLearnCards({cardsPack_id: idPack}))
+    navigate(Link.PAGE_LEARN + '/' + idPack)
   }, [])
 
   useEffect(() => {
@@ -84,10 +90,11 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
       <tbody className={classNames(s.tbody, s.tbodyG)}>
       {cardPacks.map((item: CardPacksType) =>
         <tr className={classNames(s.tr, s.trG)} key={item._id}>
-          <td className={classNames(s.td, s.tdG)}>
+          <td className={classNames(s.td, s.tdG)} onClick={onClickButtonRedirect(item._id, item.user_id)}>
             <div className={s.tdWrap}>{item.name}</div>
           </td>
-          <td className={classNames(s.td, s.tdG)}>{item.cardsCount}</td>
+          <td className={classNames(s.td, s.tdG)}
+              onClick={onClickButtonRedirect(item._id, item.user_id)}>{item.cardsCount}</td>
           <td className={classNames(s.td, s.tdG)}>{item.updated.substr(0, 10)}</td>
           <td className={classNames(s.td, s.tdG)}>
             <div className={s.tdWrap}>{item.user_name}</div>
@@ -98,7 +105,7 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
                 showActions={[TypeButtonAction.TEACHER, TypeButtonAction.EDIT, TypeButtonAction.DELETE]}
                 onClickButtonDelete={onClickPopupDeletePack(item._id)}
                 onClickButtonEdit={onClickPopupEditPack(item._id)}
-                onClickButtonTeacher={onClickButtonTeacher(item._id, item.user_id)}
+                onClickButtonTeacher={onClickButtonTeacher(item._id)}
               /> :
               <Actions showActions={[TypeButtonAction.TEACHER]} onClickButtonTeacher={onClickButtonTeacher(item._id)}/>
             }

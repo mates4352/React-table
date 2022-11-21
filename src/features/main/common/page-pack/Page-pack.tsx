@@ -120,6 +120,7 @@ export const PagePack: FC<PagePackType> = ({}) => {
                   onSearchTable={onSearchCard}
                   onChange={onChangeInputSearch}
               />
+
               <TableMyPagePack className={s.table} cards={cards}/>
 
               <Pagination

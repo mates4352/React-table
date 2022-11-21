@@ -1,10 +1,10 @@
-import React, {FC, memo} from 'react';
+import React, {FC, memo, ReactNode} from 'react';
 import s from './Title.module.scss';
 import classNames from "classnames";
 
 type TitleType = {
   className?: string
-  children: string
+  children: ReactNode
   type: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 };
 

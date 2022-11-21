@@ -5,13 +5,15 @@ import {IconProfile} from "../../../../icons/icon-profile/Icon-profile";
 import {IconLogout} from "../../../../icons/icon-logout/Icon-logout";
 import {Popup} from "../../Popup";
 import {useAppSelector} from "../../../../../hooks/useAppSelector";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {IconTeacher} from "../../../../icons/icon-teacher/Icon-teacher";
 import {IconDelete} from "../../../../icons/icon-delete/Icon-delete";
 import {IconEdit} from "../../../../icons/icon-edit/Icon-edit";
 import {useAppDispatch} from "../../../../../hooks/useAppDispatch";
 import {setPopupPack} from "../../../../../features/main/common/packs-list/Packs-list-slice";
 import {PopupPack} from "../../../../../utils/enum/popup";
+import {Link} from "../../../../../utils/enum/routing";
+import {getPackLearnCards} from "../../../../../features/main/common/page-learn/Page-learn-thunk";
 
 type PopupTitleType = {
   isPopupTitle: boolean
@@ -23,7 +25,8 @@ export const PopupTitle: FC<PopupTitleType> = memo(({
   onClosePopup
 }) => {
   const dispatch = useAppDispatch()
-  const paramas = useParams<{id: string}>()
+  const paramas = useParams<{ id: string }>()
+  const navigate = useNavigate()
 
   const onClickButtonEdit = useCallback(() => {
     dispatch(setPopupPack({isPopup: true, popup: PopupPack.EditPack}))
@@ -33,9 +36,11 @@ export const PopupTitle: FC<PopupTitleType> = memo(({
     dispatch(setPopupPack({popup: PopupPack.DeletePack, isPopup: true}))
   }, [])
 
-  const onClickButtonLearn = () => {
 
-  }
+  const onClickButtonLearn = useCallback((idPack: string) => async () => {
+    await dispatch(getPackLearnCards({cardsPack_id: idPack}))
+    navigate(Link.PAGE_LEARN + '/' + idPack)
+  }, [])
 
   return (
     <Popup
@@ -61,7 +66,7 @@ export const PopupTitle: FC<PopupTitleType> = memo(({
         <ButtonLinear
           button
           icon={<IconTeacher className={s.iconTeacher}/>}
-          onClickButton={onClickButtonLearn}>
+          onClickButton={onClickButtonLearn(String(paramas.id))}>
           Learn
         </ButtonLinear>
       </div>

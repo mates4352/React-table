@@ -1,0 +1,57 @@
+.PageLearn {
+  padding-top: 24px;
+}
+
+.buttonBack {
+  margin-bottom: 24px;
+}
+
+.title {
+  margin-bottom: 18px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.body {
+  max-width: 440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 30px 36px;
+  background: #FFFFFF;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+
+.text {
+  margin-bottom: 14px;
+  font: var(--g-p2-1);
+  color: var(--g-dark);
+
+  span {
+    font-family: SF-UI-Display-Medium, serif;
+  }
+}
+
+.subText {
+  font: var(--g-p3-1);
+  color: var(--g-dark-opacity-50);
+}
+
+.wrap {
+  margin-top: 35px;
+}
+
+.textRate {
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.list {
+  display: grid;
+  grid-auto-rows: minmax(min-content, max-content);
+  row-gap: 12px;
+}
+
+.button {
+  margin-top: 40px;
+}

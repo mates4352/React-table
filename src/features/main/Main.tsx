@@ -5,6 +5,7 @@ import {EditProfile} from "./common/edit-profile/Edit-profile";
 import {PacksList} from "./common/packs-list/Packs-list";
 import {PagePack} from "./common/page-pack/Page-pack";
 import {PageFriendsPack} from "./common/page-friends-pack/Page-friends-pack";
+import {PageLearn} from "./common/page-learn/Page-learn";
 
 
 type MainType = {};
@@ -25,6 +26,11 @@ export const Main: FC<MainType> = ({}) => {
           <Route path={':id'} element={<PageFriendsPack/>}/>
         </Route>
         <Route path={Routing.PAGE_FRIENDS_PACK + '/*'} element={<Navigate to={Link.PAGE_FRIENDS_PACK}/>}/>
+
+        <Route path={Routing.PAGE_LEARN} element={<PageLearn/>}>
+          <Route path={':id'} element={<PageLearn/>}/>
+        </Route>
+        <Route path={Routing.PAGE_LEARN + '/*'} element={<Navigate to={Link.PAGE_LEARN}/>}/>
       </Routes>
     </>
   );
