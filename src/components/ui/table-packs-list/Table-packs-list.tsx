@@ -56,7 +56,7 @@ export const TablePacksList: FC<TablePacksListType> = memo(({
 
   useEffect(() => {
     dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount, min: min, max: max}))
-  }, [PacksPage, PacksPageCount, min, max])
+  }, [PacksPage, PacksPageCount])
 
   return (
     <table className={classNames(s.table, s.tableG, className)}>

@@ -1,4 +1,4 @@
-import React, {FC, memo, useEffect} from 'react';
+import React, {FC, memo, useCallback, useEffect} from 'react';
 import s from './Input-range.module.scss';
 import classNames from "classnames";
 import Slider from '@mui/material/Slider';
@@ -29,15 +29,16 @@ export const InputRange: FC<InputRangeType> = memo(({
   setValue,
   className
 }) => {
-  const handleChange = (event: Event, newValue: newValueInputRangeType) => {
+  const handleChange = useCallback((event: Event, newValue: newValueInputRangeType) => {
     setValue(newValue as number[]);
-  };
-
-  useEffect(() => {
-    const id = setTimeout(onChangeValue(value), 500)
-
-    return () => clearTimeout(id)
   }, [value])
+
+  console.log(value)
+  // useEffect(() => {
+  //   const id = setTimeout(onChangeValue(value), 500)
+  //
+  //   return () => clearTimeout(id)
+  // }, [value])
 
   return (
     <div className={s.inputRange}>
@@ -52,6 +53,7 @@ export const InputRange: FC<InputRangeType> = memo(({
             max={max}
             value={value}
             onChange={handleChange}
+            onMouseUp={onChangeValue(value)}
             getAriaLabel={() => 'Temperature range'}
             valueLabelDisplay="auto"
           />

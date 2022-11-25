@@ -18,7 +18,6 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
   const [inputText, setText] = useState<string>('')
   const [valueTab, setValueTab] = useState<valueTabType>('All')
   const [valueInputRange, setValueInputRange] = React.useState<number[]>([0, 10]);
-
   const onInputChangeValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setText(e.currentTarget.value)
   }, [])
@@ -42,6 +41,7 @@ export const SettingsPacksList: FC<SettingsPasksListType> = memo(() => {
     setText('')
     setValueInputRange([0, 10])
     dispatch(setMinMax({min: 0, max: 10}))
+    dispatch(getCardsPack({page: PacksPage, pageCount: PacksPageCount, min: 0, max: 10}))
   }, [])
 
   return (
