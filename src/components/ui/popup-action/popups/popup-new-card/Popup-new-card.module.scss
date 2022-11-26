@@ -1,8 +1,14 @@
-.form {
+.body {
   display: grid;
   grid-auto-rows: var(--g-minmax);
   row-gap: 24px;
   padding: 24px 24px 108px;
+}
+
+.form {
+  display: grid;
+  grid-auto-rows: var(--g-minmax);
+  row-gap: 24px;
 }
 
 .input {

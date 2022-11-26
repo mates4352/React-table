@@ -4,7 +4,6 @@ import {AnimatePresence, motion} from "framer-motion";
 import {ButtonPaginationArrow} from "../button-pagination-arrow/Button-pagination-arrow";
 import classNames from "classnames";
 import {useAppDispatch} from "../../../hooks/useAppDispatch";
-import {setPageCount} from "../../../features/main/common/packs-list/Packs-list-slice";
 import {IconSmallArrow} from "../../icons/icon-small-arrow/Icon-small-arrow";
 
 type SelectType = {

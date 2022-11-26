@@ -1,4 +1,4 @@
-import React, {FC, memo, useCallback} from 'react';
+import React, {FC, memo, useCallback, useState, MouseEvent} from 'react';
 import s from './Popup-new-card.module.scss'
 import {PopupAction} from "../../Popup-action";
 import {useAppSelector} from "../../../../../hooks/useAppSelector";
@@ -13,54 +13,66 @@ import {Button} from "../../../../bll/button/Button";
 import {Statuses} from "../../../../../utils/enum/statuses";
 import {dataNewCard} from "../../../../../features/main/common/page-pack/Page-pack-type";
 import {useParams} from "react-router-dom";
+import {SelectCustom} from "../../../../bll/selectCustom/SelectCustom";
 
-type PopupNewCardType = {
-
-};
+type PopupNewCardType = {};
 export const PopupNewCard: FC<PopupNewCardType> = memo(({}) => {
+  const [arrayOptions, setArrayOptions] = useState<Array<string>>(['Text', 'Picture'])
   const dispatch = useAppDispatch()
-  const params = useParams<{id: string}>()
+  const params = useParams<{ id: string }>()
   const {isPopup, loading, page, pageCount} = useAppSelector(state => state.pagePack)
-  const onClosePopup = useCallback( () => {
+  const onClosePopup = useCallback(() => {
     dispatch(setPopup({popup: PopupCard.NewCard, isPopup: false}))
   }, [])
 
   return (
     <PopupAction title={'Add new card'} isPopup={isPopup.isPopupAddNewCard} onClickPopup={onClosePopup}>
-      <Formik
-        initialValues={{
-          question: '',
-          answer: '',
-        }}
-        validationSchema={newCardSchema}
-        onSubmit={async(dataNewCard: dataNewCard) => {
-          if(params.id) {
-            await dispatch(addCard({...dataNewCard, cardsPack_id: params.id}))
-            dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
-            onClosePopup()
-          }
-        }}
-      >
-        {formik => (
-          <Form className={s.form}>
-            <Field
-              className={s.input}
-              name={'question'}
-              type={'text'}
-              label={'Question'}
-              component={Input}/>
+      <div className={s.body}>
+        <SelectCustom
+          title={'Choose a question format'}
+          options={arrayOptions}
+          setArrayOptions={setArrayOptions}
+        />
 
-            <Field
-              className={s.input}
-              name={'answer'}
-              type={'text'}
-              label={'Answer'}
-              component={Input}/>
+        <Formik
+          initialValues={{
+            question: '',
+            answer: '',
+          }}
+          validationSchema={newCardSchema}
+          onSubmit={async(dataNewCard: dataNewCard) => {
+            if(params.id) {
+              await dispatch(addCard({...dataNewCard, cardsPack_id: params.id}))
+              dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
+              onClosePopup()
+            }
+          }}
+        >
+          {formik => (
+            <Form className={s.form}>
+              {arrayOptions[0] === 'Text' &&
+                  <>
+                      <Field
+                          className={s.input}
+                          name={'question'}
+                          type={'text'}
+                          label={'Question'}
+                          component={Input}/>
 
-            <Button className={s.button} disabled={!(formik.isValid && formik.dirty) || loading === Statuses.PENDING} type={'submit'}>Add new card</Button>
-          </Form>
-        )}
-      </Formik>
+                      <Field
+                          className={s.input}
+                          name={'answer'}
+                          type={'text'}
+                          label={'Answer'}
+                          component={Input}/>
+                  </>
+              }
+              <Button className={s.button} disabled={!(formik.isValid && formik.dirty) || loading === Statuses.PENDING}
+                      type={'submit'}>Add new card</Button>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </PopupAction>
   );
 })
