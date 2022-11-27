@@ -65,7 +65,14 @@ export const PageLearn: FC<PageLearnType> = ({
 
       <AnimationPage>
         <div className={s.body}>
-          <p className={s.text}><span>Question:</span> {cards[0] && cards[0].question}</p>
+          <p className={s.text}>
+            <span>Question:</span>
+            {cards[0] && cards[0].question.includes('data:image') ?
+              <img className={s.image} src={cards[0].question} alt=""/>
+              :
+              cards[0].question
+            }
+          </p>
           <p className={s.subText}>Количество попыток ответов на вопрос: {cards.length}</p>
 
 
@@ -77,7 +84,14 @@ export const PageLearn: FC<PageLearnType> = ({
                     initial={'initial'}
                     animate={'animate'}
                     exit={'exit'}>
-                    <p className={s.text}><span>Answer:</span> {cards[0] && cards[0].answer}</p>
+                    <p className={s.text}>
+                        <span>Answer:</span>
+                      {cards[0] && cards[0].answer.includes('data:image') ?
+                        <img className={s.image} src={cards[0].answer} alt=""/>
+                        :
+                        cards[0].answer
+                      }
+                    </p>
                     <p className={classNames(s.text, s.textRate)}>Rate yourself:</p>
 
                     <ul className={s.list}>

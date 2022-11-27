@@ -48,7 +48,6 @@
 
 .nameSelectActive {
   border: 1px solid var(--g-dark);
-  margin-bottom: 12px;
 
   &::before {
     transform: translateY(-50%) rotate(180deg);
@@ -58,6 +57,7 @@
 .list {
   display: grid;
   grid-auto-rows: var(--g-minmax);
+  row-gap: 5px;
   border: 1px solid #DFE4E5;
   overflow: hidden;
 }
@@ -68,6 +68,7 @@
 
 .optionButton {
   width: 100%;
+  padding: 5px;
 
   font: var(--g-p2);
   color: var(--g-dark);

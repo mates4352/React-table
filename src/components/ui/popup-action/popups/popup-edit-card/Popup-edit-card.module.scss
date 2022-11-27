@@ -1,8 +1,14 @@
+.body {
+  display: grid;
+  grid-auto-rows: var(--g-minmax);
+  row-gap: 24px;
+  padding: 24px 24px 38px;
+}
+
 .form {
   display: grid;
   grid-auto-rows: var(--g-minmax);
   row-gap: 24px;
-  padding: 24px 24px 108px;
 }
 
 .input {
@@ -12,4 +18,18 @@
 .button {
   justify-self: center;
   max-width: 174px;
+}
+
+.wrap {
+  display: grid;
+  grid-auto-columns: var(--g-minmax);
+  grid-template-columns: 1fr;
+  row-gap: 15px;
+}
+
+.image {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  object-position: center;
 }

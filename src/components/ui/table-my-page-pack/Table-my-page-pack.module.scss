@@ -8,3 +8,10 @@
           minmax(min-content, 1fr)
 ;
 }
+
+.image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+}

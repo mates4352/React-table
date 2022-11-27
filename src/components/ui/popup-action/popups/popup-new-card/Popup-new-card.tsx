@@ -14,10 +14,13 @@ import {Statuses} from "../../../../../utils/enum/statuses";
 import {dataNewCard} from "../../../../../features/main/common/page-pack/Page-pack-type";
 import {useParams} from "react-router-dom";
 import {SelectCustom} from "../../../../bll/selectCustom/SelectCustom";
+import {InputImage} from "../../../../bll/input-image/InputImage";
 
 type PopupNewCardType = {};
 export const PopupNewCard: FC<PopupNewCardType> = memo(({}) => {
   const [arrayOptions, setArrayOptions] = useState<Array<string>>(['Text', 'Picture'])
+  const [imageQuestion, setQuestionImage] = useState('');
+  const [imageAnswer, setAnswerImage] = useState('');
   const dispatch = useAppDispatch()
   const params = useParams<{ id: string }>()
   const {isPopup, loading, page, pageCount} = useAppSelector(state => state.pagePack)
@@ -45,27 +48,51 @@ export const PopupNewCard: FC<PopupNewCardType> = memo(({}) => {
               await dispatch(addCard({...dataNewCard, cardsPack_id: params.id}))
               dispatch(getPackMyCards({cardsPack_id: params.id, page: page, pageCount: pageCount}))
               onClosePopup()
+              setQuestionImage('')
+              setAnswerImage('')
             }
           }}
         >
           {formik => (
             <Form className={s.form}>
-              {arrayOptions[0] === 'Text' &&
-                  <>
-                      <Field
-                          className={s.input}
-                          name={'question'}
-                          type={'text'}
-                          label={'Question'}
-                          component={Input}/>
+              {arrayOptions[0] === 'Text' ?
+                <>
+                  <Field
+                    className={s.input}
+                    name={'question'}
+                    type={'text'}
+                    label={'Question'}
+                    component={Input}/>
 
-                      <Field
-                          className={s.input}
-                          name={'answer'}
-                          type={'text'}
-                          label={'Answer'}
-                          component={Input}/>
-                  </>
+                  <Field
+                    className={s.input}
+                    name={'answer'}
+                    type={'text'}
+                    label={'Answer'}
+                    component={Input}/>
+                </>
+                :
+                <div className={s.wrap}>
+                  <Field
+                    className={s.input}
+                    name={'question'}
+                    type={'file'}
+                    label={'Question'}
+                    setImage={setQuestionImage}
+                    component={InputImage}/>
+
+                  {imageQuestion && <img className={s.image} src={imageQuestion} alt=""/>}
+
+                  <Field
+                    className={s.input}
+                    name={'answer'}
+                    type={'file'}
+                    label={'Answer'}
+                    setImage={setAnswerImage}
+                    component={InputImage}/>
+
+                  {imageAnswer && <img className={s.image} src={imageAnswer} alt=""/>}
+                </div>
               }
               <Button className={s.button} disabled={!(formik.isValid && formik.dirty) || loading === Statuses.PENDING}
                       type={'submit'}>Add new card</Button>

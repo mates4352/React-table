@@ -73,9 +73,21 @@ export const TableMyPagePack: FC<TableMyPagePackType> = memo(({
       <tbody className={classNames(s.tbody, s.tbodyG)}>
       {cards.map((card: cardType) =>
         <tr className={classNames(s.tr, s.trG)} key={card._id}>
-          <td className={classNames(s.td, s.tdG)}>{card.question}</td>
+          <td className={classNames(s.td, s.tdG)}>
+            {card.question.includes('data:image') ?
+              <img className={s.image} src={card.question} alt=""/>
+              :
+              card.question
+            }
+          </td>
 
-          <td className={classNames(s.td, s.tdG)}>{card.answer}</td>
+          <td className={classNames(s.td, s.tdG)}>
+            {card.answer.includes('data:image') ?
+              <img className={s.image} src={card.answer} alt=""/>
+              :
+              card.answer
+            }
+          </td>
 
           <td className={classNames(s.td, s.tdG)}>{card.updated.substring(0, 10)}</td>
 

@@ -12,9 +12,9 @@ type SelectCustomType = {
 };
 
 const animations = {
-  initial: {height: 0, opacity: 0, padding: 12, rowGap: 12},
-  animate: {height: 'auto', opacity: 1, padding: 12, rowGap: 12},
-  exit: {height: 0, opacity: 0, padding: 0, rowGap: 0},
+  initial: {height: 0, opacity: 0},
+  animate: {height: 'auto', opacity: 1},
+  exit: {height: 0, opacity: 0},
 }
 
 
@@ -30,6 +30,7 @@ export const SelectCustom: FC<SelectCustomType> = memo(({
     const deleteNewArrayOptions = options.filter(item => item !== valueOption)
     deleteNewArrayOptions.unshift(valueOption)
     setArrayOptions && setArrayOptions(deleteNewArrayOptions)
+    setSelect(false)
   }
 
   useOnClickOutside(wrapRef, () => setSelect(false))

@@ -1,0 +1,12 @@
+@import './../../../assets/style';
+
+.label {
+  font: var(--g-p2);
+  color: var(--g-blue-dark);
+  text-decoration: underline;
+  cursor: pointer;
+  text-transform: capitalize;
+  &:hover {
+    opacity: 0.8;
+  }
+}
